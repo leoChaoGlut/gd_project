@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="http://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link rel="stylesheet" href="../../css/lib/materialize.min.css">
+<link rel="stylesheet" href="../../css/lib/load.css">
+<link rel="stylesheet" href="../../css/blog/main.css">
+<title>Document</title>
+</head>
+
+<body ms-controller="vm_body">
+	<div id="header" class="header" ms-controller="vm_head">
+		<div class="header-left">left</div>
+		<div class="header-right">
+			<ul>
+				<li ms-repeat="nav_btns"><a
+					class="waves-effect waves-light btn"><i
+						class="material-icons left">cloud</i>{{el.text}}</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="main_body" class="main-body">
+		<div class="articles" ms-controller="vm_article">
+			<div ms-attr-id="" class="article" ms-repeat="articles">
+				<div class="title" ms-text="el.title"></div>
+				<div class="content" ms-text="getSummary(el.content)"></div>
+				<div class="keyword" ms-text="el.keywords"></div>
+				<div class="other_info">
+					{{el.other_info }} <a class="full_screen" ms-click="full_screen">[观看全文]</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="category_bar" class="categories-bar">
+		<ul id="categories" class="categories">
+			<li>Java</li>
+			<li>Java</li>
+			<li>Java</li>
+			<li>Java</li>
+			<li>Java</li>
+			<li>Java</li>
+			<li>Java</li>
+			<li>Java</li>
+			<li>Java</li>
+			<li>Java</li>
+			<li>Java</li>
+			<li>Java</li>
+			<li>CCCC</li>
+		</ul>
+		<div id="category_switch" class="switch"></div>
+	</div>
+	<div class="to-the-top" ms-mouseover="show_menu"
+		ms-mouseout="hide_menu">
+		<a class="btn-floating btn-large waves-effect waves-light red"
+			href="#"><i class="material-icons">call_merge</i></a>
+	</div>
+	<div class="brightness">
+		<a class="btn-floating btn-large waves-effect waves-light red"
+			href="#"><i class="material-icons">call_merge</i></a>
+	</div>
+	<div class="my-modal">
+		<div class="spinner">
+			<div class="spinner-container container1">
+				<div class="circle1"></div>
+				<div class="circle2"></div>
+				<div class="circle3"></div>
+				<div class="circle4"></div>
+			</div>
+			<div class="spinner-container container2">
+				<div class="circle1"></div>
+				<div class="circle2"></div>
+				<div class="circle3"></div>
+				<div class="circle4"></div>
+			</div>
+			<div class="spinner-container container3">
+				<div class="circle1"></div>
+				<div class="circle2"></div>
+				<div class="circle3"></div>
+				<div class="circle4"></div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../../js/lib/jquery-2.2.0.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/materialize.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/velocity.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/velocity.ui.min.js"></script>
+	<script type="text/javascript" src="../../js/lib/avalon.modern.js"
+		data-main="../../js/blog/config"></script>
+</body>
+
+</html>
