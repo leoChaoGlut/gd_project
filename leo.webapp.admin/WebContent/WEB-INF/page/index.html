@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body ms-controller="vm_body">
+    <div class="container-fluid">
+        <div class="back">
+            <a href="#"><i class="glyphicon glyphicon-chevron-left">Back</i></a>
+        </div>
+        
+        <div id="upward" ms-if="isFirstView" ms-click="upward">
+            <span class="glyphicon glyphicon-menu-up"></span>
+        </div>
+
+        <div id="fullpage" ms-repeat="viewIds">
+            <div ms-attr-id="el" class="section"></div>
+        </div>
+
+        <div class="downward" ms-if="isLastView" ms-click="downward">
+            <span class="glyphicon glyphicon-menu-down"></span>
+        </div>
+    </div>
+    <script src="js/lib/avalon.js" data-main="js/main"></script>
+</body>
+
+</html>
