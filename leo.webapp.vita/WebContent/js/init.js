@@ -1,8 +1,8 @@
-define(["jquery"], function() {
+define(function() {
     console.log('init.js');
     //constants 
     var TOP_HEIGHT = 40;
-    var PADDING = 15;
+    var MARGIN = 15;
 
     //dom
     var body = $("body");
@@ -13,7 +13,7 @@ define(["jquery"], function() {
     var operationPanel = $(".operation-panel");
     var preview = $(".preview");
     var dataPanel = $(".data-panel");
-    var ok = $(".ok");
+    // var addNewData = $(".add-new-data");
     var addDataPanel = $(".add-data-panel");
     //var 
 
@@ -25,8 +25,8 @@ define(["jquery"], function() {
      */
     var adjustSize = function() {
         main.height(body.height() - TOP_HEIGHT);
-        var avaliableMainWidth = main.width() - PADDING * 3;
-        var avaliableMainHeight = main.height() - PADDING * 2;
+        var avaliableMainWidth = main.width() - MARGIN * 3;
+        var avaliableMainHeight = main.height() - MARGIN * 2;
 
         leftBar.width(avaliableMainWidth / 7);
         leftBar.height(avaliableMainHeight);
@@ -34,9 +34,9 @@ define(["jquery"], function() {
         content.width(avaliableMainWidth / 7 * 6);
         content.height(avaliableMainHeight);
 
-        chartItemContainer.height(leftBar.height() - 4 * PADDING)
+        chartItemContainer.height(leftBar.height() - 4 * MARGIN)
 
-        var chartItemWidth = leftBar.width() - 2 * PADDING;
+        var chartItemWidth = leftBar.width() - 2 * MARGIN;
         var chartItem = $(".chart-item");
         var addChartItem = $(".add-chart-item");
 
@@ -49,8 +49,8 @@ define(["jquery"], function() {
         addChartItem.width(chartItemWidth);
         addChartItem.height(chartItemWidth);
 
-        var avaliableContentWidth = content.width() - PADDING * 3;
-        var avaliableContentHeight = content.height() - 2 * PADDING;
+        var avaliableContentWidth = content.width() - MARGIN * 3;
+        var avaliableContentHeight = content.height() - 2 * MARGIN;
 
         operationPanel.width(avaliableContentWidth * 0.7);
         operationPanel.height(avaliableContentHeight);
@@ -58,14 +58,13 @@ define(["jquery"], function() {
         preview.width(avaliableContentWidth * 0.3);
         preview.height(avaliableContentHeight);
 
-        dataPanel.height(operationPanel.height() - 3 * PADDING);
-        ok.height(2 * PADDING);
+        dataPanel.height(operationPanel.height() - 3 * MARGIN);
 
         addDataPanel.width(dataPanel.width());
         addDataPanel.height(dataPanel.height());
 
         var dataStyle = $(".add-data-panel").children("li");
-        dataStyle.width(addDataPanel.width() - 3 * PADDING);
+        dataStyle.width(addDataPanel.width() - 3 * MARGIN);
 
     }
 

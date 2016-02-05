@@ -1,6 +1,16 @@
 define(["echarts"], function(echarts) {
     console.log('vm.js');
 
+    //function
+    var nodeDataBuilder = function(name, prof) {
+        prof = prof ? prof : 50;
+        return {
+            name: name,
+            prof: prof
+        }
+    }
+
+    //vm
     var vm_body = avalon.define({
         $id: "vm_body",
     })
@@ -13,24 +23,22 @@ define(["echarts"], function(echarts) {
 
     var vm_operation_panel = avalon.define({
         $id: "vm_operation_panel",
-        newData: [1],
+        newData: [nodeDataBuilder()],
+        hasClickedASkill: false,
         showSkills: function(index) {
             var domName = "#skill" + index;
             $(domName).show(300);
-            $(this).parent().append($("#dropdown"));
         },
         hideSkills: function(index) {
             var domName = "#skill" + index;
-            setTimeout(function() {
-                $(domName).hide(300);
-            }, 100);
+            $(domName).hide(300);
         },
         fillSkillName: function(skillName) {
             var number = $(this).parent().attr("number");
             $("#skillName" + number).val(skillName);
         },
         addNewData: function() {
-            vm_operation_panel.newData.push(0);
+            vm_operation_panel.newData.push(nodeDataBuilder());
         },
         data: {
             "前端": {

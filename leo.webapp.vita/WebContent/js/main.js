@@ -25,7 +25,7 @@ require.config({
 })
 
 
-require(["materialize", "velocity", "init", "vm"], function() {
+require(["velocity", "init", "vm"], function() {
     console.log("main.js");
 
 
