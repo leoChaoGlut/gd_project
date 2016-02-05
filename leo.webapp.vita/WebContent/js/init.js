@@ -61,8 +61,8 @@ define(["jquery"], function() {
         dataPanel.height(operationPanel.height() - 3 * PADDING);
         ok.height(2 * PADDING);
 
-        addDataPanel.width(dataPanel.width() - 2 * PADDING);
-        addDataPanel.height(dataPanel.height() - 2 * PADDING);
+        addDataPanel.width(dataPanel.width());
+        addDataPanel.height(dataPanel.height());
 
         var dataStyle = $(".add-data-panel").children("li");
         dataStyle.width(addDataPanel.width() - 3 * PADDING);
