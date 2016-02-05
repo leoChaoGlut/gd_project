@@ -3,29 +3,40 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="../css/lib/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../css/lib/materialize.min.css">
     <link rel="stylesheet" href="../css/build_vita.css">
 </head>
 
 <body ms-controller="vm_body">
     <div class="top-bar"></div>
     <div class="main">
-        <div class="left-bar">
+        <div class="left-bar" ms-controller="vm_left_bar">
             <div class="upward"></div>
-            <ul id="chart-item-container">
-                <li class="chart-item">Tree</li>
-                <li class="chart-item">Pie</li>
-                <li class="chart-item">Pie</li>
-                <li class="chart-item">Pie</li>
-                <li class="chart-item">Pie</li>
-                <li class="chart-item">Pie</li>
+            <ul class="chart-item-container">
+                <li ms-repeat="charts" class="chart-item" ms-attr-id="el"></li>
+                <!-- <li class="add-chart-item" ms-click="">Add</li> -->
             </ul>
             <div class="downward"></div>
         </div>
         <div class="content">
-            <div class="operation-panel">
-                <div class="data-panel"></div>
+            <div class="operation-panel" ms-controller="vm_operation_panel">
+                <div class="data-panel">
+                    <ul class="add-data-panel">
+                        <li class="new-data" ms-repeat="newData">
+                            <div class="delete-data" ms-click="$remove">x</div>
+                            <input ms-attr-id="'skillName'+$index" type="text" class="validate input-field" ms-on-focus="showSkills($index)" ms-on-blur="hideSkills($index)" placeHolder="请输入技能名" style="margin:0 0 3px 0;">
+                            <ul ms-attr-id="'skill'+$index" ms-attr-number="$index" style="display:none;">
+                                <li ms-repeat="data" class="skill-name" ms-text="$key" ms-click="fillSkillName($key)"></li>
+                            </ul>
+                            <p class="range-field">
+                                <input type="range" ms-attr-id="'prof'+$index" min="1" max="100"/>
+                            </p>
+                        </li>
+                        <li class="add-new-data" ms-click="addNewData"></li>
+                    </ul>
+                </div>
                 <div class="ok"></div>
             </div>
             <div class="preview"></div>

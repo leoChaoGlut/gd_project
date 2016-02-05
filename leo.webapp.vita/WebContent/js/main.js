@@ -5,12 +5,16 @@ require.config({
         velocity: "lib/velocity.min",
         velocityUI: "lib/velocity.ui.min",
         bootstrap: "lib/bootstrap.min",
+        materialize: "lib/materialize.min",
     },
     shim: {
         velocity: {
             deps: ["jquery"]
         },
         bootstrap: {
+            deps: ["jquery"]
+        },
+        materialize: {
             deps: ["jquery"]
         },
         // Optional, if you're using the UI pack:
@@ -21,7 +25,7 @@ require.config({
 })
 
 
-require(["bootstrap", "velocity", "velocityUI", "init", "vm"], function() {
+require(["materialize", "velocity", "init", "vm"], function() {
     console.log("main.js");
 
 

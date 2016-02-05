@@ -9,16 +9,16 @@ define(["jquery"], function() {
     var main = $(".main");
     var leftBar = $(".left-bar");
     var content = $(".content");
-    var chartItemContainer = $("#chart-item-container");
+    var chartItemContainer = $(".chart-item-container");
     var operationPanel = $(".operation-panel");
     var preview = $(".preview");
     var dataPanel = $(".data-panel");
     var ok = $(".ok");
-
+    var addDataPanel = $(".add-data-panel");
     //var 
-    
+
     //function
-    
+
     /**
      * [adjustSize description] 初始化部分dom的大小
      * @return {[type]} [description]
@@ -38,9 +38,16 @@ define(["jquery"], function() {
 
         var chartItemWidth = leftBar.width() - 2 * PADDING;
         var chartItem = $(".chart-item");
+        var addChartItem = $(".add-chart-item");
 
         chartItem.width(chartItemWidth);
         chartItem.height(chartItemWidth);
+
+        console.log(chartItem.width() + "," + chartItem.height());
+
+
+        addChartItem.width(chartItemWidth);
+        addChartItem.height(chartItemWidth);
 
         var avaliableContentWidth = content.width() - PADDING * 3;
         var avaliableContentHeight = content.height() - 2 * PADDING;
@@ -54,13 +61,17 @@ define(["jquery"], function() {
         dataPanel.height(operationPanel.height() - 3 * PADDING);
         ok.height(2 * PADDING);
 
+        addDataPanel.width(dataPanel.width() - 2 * PADDING);
+        addDataPanel.height(dataPanel.height() - 2 * PADDING);
+
+        var dataStyle = $(".add-data-panel").children("li");
+        dataStyle.width(addDataPanel.width() - 3 * PADDING);
+
     }
 
     adjustSize();
 
-    $(document).ready(function() {
-
-    });
+    $(document).ready(function() {});
 
     $(window).resize(function(event) {
         adjustSize();
