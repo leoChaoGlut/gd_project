@@ -23,29 +23,26 @@
         <div class="content shadow-1 grey lighten-3">
             <div class="operation-panel" ms-controller="vm_operation_panel">
                 <div class="data-panel  grey lighten-3">
-                    <ul class="add-data-panel shadow-1">
-                        <li class="new-data  grey lighten-3 shadow-1" ms-repeat="newData">
-                            <div class="delete-data" ms-click="$remove"> <i class="material-icons">delete</i> </div>
-                            <div class="input-field col s6">
-                                <input type="text" class="validate" ms-attr-id="'skillName'+$index" ms-on-focus="showSkills($index)" ms-on-blur="hideSkills($index)">
-                                <label ms-attr-for="'skillName'+$index">一级数据:</label>
+                    <div class="add-data-panel shadow-1">
+                        <div class="tree">
+                            <div class="addRoot waves-effect waves-light btn">添加一级数据</div>
+                            <div class="node">
+                                <div class="select">请选择</div>
+                                <div class="option" data-index="0">
+                                    <div class="switch" data-index="0">*</div>
+                                    <div class="opts" data-index="0">
+                                        <span class="add" data-index="0">+</span>
+                                        <span class="remove" data-index="0">-</span>
+                                        <span class="" data-index="0">C</span>
+                                    </div>
+                                </div>
                             </div>
-                            <ul ms-attr-id="'skill'+$index" ms-attr-number="$index" class="shadow-2" style="display:none;">
-                                <li ms-repeat="data" class="skill-name" ms-text="$key" ms-on-mousedown="fillSkillName($key)"></li>
-                            </ul>
-                            <p class="range-field" style="margin-top:5px;">
-                                <label ms-attr-for="'prof'+$index" style="margin-left:12px;">熟练度:<i ms-text="el.prof"></i></label>
-                                <input type="range" ms-attr-id="'prof'+$index" min="1" max="100" ms-duplex-number="el.prof" />
-                            </p>
-                            <a class="waves-effect waves-light btn add-sub-data">添加二级数据</a>
-                        </li>
-                        <li class="add-new-data shadow-1" ms-click="addNewData">
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="ok  waves-effect waves-light btn">创建</div>
+                <div class="ok waves-effect waves-light btn" ms-click="create">创建</div>
             </div>
-            <div class="preview  grey lighten-3 shadow-1">
+            <div class="preview grey lighten-3 shadow-1">
             </div>
         </div>
     </div>

@@ -5,15 +5,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../css/lib/materialize.min.css">
-    <link rel="stylesheet" href="../css/build_vita.css">
+    <style>
+    li,
+    ul {
+        margin-left: 10px;
+    }
+    
+    ul {
+        background: red;
+    }
+    
+    li {
+        background-color: green;
+        list-style-type: none;
+    }
+    
+    .addRoot {
+        cursor: pointer;
+    }
+    </style>
 </head>
 
 <body ms-controller="vm_operation_panel">
-    <div ms-repeat="data">
-        {{data[$key]}}
-    </div>
-    <script type="text/javascript" src="../js/lib/avalon.js" data-main="../js/main.js"></script>
+    <ul class="tree">
+        <li class="addRoot">+</li>
+        <li class="root">
+            <span><a class="add0" href="#">+</a>请选择<a class="remove0" href="#">-</a></span>
+        </li>
+    </ul>
+    <script src="../js/lib/jquery.min.js"></script>
+    <script type="text/javascript">
+    var nodeCount = 1;
+    var onEvent = function(index) {
+        $(".add" + index).on('click', function(event) {
+            $(this).parent().append("<ul><span>请选择<a class='add" +
+                nodeCount + "' href='#'>+</a><a class='remove" + nodeCount + "' href='#''>-</a></span></ul>");
+            onEvent(nodeCount);
+            nodeCount++;
+        });
+        $(".remove" + index).on('click', function(event) {
+            $(this).parent().parent().remove();
+        });
+    }
+
+    onEvent(0);
+
+    $('.addRoot').on('click', function(event) {
+        $(".tree").append("<li><span><a class='add" + nodeCount + "' href='#'>+</a>请选择<a class='remove" + nodeCount + "' href='#'>-</a></span></li>");
+        onEvent(nodeCount);
+        nodeCount++;
+    });
+    </script>
 </body>
 
 </html>

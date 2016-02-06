@@ -57,7 +57,7 @@ body {
                     // margin: @MARGIN 0 0 @MARGIN;
                     // background: white;
                     overflow-y: scroll;
-                    overflow-x: hidden;
+                    overflow-x: auto;
                     .new-data {
                         position: relative;
                         .data-style;
@@ -172,4 +172,48 @@ input {
     &:hover {
         box-shadow: 0px 2px 20px #888;
     }
+}
+
+.node {
+    margin: 0px 30px;
+    // background: red;
+    // height:23px;
+}
+
+.branch {
+    // margin: 5px 15px;
+}
+
+.add,
+.remove {
+    margin-left: 10px;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.tree {
+    margin: @MARGIN;
+}
+
+.switch {
+    float: left;
+    width:20px;
+    text-align: center;
+    cursor: default;
+}
+
+.opts {
+    float: left;
+    display: none;
+}
+
+.option {
+    display: inline-block;
+    background: red;
+}
+
+.select {
+    background: green;
+    float: left;
 }

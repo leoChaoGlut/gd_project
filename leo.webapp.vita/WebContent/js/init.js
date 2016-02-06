@@ -1,5 +1,6 @@
-define(function() {
+define(["velocity"], function() {
     console.log('init.js');
+
     //constants 
     var TOP_HEIGHT = 40;
     var MARGIN = 15;
@@ -13,11 +14,38 @@ define(function() {
     var operationPanel = $(".operation-panel");
     var preview = $(".preview");
     var dataPanel = $(".data-panel");
-    // var addNewData = $(".add-new-data");
     var addDataPanel = $(".add-data-panel");
+
     //var 
+    var nodeCount = 1;
 
     //function
+    var treeNodeBuilder = function(index) {
+        return "<div class='node'><div class='select' data-index='" + index + "'>请选择</div><div class='option' data-index='" + index + "'><div class='switch' data-index='" + index + "'>*</div><div class='opts' data-index='" + index + "'><span class='add' data-index='" + index + "'>+</span><span class='remove' data-index='" + index + "'>-</span><span class=''>C</span></div></div></div>";
+
+    }
+
+    var onEvent = function(index) {
+
+        $(".switch[data-index=" + index + "]").on('mouseover', function(event) {
+            $(".opts[data-index=" + index + "]").show(300);
+        });
+
+        $(".option[data-index=" + index + "]").on('mouseleave', function(event) {
+            $(".opts[data-index=" + index + "]").hide(300);
+        });
+
+        $(".add[data-index=" + index + "]").on('click', function(event) {
+            $(this).parent().parent().parent().append(treeNodeBuilder(nodeCount, false));
+            onEvent(nodeCount);
+            nodeCount++;
+        });
+        $(".remove[data-index=" + index + "]").on('click', function(event) {
+            $(this).parent().parent().parent().remove();
+        });
+    }
+
+
 
     /**
      * [adjustSize description] 初始化部分dom的大小
@@ -43,9 +71,6 @@ define(function() {
         chartItem.width(chartItemWidth);
         chartItem.height(chartItemWidth);
 
-        console.log(chartItem.width() + "," + chartItem.height());
-
-
         addChartItem.width(chartItemWidth);
         addChartItem.height(chartItemWidth);
 
@@ -68,11 +93,25 @@ define(function() {
 
     }
 
+    $(".data-panel").append($("#pieTemplate"));
+
     adjustSize();
 
-    $(document).ready(function() {});
+    $(document).ready(function() {
+        onEvent(0);
+
+        $('.addRoot').on('click', function(event) {
+            $(".tree").append(treeNodeBuilder(nodeCount, true));
+            onEvent(nodeCount);
+            nodeCount++;
+        });
+    });
 
     $(window).resize(function(event) {
         adjustSize();
     });
+
+    return {
+        adjustSize: adjustSize
+    }
 })
