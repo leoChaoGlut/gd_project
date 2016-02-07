@@ -28,9 +28,9 @@ define(["velocity"], function() {
      */
     var treeNodeBuilder = function(index, isRoot) {
         if (isRoot) {
-            return "<div class='node' style='margin:0;'><div class='select' data-index='" + index + "'><span id='skillName'>技能名</span><span> - </span><span id='prof'>熟练度</span><ul><li><div class='input-field'><input id='skillName" + index + "' type='text' class='validate' data-index='" + index + "'><label for='skillName" + index + "' data-index='" + index + "'>技能名</label></div></li><li class='range-field'><label for='rang" + index + "' data-index='" + index + "'>熟练度:</label><input type='range' id='rang" + index + "' min='1' max='100' data-index='" + index + "' /></li></ul></div><div class='option' data-index='" + index + "'><div class='switch' data-index='" + index + "'>*</div><div class='opts' data-index='" + index + "'><span class='add' data-index='" + index + "'>+</span><span class='remove' data-index='" + index + "'>-</span><span class='fold' data-index='" + index + "'>C</span></div></div></div>";
+            return "<div class='node' style='margin:0;'><div class='select' data-index='" + index + "'><span id='skillName'>技能名</span><span> - </span><span id='prof'>熟练度</span><ul><li><div class='input-field'><input id='skillName" + index + "' type='text' class='validate' data-index='" + index + "'><label for='skillName" + index + "' data-index='" + index + "'>技能名</label></div></li><li class='range-field'><label for='rang" + index + "' data-index='" + index + "'>熟练度:</label><input type='range' id='rang" + index + "' min='1' max='100' data-index='" + index + "' /></li></ul></div><div class='option' data-index='" + index + "'><div class='switch' data-index='" + index + "'>*</div><div class='opts' data-index='" + index + "'><span class='add' data-index='" + index + "' title='添加子数据'>+</span><span class='remove' data-index='" + index + "' title='删除该数据'>-</span><span class='fold' data-index='" + index + "' title='隐藏子数据'>C</span></div></div></div>";
         } else {
-            return "<div class='node'><div class='select' data-index='" + index + "'><span id='skillName'>技能名</span><span> - </span><span id='prof'>熟练度</span><ul><li><div class='input-field'><input id='skillName" + index + "' type='text' class='validate' data-index='" + index + "'><label for='skillName" + index + "' data-index='" + index + "'>技能名</label></div></li><li class='range-field'><label for='rang" + index + "' data-index='" + index + "'>熟练度:</label><input type='range' id='rang" + index + "' min='1' max='100' data-index='" + index + "' /></li></ul></div><div class='option' data-index='" + index + "'><div class='switch' data-index='" + index + "'>*</div><div class='opts' data-index='" + index + "'><span class='add' data-index='" + index + "'>+</span><span class='remove' data-index='" + index + "'>-</span><span class='fold' data-index='" + index + "'>C</span></div></div></div>";
+            return "<div class='node'><div class='select' data-index='" + index + "'><span id='skillName'>技能名</span><span> - </span><span id='prof'>熟练度</span><ul><li><div class='input-field'><input id='skillName" + index + "' type='text' class='validate' data-index='" + index + "'><label for='skillName" + index + "' data-index='" + index + "'>技能名</label></div></li><li class='range-field'><label for='rang" + index + "' data-index='" + index + "'>熟练度:</label><input type='range' id='rang" + index + "' min='1' max='100' data-index='" + index + "' /></li></ul></div><div class='option' data-index='" + index + "'><div class='switch' data-index='" + index + "'>*</div><div class='opts' data-index='" + index + "'><span class='add' data-index='" + index + "' title='添加子数据'>+</span><span class='remove' data-index='" + index + "' title='删除该数据'>-</span><span class='fold' data-index='" + index + "' title='隐藏子数据'>C</span></div></div></div>";
         }
     };
     /**
@@ -40,23 +40,24 @@ define(["velocity"], function() {
      */
     var onEvent = function(index) {
         $(".switch[data-index=" + index + "]").on('mouseover', function(event) {
-            $(".opts[data-index=" + index + "]").show(100);
+            $(".opts[data-index=" + index + "]").show(150);
         });
 
         $(".option[data-index=" + index + "]").on('mouseleave', function(event) {
-            $(".opts[data-index=" + index + "]").hide(100);
+            $(".opts[data-index=" + index + "]").hide(150);
         });
 
         $(".select[data-index=" + index + "]").on('click', function(event) {
-            $(this).children('ul').show(100);
+            $(this).children('ul').slideDown(200);
         });
 
         $(".select[data-index=" + index + "]").on('mouseleave', function(event) {
-            $(this).children('ul').hide(100);
+            $(this).children('ul').slideUp(200);
         });
 
         $(".fold[data-index=" + index + "]").on('click', function(event) {
-            $(this).parent().parent().siblings('.node').toggle(100);
+            // $(this).parent().parent().siblings('.node').toggle(100);
+            $(this).parent().parent().siblings('.node').slideToggle(200);
         });
 
         $("#skillName" + index).change(function(event) {
@@ -73,14 +74,22 @@ define(["velocity"], function() {
             var node = $(this).parent().parent().parent();
             var childNode = node.children('.node');
             if (childNode.length > 0) {
-                childNode.show(100);
+                childNode.slideDown(200);
             }
-            node.append(treeNodeBuilder(nodeCount, false));
+            var newNode = $(treeNodeBuilder(nodeCount, false));
+
+            node.append(newNode);
+
+            newNode.hide();
+            newNode.slideDown(200);
+
             onEvent(nodeCount);
             nodeCount++;
         });
         $(".remove[data-index=" + index + "]").on('click', function(event) {
-            $(this).parent().parent().parent().remove();
+            $(this).parent().parent().parent().slideUp(200, function() {
+                $(this).remove();
+            });
         });
     }
 
@@ -145,7 +154,10 @@ define(["velocity"], function() {
         onEvent(0);
 
         $('.addRoot').on('click', function(event) {
-            $(".tree").append(treeNodeBuilder(nodeCount, true));
+            var rootNode = $(treeNodeBuilder(nodeCount, true));
+            $(".tree").append(rootNode);
+            rootNode.hide();
+            rootNode.slideDown(200);
             onEvent(nodeCount);
             nodeCount++;
         });
