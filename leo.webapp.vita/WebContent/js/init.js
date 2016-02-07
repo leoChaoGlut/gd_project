@@ -20,16 +20,25 @@ define(["velocity"], function() {
     var nodeCount = 1;
 
     //function
+    /**
+     * [treeNodeBuilder description] 多叉数添加分支时,返回对应的dom
+     * @param  {[type]}  index  [description]
+     * @param  {Boolean} isRoot [description]
+     * @return {[type]}         [description]
+     */
     var treeNodeBuilder = function(index, isRoot) {
         if (isRoot) {
             return "<div class='node' style='margin:0;'><div class='select' data-index='" + index + "'><span id='skillName'>技能名</span><span> - </span><span id='prof'>熟练度</span><ul><li><div class='input-field'><input id='skillName" + index + "' type='text' class='validate' data-index='" + index + "'><label for='skillName" + index + "' data-index='" + index + "'>技能名</label></div></li><li class='range-field'><label for='rang" + index + "' data-index='" + index + "'>熟练度:</label><input type='range' id='rang" + index + "' min='1' max='100' data-index='" + index + "' /></li></ul></div><div class='option' data-index='" + index + "'><div class='switch' data-index='" + index + "'>*</div><div class='opts' data-index='" + index + "'><span class='add' data-index='" + index + "'>+</span><span class='remove' data-index='" + index + "'>-</span><span class='fold' data-index='" + index + "'>C</span></div></div></div>";
         } else {
             return "<div class='node'><div class='select' data-index='" + index + "'><span id='skillName'>技能名</span><span> - </span><span id='prof'>熟练度</span><ul><li><div class='input-field'><input id='skillName" + index + "' type='text' class='validate' data-index='" + index + "'><label for='skillName" + index + "' data-index='" + index + "'>技能名</label></div></li><li class='range-field'><label for='rang" + index + "' data-index='" + index + "'>熟练度:</label><input type='range' id='rang" + index + "' min='1' max='100' data-index='" + index + "' /></li></ul></div><div class='option' data-index='" + index + "'><div class='switch' data-index='" + index + "'>*</div><div class='opts' data-index='" + index + "'><span class='add' data-index='" + index + "'>+</span><span class='remove' data-index='" + index + "'>-</span><span class='fold' data-index='" + index + "'>C</span></div></div></div>";
         }
-    }
-
+    };
+    /**
+     * [onEvent description]为多叉数的分支添加监听
+     * @param  {[type]} index [description]
+     * @return {[type]}       [description]
+     */
     var onEvent = function(index) {
-
         $(".switch[data-index=" + index + "]").on('mouseover', function(event) {
             $(".opts[data-index=" + index + "]").show(100);
         });
@@ -47,7 +56,6 @@ define(["velocity"], function() {
         });
 
         $(".fold[data-index=" + index + "]").on('click', function(event) {
-            console.log($(this).parent().siblings('.node'));
             $(this).parent().parent().siblings('.node').toggle(100);
         });
 
