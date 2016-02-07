@@ -139,6 +139,15 @@ body {
     margin: @MARGIN;
 }
 
+.opt-style {
+    width: 20px;
+    height: 100%;
+    display: inline-block;
+    .shadow-2;
+    text-align: center;
+    margin-left: 10px;
+}
+
 input {
     text-indent: 5px;
 }
@@ -148,7 +157,7 @@ input {
 }
 
 .shadow-2 {
-    box-shadow: 0px 1px 1px #888;
+    box-shadow: 0px 1px 2px #888;
 }
 
 .white-1 {
@@ -174,46 +183,60 @@ input {
     }
 }
 
-.node {
-    margin: 0px 30px;
-    // background: red;
-    // height:23px;
-}
-
-.branch {
-    // margin: 5px 15px;
-}
-
-.add,
-.remove {
-    margin-left: 10px;
-    width: 20px;
-    height: 20px;
-    display: inline-block;
-}
-
 .tree {
     margin: @MARGIN;
+    .addRoot {
+        margin-bottom: 15px;
+    }
+    .node {
+        margin: 0px 30px;
+        .option {
+            display: inline-block;
+            // background: red;
+            background: #f5f5f5;
+            .shadow-2;
+            .switch {
+                float: left;
+                background: #26a69a;
+                width: 20px;
+                text-align: center;
+                cursor: default;
+            }
+            .opts {
+                float: left;
+                display: none;
+                span {
+                    cursor: pointer;
+                    .opt-style;
+                }
+                .add {}
+                .remove {}
+            }
+        }
+        .select {
+            background: #f5f5f5;
+            float: left;
+            width: 100px;
+            .shadow-2;
+            text-indent: 5px;
+            cursor: pointer;
+            ul {
+                display: none;
+                width: 100px;
+                position: absolute;
+                background: #f5f5f5;
+                li {
+                    width: 100px;
+                    div {
+                        margin-left: -5px;
+                        width: 100px;
+                    }
+                }
+            }
+        }
+    }
 }
 
-.switch {
-    float: left;
-    width:20px;
-    text-align: center;
-    cursor: default;
-}
-
-.opts {
-    float: left;
-    display: none;
-}
-
-.option {
-    display: inline-block;
-    background: red;
-}
-
-.select {
-    background: green;
-    float: left;
+.no-margin {
+    margin: 0;
 }

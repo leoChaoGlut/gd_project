@@ -25,7 +25,7 @@ require.config({
 })
 
 
-require(["velocity", "init", "vm"], function() {
+require(["init", "vm"], function() {
     console.log("main.js");
 
 

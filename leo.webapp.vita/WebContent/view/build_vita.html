@@ -26,14 +26,27 @@
                     <div class="add-data-panel shadow-1">
                         <div class="tree">
                             <div class="addRoot waves-effect waves-light btn">添加一级数据</div>
-                            <div class="node">
-                                <div class="select">请选择</div>
+                            <div class="node" style="margin:0;">
+                                <div class="select" data-index="0">点击编辑
+                                    <ul>
+                                        <li>
+                                            <div class="input-field">
+                                                <input id="skillName0" type="text" class="validate" data-index="0">
+                                                <label for="skillName0" data-index="0">Last Name</label>
+                                            </div>
+                                        </li>
+                                        <li class="range-field">
+                                            <label for="rang0" data-index="0">熟练度:</label>
+                                            <input type="range" id="rang0" min="0" max="100" data-index="0" />
+                                        </li>
+                                    </ul>
+                                </div>
                                 <div class="option" data-index="0">
                                     <div class="switch" data-index="0">*</div>
                                     <div class="opts" data-index="0">
                                         <span class="add" data-index="0">+</span>
                                         <span class="remove" data-index="0">-</span>
-                                        <span class="" data-index="0">C</span>
+                                        <span class="fold" data-index="0">C</span>
                                     </div>
                                 </div>
                             </div>
