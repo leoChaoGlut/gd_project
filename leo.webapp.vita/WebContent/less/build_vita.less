@@ -32,6 +32,17 @@ body {
                 .item-style;
                 .hover-float;
             }
+            #pie {
+                background-image: url(../img/pie_example.png);
+                background-size: 100% 100%;
+                &:hover {
+                    box-shadow: 0 0 15px black;
+                }
+            }
+            #tree {
+                background-image: url(../img/tree_example.png);
+                background-size: 100% 100%;
+            }
         }
         .upward {
             .direction-switch;
@@ -50,6 +61,23 @@ body {
             float: left;
             margin: @MARGIN 0 0 @MARGIN;
             // background: yellow;
+            .btn-panel {
+                width: 100%;
+                margin-top: @MARGIN;
+                height: 30px;
+                line-height: 30px;
+                #create {
+                    width: 49%;
+                    float: left;
+                    cursor: pointer;
+                }
+                #show-preview {
+                    float: left;
+                    margin-left: 2%;
+                    width: 49%;
+                    cursor: pointer;
+                }
+            }
             .data-panel {
                 // background: black;
                 .add-data-panel {
@@ -90,18 +118,14 @@ body {
                     }
                 }
             }
-            .ok {
-                width: 100%;
-                margin-top: @MARGIN;
-                height: 30px;
-                // background: red;
-                cursor: pointer;
-                line-height: 30px;
-            }
         }
         .preview {
             float: left;
             margin: @MARGIN 0 0 @MARGIN;
+            #preview-chart {
+                width: 100%;
+                height: 100%;
+            }
             // background: red;
         }
     }
@@ -190,6 +214,7 @@ input {
         margin-bottom: 15px;
     }
     .node {
+        width: 300px;
         margin: 0px 50px;
         .option {
             display: inline-block;
@@ -242,10 +267,10 @@ input {
                         width: 150px;
                     }
                 }
-                .range-field{
-                    label{
+                .range-field {
+                    label {
                         margin-left: 6px;
-                        color:#26a69a;
+                        color: #26a69a;
                     }
                 }
             }
