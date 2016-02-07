@@ -2,12 +2,32 @@ define(["init"], function(init) {
     console.log('vm.js');
 
     //function
-    var nodeDataBuilder = function(name, prof) {
+    var nodeDataBuilder = function(name, prof, parent) {
         name = name ? name : "";
         prof = prof ? prof : 50;
+        parent = parent ? parent : "";
         return {
             name: name,
             prof: prof,
+            parent: parent,
+            children: {}
+        }
+    }
+
+    var dataBuilder = function(dom, data) {
+        var nodes = dom.children(".node");
+        for (var i = 0; i < nodes.length; i++) {
+            var el = $(nodes[i]);
+            var select = el.children(".select");
+            var skillName = select.children("span#skillName").text().trim();
+            var prof = select.children("span#prof").text().trim();
+            if (skillName != "" && skillName.indexOf("技能名") < 0 && prof != "" && prof.indexOf("熟练度") < 0) {
+                data.children[skillName] = nodeDataBuilder(skillName, prof, data.name);
+                dataBuilder(el, data.children[skillName]);
+            } else {
+                alert("存在空属性");
+                return;
+            }
         }
     }
 
@@ -24,37 +44,27 @@ define(["init"], function(init) {
 
     var vm_operation_panel = avalon.define({
         $id: "vm_operation_panel",
-        newData: [nodeDataBuilder()],
-        showSkills: function(index) {
-            $("#skill" + index).show(300);
-        },
-        hideSkills: function(index) {
-            $("#skill" + index).hide(300);
-        },
-        fillSkillName: function(skillName) {
-            var number = $(this).parent().attr("number");
-            vm_operation_panel.newData[number]["name"] = skillName;
-        },
-        addNewData: function() {
-            vm_operation_panel.newData.push(nodeDataBuilder());
-        },
-        addSubData: function(index) {
-            var data = vm_operation_panel.newData[index];
-            console.log(data);
-        },
+        newData: [],
         create: function() {
-            console.log(vm_operation_panel.newData);
+            var rootNodes = $(".tree").children(".node");
+            var data = {}
+            for (var i = 0; i < rootNodes.length; i++) {
+                var el = $(rootNodes[i]);
+                var select = el.children(".select");
+                var skillName = select.children("span#skillName").text().trim();
+                var prof = select.children("span#prof").text().trim();
+
+                if (skillName != "" && skillName.indexOf("技能名") < 0 && prof != "" && prof.indexOf("熟练度") < 0) {
+                    data[skillName] = nodeDataBuilder(skillName, prof);
+                    dataBuilder(el, data[skillName]);
+                } else {
+                    alert("存在空属性");
+                    return;
+                }
+            }
+            console.log(JSON.stringify(data));
         },
-        newDataRendered: function() {
-            init.adjustSize();
-        },
-        showOptions: function() {
-            var index = $(this).parent().attr('data-index');
-            $(this).next().show(300);
-        },
-        hideOptions: function() {
-            $(this).children('.opts').hide(300);
-        },
+
         data: {
             "前端": {
                 name: "前端",
@@ -65,22 +75,33 @@ define(["init"], function(init) {
                         name: "HTML5",
                         prof: 200,
                         parent: "前端",
+                        children: {}
                     },
                     "CSS3": {
                         name: "CSS3",
                         prof: 150,
                         parent: "前端",
+                        children: {}
                     },
-                    "JQuery": {
-                        name: "JQuery",
-                        prof: 250,
+                    "构建工具": {
+                        name: "CSS3",
+                        prof: 150,
                         parent: "前端",
-                    },
-                    "Avalon": {
-                        name: "Avalon",
-                        prof: 300,
-                        parent: "前端",
-                    },
+                        children: {
+                            "Gulp": {
+                                name: "CSS3",
+                                prof: 150,
+                                parent: "前端",
+                                children: {}
+                            },
+                            "Grunt": {
+                                name: "CSS3",
+                                prof: 150,
+                                parent: "前端",
+                                children: {}
+                            }
+                        }
+                    }
                 },
             },
             "后端": {

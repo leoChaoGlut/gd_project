@@ -22,9 +22,9 @@ define(["velocity"], function() {
     //function
     var treeNodeBuilder = function(index, isRoot) {
         if (isRoot) {
-            return "<div class='node' style='margin:0;'><div class='select' data-index='" + index + "'><span>技能名 - </span><span>熟练度</span><ul><li><div class='input-field'><input id='skillName" + index + "' type='text' class='validate' data-index='" + index + "'><label for='skillName" + index + "' data-index='" + index + "'>Last Name</label></div></li><li class='range-field'><label for='rang" + index + "' data-index='" + index + "'>熟练度:</label><input type='range' id='rang" + index + "' min='1' max='100' data-index='" + index + "' /></li></ul></div><div class='option' data-index='" + index + "'><div class='switch' data-index='" + index + "'>*</div><div class='opts' data-index='" + index + "'><span class='add' data-index='" + index + "'>+</span><span class='remove' data-index='" + index + "'>-</span><span class='fold' data-index='" + index + "'>C</span></div></div></div>";
+            return "<div class='node' style='margin:0;'><div class='select' data-index='" + index + "'><span id='skillName'>技能名</span><span> - </span><span id='prof'>熟练度</span><ul><li><div class='input-field'><input id='skillName" + index + "' type='text' class='validate' data-index='" + index + "'><label for='skillName" + index + "' data-index='" + index + "'>技能名</label></div></li><li class='range-field'><label for='rang" + index + "' data-index='" + index + "'>熟练度:</label><input type='range' id='rang" + index + "' min='1' max='100' data-index='" + index + "' /></li></ul></div><div class='option' data-index='" + index + "'><div class='switch' data-index='" + index + "'>*</div><div class='opts' data-index='" + index + "'><span class='add' data-index='" + index + "'>+</span><span class='remove' data-index='" + index + "'>-</span><span class='fold' data-index='" + index + "'>C</span></div></div></div>";
         } else {
-            return "<div class='node'><div class='select' data-index='" + index + "'><span>技能名 - </span><span>熟练度</span><ul><li><div class='input-field'><input id='skillName" + index + "' type='text' class='validate' data-index='" + index + "'><label for='skillName" + index + "' data-index='" + index + "'>Last Name</label></div></li><li class='range-field'><label for='rang" + index + "' data-index='" + index + "'>熟练度:</label><input type='range' id='rang" + index + "' min='1' max='100' data-index='" + index + "' /></li></ul></div><div class='option' data-index='" + index + "'><div class='switch' data-index='" + index + "'>*</div><div class='opts' data-index='" + index + "'><span class='add' data-index='" + index + "'>+</span><span class='remove' data-index='" + index + "'>-</span><span class='fold' data-index='" + index + "'>C</span></div></div></div>";
+            return "<div class='node'><div class='select' data-index='" + index + "'><span id='skillName'>技能名</span><span> - </span><span id='prof'>熟练度</span><ul><li><div class='input-field'><input id='skillName" + index + "' type='text' class='validate' data-index='" + index + "'><label for='skillName" + index + "' data-index='" + index + "'>技能名</label></div></li><li class='range-field'><label for='rang" + index + "' data-index='" + index + "'>熟练度:</label><input type='range' id='rang" + index + "' min='1' max='100' data-index='" + index + "' /></li></ul></div><div class='option' data-index='" + index + "'><div class='switch' data-index='" + index + "'>*</div><div class='opts' data-index='" + index + "'><span class='add' data-index='" + index + "'>+</span><span class='remove' data-index='" + index + "'>-</span><span class='fold' data-index='" + index + "'>C</span></div></div></div>";
         }
     }
 
@@ -52,8 +52,8 @@ define(["velocity"], function() {
         });
 
         $("#skillName" + index).change(function(event) {
-            var span = $(this).parent().parent().parent().prev().prev();
-            span.text($(this).val() + " - ");
+            var span = $(this).parent().parent().parent().prev().prev().prev();
+            span.text($(this).val());
         });
 
         $("#rang" + index).change(function(event) {
