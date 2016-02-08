@@ -16,7 +16,7 @@
         <div class="left-bar shadow-1 grey lighten-3" ms-controller="vm_left_bar">
             <div class="upward  waves-effect waves-light btn"></div>
             <ul class="chart-item-container">
-                <li ms-repeat="charts" class="chart-item  grey lighten-3 shadow-1" ms-attr-id="el.name" ms-attr-title="el.tips"></li>
+                <li ms-repeat="charts" ms-class="chart-item  grey lighten-3 shadow-1 {{$index==curChart?'chosen':''}}" ms-data-chart-index="$index" ms-attr-id="el.name" ms-attr-title="el.tips" ms-click="clickAChart" ms-mouseover="hoverOnAChart"></li>
             </ul>
             <div class="downward  waves-effect waves-light btn"></div>
         </div>
@@ -57,11 +57,12 @@
                     </div>
                 </div>
                 <div class="btn-panel">
-                    <div id="create" class="waves-effect waves-light btn" ms-click="create">创建</div>
+                    <div id="create" class="waves-effect waves-light btn">创建</div>
                     <div id="show-preview" class="waves-effect waves-light btn">预览</div>
                 </div>
             </div>
             <div class="preview grey lighten-3 shadow-1">
+                <div id="back" class="waves-effect waves-light btn" title="返回上级数据">Back</div>
                 <div id="preview-chart"></div>
             </div>
         </div>

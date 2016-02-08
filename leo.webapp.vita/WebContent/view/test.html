@@ -27,34 +27,14 @@
 </head>
 
 <body ms-controller="vm_operation_panel">
-    <ul class="tree">
-        <li class="addRoot">+</li>
-        <li class="root">
-            <span><a class="add0" href="#">+</a>请选择<a class="remove0" href="#">-</a></span>
-        </li>
+    <ul>
+        <li>1</li>
+        <li>2</li>
     </ul>
     <script src="../js/lib/jquery.min.js"></script>
     <script type="text/javascript">
-    var nodeCount = 1;
-    var onEvent = function(index) {
-        $(".add" + index).on('click', function(event) {
-            $(this).parent().append("<ul><span>请选择<a class='add" +
-                nodeCount + "' href='#'>+</a><a class='remove" + nodeCount + "' href='#''>-</a></span></ul>");
-            onEvent(nodeCount);
-            nodeCount++;
-        });
-        $(".remove" + index).on('click', function(event) {
-            $(this).parent().parent().remove();
-        });
-    }
-
-    onEvent(0);
-
-    $('.addRoot').on('click', function(event) {
-        $(".tree").append("<li><span><a class='add" + nodeCount + "' href='#'>+</a>请选择<a class='remove" + nodeCount + "' href='#'>-</a></span></li>");
-        onEvent(nodeCount);
-        nodeCount++;
-    });
+    var dom = $("ul").children('li');
+    console.log(dom);
     </script>
 </body>
 

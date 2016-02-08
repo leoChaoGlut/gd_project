@@ -1,35 +1,7 @@
-define(["init"], function(init) {
+define(function(init) {
     console.log('vm.js');
 
     //function
-    var nodeDataBuilder = function(name, prof, parent) {
-        name = name ? name : "";
-        prof = prof ? prof : 50;
-        parent = parent ? parent : "";
-        return {
-            name: name,
-            prof: prof,
-            parent: parent,
-            children: {}
-        }
-    }
-
-    var dataBuilder = function(dom, data) {
-        var nodes = dom.children(".node");
-        for (var i = 0, len = nodes.length; i < len; i++) {
-            var el = $(nodes[i]);
-            var select = el.children(".select");
-            var skillName = select.children("span#skillName").text().trim();
-            var prof = select.children("span#prof").text().trim();
-            if (skillName != "" && skillName.indexOf("技能名") < 0 && prof != "" && prof.indexOf("熟练度") < 0) {
-                data.children[skillName] = nodeDataBuilder(skillName, prof, data.name);
-                dataBuilder(el, data.children[skillName]);
-            } else {
-                Materialize.toast("存在空数据~", 2500, 'rounded');
-                return;
-            }
-        }
-    }
 
     //vm
     var vm_body = avalon.define({
@@ -45,41 +17,35 @@ define(["init"], function(init) {
             name: "tree",
             tips: "树形图"
         }],
+        curChart: 0,
+        clickAChart: function() {
+            vm_left_bar.curChart = $(this).attr('data-chart-index');
+        },
+        // hoverOnAChart: function() {
+        //     console.log('hover');
+        //     var dom = $(this);
+        //     var classes = dom.attr('class');
+        //     console.log(classes.indexOf("chosen"));
+        //     if (classes.indexOf("chosen") <= -1) {
+        //         dom.css('box-shadow', '0px 5px 22px #888');
+        //     }
+        // }
     })
 
 
     var vm_operation_panel = avalon.define({
         $id: "vm_operation_panel",
-        create: function() {
-            var rootNodes = $(".tree").children(".node");
-            var len = rootNodes.length;
-            if (len > 0) {
-                var data = {};
-                for (var i = 0; i < len; i++) {
-                    var el = $(rootNodes[i]);
-                    var select = el.children(".select");
-                    var skillName = select.children("span#skillName").text().trim();
-                    var prof = select.children("span#prof").text().trim();
-
-                    if (skillName != "" && skillName.indexOf("技能名") < 0 && prof != "" && prof.indexOf("熟练度") < 0) {
-                        data[skillName] = nodeDataBuilder(skillName, prof);
-                        dataBuilder(el, data[skillName]);
-                    } else {
-                        Materialize.toast("存在空数据~", 2500, 'rounded');
-                        return;
-                    }
-                }
-                console.log(JSON.stringify(data));
-            } else {
-                Materialize.toast("无数据~", 2500, 'rounded');
-            }
-        },
     })
 
 
     avalon.scan();
 
+    vm_left_bar.$watch("curChart", function(newVal) {
+        console.log(newVal);
+    })
+
     return {
-        vm_body: vm_body
+        vm_body: vm_body,
+        vm_left_bar: vm_left_bar
     }
 })

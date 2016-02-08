@@ -1,92 +1,10 @@
-define(["velocity", "echarts"], function(v, echarts) {
+define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
     console.log('init.js');
 
     //constants 
     var TOP_HEIGHT = 40;
     var MARGIN = 15;
-    var DATA = {
-        "前端": {
-            name: "前端",
-            prof: 200,
-            parent: null,
-            children: {
-                "HTML5": {
-                    name: "HTML5",
-                    prof: 200,
-                    parent: "前端",
-                },
-                "CSS3": {
-                    name: "CSS3",
-                    prof: 150,
-                    parent: "前端",
-                },
-                "JQuery": {
-                    name: "JQuery",
-                    prof: 250,
-                    parent: "前端",
-                },
-                "Avalon": {
-                    name: "Avalon",
-                    prof: 300,
-                    parent: "前端",
-                },
-            },
-        },
-        "后端": {
-            name: "后端",
-            prof: 400,
-            parent: null,
-            children: {
-                "JAVA基础": {
-                    name: "JAVA基础",
-                    prof: 300,
-                    parent: "后端",
-                },
-                "Spring": {
-                    name: "Spring",
-                    prof: 200,
-                    parent: "后端",
-                },
-                "Spring MVC": {
-                    name: "Spring MVC",
-                    prof: 200,
-                    parent: "后端",
-                },
-                "Mybatis": {
-                    name: "Mybatis",
-                    prof: 180,
-                    parent: "后端",
-                },
-                "Struts2": {
-                    name: "Struts2",
-                    prof: 150,
-                    parent: "后端",
-                },
-                "Hibernate": {
-                    name: "Hibernate",
-                    prof: 150,
-                    parent: "后端",
-                }
-            },
-        },
-        "数据库": {
-            name: "数据库",
-            prof: 300,
-            parent: null,
-            children: {
-                "MySQL": {
-                    name: "MySQL",
-                    prof: 300,
-                    parent: "数据库",
-                },
-                "Redis": {
-                    name: "Redis",
-                    prof: 200,
-                    parent: "数据库",
-                }
-            },
-        },
-    };
+
     //dom
     var body = $("body");
     var main = $(".main");
@@ -97,10 +15,14 @@ define(["velocity", "echarts"], function(v, echarts) {
     var preview = $(".preview");
     var dataPanel = $(".data-panel");
     var addDataPanel = $(".add-data-panel");
-
-    //var 
+    var backDom = $("#back");
+    //var   
     var nodeCount = 1;
 
+    var treeData = {};
+    //存储点击饼状图的次序,如:先点击前端,后点击HTML5,则存储的是["前端","HTML5"];
+    var pathQueue = [];
+    var curTreeData = {};
     var baseOption = {
         // backgroundColor: '#2c343c',
         title: {
@@ -114,8 +36,8 @@ define(["velocity", "echarts"], function(v, echarts) {
 
         visualMap: {
             show: false,
-            min: 80,
-            max: 600,
+            min: 1,
+            max: 100,
             inRange: {
                 colorLightness: [0, 1]
             }
@@ -164,6 +86,10 @@ define(["velocity", "echarts"], function(v, echarts) {
         }
     }
 
+    var comparator = function(a, b) {
+        return a.value - b.value;
+    }
+
     var treeNodeDataBuilder = function(dom, data) {
         var nodes = dom.children(".node");
         for (var i = 0, len = nodes.length; i < len; i++) {
@@ -196,11 +122,17 @@ define(["velocity", "echarts"], function(v, echarts) {
         return baseOption;
     };
     var buildChart = function(data) {
-        var newData = dataBuilder(data);
+        echart.showLoading();
+
+        var newData = dataBuilder(data).sort(comparator);
+
+        console.log(newData);
 
         var option = optionBuilder(newData);
 
         echart.setOption(baseOption);
+
+        echart.hideLoading();
     };
     /**
      * [treeNodeBuilder description] 多叉数添加分支时,返回对应的dom
@@ -234,7 +166,12 @@ define(["velocity", "echarts"], function(v, echarts) {
         });
 
         $(".select[data-index=" + index + "]").on('click', function(event) {
-            $(this).children('ul').slideDown(200);
+            var dom = $(this).children('ul');
+            if (dom.css("display") == "none") {
+                dom.slideDown(200, function() {
+                    $("#skillName" + index).focus();
+                });
+            }
         });
 
         $(".select[data-index=" + index + "]").on('mouseleave', function(event) {
@@ -326,6 +263,13 @@ define(["velocity", "echarts"], function(v, echarts) {
     $(".data-panel").append($("#pieTemplate"));
 
 
+    var objLenCounter = function(obj) {
+        var count = 0;
+        for (var key in obj) {
+            count++;
+        }
+        return count;
+    }
     $(document).ready(function() {
         //以防双击选中文字时出现的蓝色背景
         $(".tree").on('selectstart', function(event) {
@@ -345,19 +289,20 @@ define(["velocity", "echarts"], function(v, echarts) {
 
         window.echart = echarts.init(document.getElementById("preview-chart"));
 
-        echart.showLoading();
-
-        buildChart(DATA);
-
-        echart.hideLoading();
-
         adjustSize();
 
         $("#create").on('click', function(event) {
+
+        });
+
+
+        $("#show-preview").on('click', function(event) {
             var rootNodes = $(".tree").children(".node");
             var len = rootNodes.length;
             if (len > 0) {
-                var data = {};
+                echart.clear();
+                pathQueue = [];
+                treeData = {};
                 for (var i = 0; i < len; i++) {
                     var el = $(rootNodes[i]);
                     var select = el.children(".select");
@@ -365,23 +310,51 @@ define(["velocity", "echarts"], function(v, echarts) {
                     var prof = select.children("span#prof").text().trim();
 
                     if (skillName != "" && skillName.indexOf("技能名") < 0 && prof != "" && prof.indexOf("熟练度") < 0) {
-                        data[skillName] = nodeDataBuilder(skillName, prof);
-                        treeNodeDataBuilder(el, data[skillName]);
+                        treeData[skillName] = nodeDataBuilder(skillName, prof);
+                        treeNodeDataBuilder(el, treeData[skillName]);
                     } else {
                         Materialize.toast("存在空数据~", 2500, 'rounded');
                         return;
                     }
                 }
-                buildChart(data);
+                curTreeData = treeData;
+                buildChart(treeData);
             } else {
                 Materialize.toast("无数据~", 2500, 'rounded');
             }
         });
 
-
-        $("#show-preview").on('click', function(event) {
-            buildChart(DATA);
+        echart.on('click', function(dom) {
+            var subData = curTreeData[dom.name].children;
+            if (objLenCounter(subData) > 0) {
+                pathQueue.push(dom.name);
+                curTreeData = subData;
+                buildChart(subData);
+                backDom.velocity({
+                    "opacity": 1
+                }, 100);
+            } else {
+                Materialize.toast("该技能下无子数据~", 2500, 'rounded');
+            }
         });
+    });
+
+    backDom.click(function(event) {
+        if (pathQueue.length == 1) {
+            buildChart(treeData);
+            curTreeData = treeData;
+            backDom.velocity({
+                "opacity": 0
+            }, 100);
+        } else {
+            var data = treeData;
+            for (var i = 0, len = pathQueue.length - 1; i < len; i++) {
+                data = data[pathQueue[i]].children;
+            }
+            curTreeData = data;
+            buildChart(data);
+        };
+        pathQueue.pop();
     });
 
     $(window).resize(function(event) {
