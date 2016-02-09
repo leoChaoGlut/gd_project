@@ -16,7 +16,7 @@
         <div class="left-bar shadow-1 grey lighten-3" ms-controller="vm_left_bar">
             <div class="upward  waves-effect waves-light btn"></div>
             <ul class="chart-item-container">
-                <li ms-repeat="charts" ms-class="chart-item  grey lighten-3 shadow-1 {{$index==curChart?'chosen':''}}" ms-data-chart-index="$index" ms-attr-id="el.name" ms-attr-title="el.tips" ms-click="clickAChart" ms-mouseover="hoverOnAChart"></li>
+                <li ms-repeat="charts" ms-class="chart-item  grey lighten-3 shadow-1" ms-data-chart-index="$index" ms-attr-id="el.name" ms-attr-title="el.tips" ms-click="clickAChart"></li>
             </ul>
             <div class="downward  waves-effect waves-light btn"></div>
         </div>
@@ -24,7 +24,10 @@
             <div class="operation-panel" ms-controller="vm_operation_panel">
                 <div class="data-panel  grey lighten-3">
                     <div class="add-data-panel shadow-1">
-                        <div class="tree">
+                        <div id="tree-container" class="tree">
+                            <div class="btn disabled cur-chart">
+                                {{curChart}}
+                            </div>
                             <div class="addRoot waves-effect waves-light btn">添加一级数据</div>
                             <div class="node" style="margin:0;">
                                 <div class="select" data-index="0">
@@ -62,8 +65,11 @@
                 </div>
             </div>
             <div class="preview grey lighten-3 shadow-1">
-                <div id="back" class="waves-effect waves-light btn" title="返回上级数据">Back</div>
-                <div id="preview-chart"></div>
+                <div id="pie-chart-container">
+                    <div id="back" class="waves-effect waves-light btn" title="返回上级数据">Back</div>
+                    <div id="pie-chart"></div>
+                </div>
+                <div id="tree-chart" style="margin:0;"></div>
             </div>
         </div>
     </div>

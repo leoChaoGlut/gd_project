@@ -121,12 +121,10 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
         baseOption.series[0].data = data;
         return baseOption;
     };
-    var buildChart = function(data) {
+    var buildPieChart = function(data) {
         echart.showLoading();
 
         var newData = dataBuilder(data).sort(comparator);
-
-        console.log(newData);
 
         var option = optionBuilder(newData);
 
@@ -287,7 +285,7 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
             nodeCount++;
         });
 
-        window.echart = echarts.init(document.getElementById("preview-chart"));
+        window.echart = echarts.init(document.getElementById("pie-chart"));
 
         adjustSize();
 
@@ -318,7 +316,28 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
                     }
                 }
                 curTreeData = treeData;
-                buildChart(treeData);
+                switch (vm.vm_body.curChart) {
+                    case "饼图":
+                        buildPieChart(treeData);
+                        break;
+                    case "树形图":
+                        var tree = $("#tree-container");
+                        var newTree = $(tree[0].innerHTML);
+
+                        //这里把tree中的一些不必要数据处理掉
+                        //这里把tree中的一些不必要数据处理掉
+                        //这里把tree中的一些不必要数据处理掉
+                        //这里把tree中的一些不必要数据处理掉
+                        //这里把tree中的一些不必要数据处理掉
+                        //这里把tree中的一些不必要数据处理掉
+                        //这里把tree中的一些不必要数据处理掉
+                        //这里把tree中的一些不必要数据处理掉
+                        $("#tree-chart").children().remove();
+                        $("#tree-chart").append(newTree);
+                        break;
+                    default:
+                        break;
+                }
             } else {
                 Materialize.toast("无数据~", 2500, 'rounded');
             }
@@ -329,7 +348,7 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
             if (objLenCounter(subData) > 0) {
                 pathQueue.push(dom.name);
                 curTreeData = subData;
-                buildChart(subData);
+                buildPieChart(subData);
                 backDom.velocity({
                     "opacity": 1
                 }, 100);
@@ -341,7 +360,7 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
 
     backDom.click(function(event) {
         if (pathQueue.length == 1) {
-            buildChart(treeData);
+            buildPieChart(treeData);
             curTreeData = treeData;
             backDom.velocity({
                 "opacity": 0
@@ -352,7 +371,7 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
                 data = data[pathQueue[i]].children;
             }
             curTreeData = data;
-            buildChart(data);
+            buildPieChart(data);
         };
         pathQueue.pop();
     });

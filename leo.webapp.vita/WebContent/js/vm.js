@@ -6,6 +6,7 @@ define(function(init) {
     //vm
     var vm_body = avalon.define({
         $id: "vm_body",
+        curChart: "饼图",
     })
 
     var vm_left_bar = avalon.define({
@@ -17,31 +18,56 @@ define(function(init) {
             name: "tree",
             tips: "树形图"
         }],
-        curChart: 0,
         clickAChart: function() {
-            vm_left_bar.curChart = $(this).attr('data-chart-index');
+            vm_body.curChart = $(this).attr('title');
+            var dom = $(this);
+            dom.css('box-shadow', '0px 4px 10px #888');
+            setTimeout(function() {
+                dom.css('box-shadow', '0px 5px 22px #888');
+            }, 200);
         },
-        // hoverOnAChart: function() {
-        //     console.log('hover');
-        //     var dom = $(this);
-        //     var classes = dom.attr('class');
-        //     console.log(classes.indexOf("chosen"));
-        //     if (classes.indexOf("chosen") <= -1) {
-        //         dom.css('box-shadow', '0px 5px 22px #888');
-        //     }
-        // }
     })
 
 
     var vm_operation_panel = avalon.define({
         $id: "vm_operation_panel",
+        previews: ["pie", "tree"],
+        previewRendered: function() {
+            window.echart = echarts.init(document.getElementById("pie-chart"));
+        }
     })
+
+
 
 
     avalon.scan();
 
-    vm_left_bar.$watch("curChart", function(newVal) {
-        console.log(newVal);
+    vm_body.$watch("curChart", function(newVal) {
+        switch (newVal) {
+            case "饼图":
+                $("#tree-chart").velocity("fadeOut", {
+                    duration: 100,
+                    complete: function() {
+                        $("#pie-chart-container").velocity("fadeIn", {
+                            duration: 100,
+
+                        })
+                    }
+                })
+                break;
+            case "树形图":
+                $("#pie-chart-container").velocity("fadeOut", {
+                    duration: 100,
+                    complete: function() {
+                        $("#tree-chart").velocity("fadeIn", {
+                            duration: 100
+                        })
+                    }
+                })
+                break;
+            default:
+                break;
+        }
     })
 
     return {
