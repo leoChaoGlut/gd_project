@@ -99,12 +99,16 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
             var prof = select.children("span#prof").text().trim();
             if (skillName != "" && skillName.indexOf("技能名") < 0 && prof != "" && prof.indexOf("熟练度") < 0) {
                 data.children[skillName] = nodeDataBuilder(skillName, prof, data.name);
-                treeNodeDataBuilder(el, data.children[skillName]);
+                var hasEmptyData = treeNodeDataBuilder(el, data.children[skillName]);
+                if (hasEmptyData) {
+                    return true;
+                }
             } else {
                 Materialize.toast("存在空数据~", 2500, 'rounded');
-                return;
+                return true;
             }
         }
+        return false;
     }
     var dataBuilder = function(data) {
         var newData = [];
@@ -131,6 +135,23 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
         echart.setOption(baseOption);
 
         echart.hideLoading();
+    };
+
+    var buildTreeChart = function(tree) {
+        tree.css('margin', 0);
+        tree.removeAttr('id');
+        tree.children('.cur-chart').remove();
+        tree.children('.addRoot').remove();
+        tree.find('ul').remove();
+        tree.find('.option').children('*:not(.switch)').remove();
+        var allChildren = tree.find('*');
+        for (var i = 0, len = allChildren.length; i < len; i++) {
+            $(allChildren[i]).removeAttr('data-index');
+        }
+        $("#tree-chart").children('*').remove();
+        tree.hide();
+        $("#tree-chart").append(tree);
+        tree.show(300);
     };
     /**
      * [treeNodeBuilder description] 多叉数添加分支时,返回对应的dom
@@ -206,6 +227,7 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
             onEvent(nodeCount);
             nodeCount++;
         });
+
         $(".remove[data-index=" + index + "]").on('click', function(event) {
             $(this).parent().parent().parent().slideUp(200, function() {
                 $(this).remove();
@@ -278,7 +300,7 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
 
         $('.addRoot').on('click', function(event) {
             var rootNode = $(treeNodeBuilder(nodeCount, true));
-            $(".tree").append(rootNode);
+            $("#tree-container").append(rootNode);
             rootNode.hide();
             rootNode.slideDown(200);
             onEvent(nodeCount);
@@ -309,7 +331,10 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
 
                     if (skillName != "" && skillName.indexOf("技能名") < 0 && prof != "" && prof.indexOf("熟练度") < 0) {
                         treeData[skillName] = nodeDataBuilder(skillName, prof);
-                        treeNodeDataBuilder(el, treeData[skillName]);
+                        var hasEmptyData = treeNodeDataBuilder(el, treeData[skillName]);
+                        if (hasEmptyData) {
+                            return;
+                        }
                     } else {
                         Materialize.toast("存在空数据~", 2500, 'rounded');
                         return;
@@ -321,19 +346,8 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
                         buildPieChart(treeData);
                         break;
                     case "树形图":
-                        var tree = $("#tree-container");
-                        var newTree = $(tree[0].innerHTML);
-
-                        //这里把tree中的一些不必要数据处理掉
-                        //这里把tree中的一些不必要数据处理掉
-                        //这里把tree中的一些不必要数据处理掉
-                        //这里把tree中的一些不必要数据处理掉
-                        //这里把tree中的一些不必要数据处理掉
-                        //这里把tree中的一些不必要数据处理掉
-                        //这里把tree中的一些不必要数据处理掉
-                        //这里把tree中的一些不必要数据处理掉
-                        $("#tree-chart").children().remove();
-                        $("#tree-chart").append(newTree);
+                        var tree = $($(".add-data-panel")[0].innerHTML);
+                        buildTreeChart(tree);
                         break;
                     default:
                         break;

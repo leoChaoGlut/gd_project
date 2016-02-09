@@ -1,4 +1,4 @@
-define(function(init) {
+define(function() {
     console.log('vm.js');
 
     //function
