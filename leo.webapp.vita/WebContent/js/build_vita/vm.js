@@ -8,7 +8,6 @@ define(function() {
         $id: "vm_body",
         curChart: "饼图",
     })
-
     var vm_left_bar = avalon.define({
         $id: "vm_left_bar",
         charts: [{

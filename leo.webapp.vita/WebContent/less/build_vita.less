@@ -1,32 +1,11 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
 @MARGIN: 15px;
-body {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    // background: gray;
-    // background: #212121;
-}
-
-.top-bar {
-    height: 40px;
-    // background: yellow;
-}
-
 .main {
-    // background: blue;
     .left-bar {
         position: relative;
         float: left;
         margin: @MARGIN 0 0 @MARGIN;
-        // background: red;
         .chart-item-container {
             margin: 30px 0;
-            // background: purple;
             overflow: hidden;
             .chart-item {
                 .item-style;
@@ -52,12 +31,10 @@ body {
     }
     .content {
         float: left;
-        // background: green;
         margin: @MARGIN 0 0 @MARGIN;
         .operation-panel {
             float: left;
             margin: @MARGIN 0 0 @MARGIN;
-            // background: yellow;
             .btn-panel {
                 width: 100%;
                 margin-top: @MARGIN;
@@ -76,43 +53,11 @@ body {
                 }
             }
             .data-panel {
-                // background: black;
                 .add-data-panel {
                     display: inline-block;
-                    // margin: @MARGIN 0 0 @MARGIN;
-                    // background: white;
                     overflow-y: scroll;
                     overflow-x: auto;
-                    // .new-data {
-                    //     position: relative;
-                    //     .data-style;
-                    //     // background: green;
-                    //     ul {
-                    //         // background: blue;
-                    //         li {}
-                    //     }
-                    //     .delete-data {
-                    //         position: absolute;
-                    //         width: 10px;
-                    //         height: 10px;
-                    //         right: 15px;
-                    //         top: 18px;
-                    //         cursor: pointer;
-                    //         z-index: 1;
-                    //     }
-                    // }
-                    // .add-new-data {
-                    //     .data-style;
-                    //     background-image: url(../img/add.png);
-                    //     background-position: center;
-                    //     background-size: 30px 30px;
-                    //     background-repeat: no-repeat;
-                    //     cursor: pointer;
-                    //     .hover-float;
-                    // }
-                    // .add-sub-data {
-                    //     width: 100%;
-                    // }
+                    padding: @MARGIN 0 0 @MARGIN;
                 }
             }
         }
@@ -131,22 +76,20 @@ body {
                     position: absolute;
                     margin: 10px 0 0 10px;
                     opacity: 0;
-                    // display: none;
                 }
             }
             #tree-chart {
                 width: 100%;
                 height: 100%;
                 display: none;
-                // background-color: red;
+                overflow: auto;
+                padding: @MARGIN 0 0 @MARGIN;
             }
-            // background: red;
         }
     }
 }
 
 .skill-name {
-    // background: red;
     cursor: pointer;
     text-indent: 5px;
     &:hover {
@@ -158,7 +101,6 @@ body {
     position: absolute;
     width: 100%;
     height: 30px;
-    // background: gray;
     cursor: pointer;
 }
 
@@ -170,7 +112,6 @@ body {
 }
 
 .data-style {
-    // width: 150px;
     min-height: 50px;
     float: left;
     display: inline-block;
@@ -181,37 +122,13 @@ body {
     width: 20px;
     height: 100%;
     display: inline-block;
-    .shadow-2;
+    box-shadow: 0px 1px 2px #888;
     text-align: center;
     margin-left: 10px;
 }
 
 input {
     text-indent: 5px;
-}
-
-.shadow-1 {
-    box-shadow: 0px 2px 10px #888;
-}
-
-.shadow-2 {
-    box-shadow: 0px 1px 2px #888;
-}
-
-.white-1 {
-    background-color: #fff;
-}
-
-.white-2 {
-    background-color: #eee;
-}
-
-.white-3 {
-    background-color: #ddd;
-}
-
-.white-4 {
-    background-color: #ccc;
 }
 
 .hover-float {
@@ -224,7 +141,7 @@ input {
 .tree,
 #tree-chart {
     position: relative;
-    margin: @MARGIN;
+    // margin: @MARGIN;
     .cur-chart {
         position: absolute;
         right: 0;
@@ -237,9 +154,8 @@ input {
         margin: 0px 50px;
         .option {
             display: inline-block;
-            // background: red;
             background: #f5f5f5;
-            .shadow-2;
+            // .shadow-2;
             .switch {
                 float: left;
                 background: #26a69a;
@@ -255,7 +171,7 @@ input {
                     .opt-style;
                     transition: all .3s;
                     &:hover {
-                        .shadow-1;
+                        box-shadow: 0px 1px 2px #888;
                     }
                     &:active {
                         background: #26a69a;
@@ -271,7 +187,7 @@ input {
             background: #f5f5f5;
             float: left;
             width: 150px;
-            .shadow-2;
+            box-shadow: 0px 1px 2px #888;
             text-indent: 5px;
             cursor: pointer;
             ul {
@@ -295,8 +211,4 @@ input {
             }
         }
     }
-}
-
-.no-margin {
-    margin: 0;
 }

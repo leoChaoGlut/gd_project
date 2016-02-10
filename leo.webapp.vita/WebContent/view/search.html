@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/lib/icon.css">
+    <link rel="stylesheet" href="../css/lib/materialize.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/search.css">
+</head>
+
+<body ms-controller="vm_body" class="white-2" style="overflow-x: hidden;overflow-y: scroll;">
+    <div class="top-bar shadow-1 grey lighten-3"></div>
+    <div class="main" ms-controller="vm_main">
+        <div class="search-panel" ms-controller="vm_search_panel">
+            <div class="can-choice-container">
+                <span>未选:</span>
+                <ul class="can-choice">
+                    <li class="chip" ms-repeat="canChoiceItems" ms-text="el"></li>
+                    <div style="clear: both;"></div>
+                </ul>
+            </div>
+            <div class="sub-skill"></div>
+            <div class="has-chosen-container">
+                <span>已选:</span>
+                <ul class="has-chosen">
+                    <li class="chip" ms-repeat="hasChosenItems">
+                        {{el}}
+                        <a href="#" ms-click="$remove">
+                            <i class="material-icons">close</i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="custom-search">
+                <div class="keywor"></div>
+                <div class="search-btn"></div>
+            </div>
+        </div>
+        <div class="result-panel">
+            <div class="sort-rule"></div>
+            <div class="result"></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../js/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/lib/materialize.min.js"></script>
+    <script type="text/javascript" src="../js/lib/avalon.js" data-main="../js/search/main.js"></script>
+</body>
+
+</html>

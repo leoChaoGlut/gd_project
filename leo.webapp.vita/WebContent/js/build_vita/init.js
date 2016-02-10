@@ -280,8 +280,6 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
         echart.resize();
     }
 
-    $(".data-panel").append($("#pieTemplate"));
-
 
     var objLenCounter = function(obj) {
         var count = 0;
@@ -340,6 +338,7 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
                         return;
                     }
                 }
+                console.log(JSON.stringify(treeData));
                 curTreeData = treeData;
                 switch (vm.vm_body.curChart) {
                     case "饼图":

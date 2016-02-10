@@ -18,6 +18,7 @@
     li {
         background-color: green;
         list-style-type: none;
+        float: left;
     }
     
     .addRoot {
@@ -30,10 +31,12 @@
     <ul>
         <li>1</li>
         <li>2</li>
+        <div style="clear:both;"></div>
     </ul>
-    <script src="../js/lib/jquery.min.js"></script>
-    <script type="text/javascript">
-    $("ul").children().remove();
+    <script src="../js/lib/avalon.js" data-main="../js/test"></script>
+    <script>
+    var str = '{"前端":{"name":"前端","prof":"63","parent":"","children":{"HTML":{"name":"HTML","prof":"72","parent":"前端","children":{"HTML5":{"name":"HTML5","prof":"79","parent":"HTML","children":{}}}},"CSS":{"name":"CSS","prof":"60","parent":"前端","children":{"CSS3":{"name":"CSS3","prof":"61","parent":"CSS","children":{}}}},"MVVM框架":{"name":"MVVM框架","prof":"67","parent":"前端","children":{"Avalon":{"name":"Avalon","prof":"68","parent":"MVVM框架","children":{}},"AngularJS":{"name":"AngularJS","prof":"57","parent":"MVVM框架","children":{}},"VUE":{"name":"VUE","prof":"66","parent":"MVVM框架","children":{}}}}}},"后端":{"name":"后端","prof":"63","parent":"","children":{"Spring":{"name":"Spring","prof":"66","parent":"后端","children":{"Spring Boot":{"name":"Spring Boot","prof":"68","parent":"Spring","children":{}},"Spring MVC":{"name":"Spring MVC","prof":"68","parent":"Spring","children":{}},"Spring JDBC":{"name":"Spring JDBC","prof":"69","parent":"Spring","children":{}}}},"ORM框架":{"name":"ORM框架","prof":"65","parent":"后端","children":{"Hibernate":{"name":"Hibernate","prof":"71","parent":"ORM框架","children":{}},"Mybatis":{"name":"Mybatis","prof":"73","parent":"ORM框架","children":{}}}},"Struts2":{"name":"Struts2","prof":"75","parent":"后端","children":{}}}},"SQL":{"name":"SQL","prof":"70","parent":"","children":{"MySQL":{"name":"MySQL","prof":"79","parent":"SQL","children":{}},"MS SQL":{"name":"MS SQL","prof":"77","parent":"SQL","children":{}},"Oracle":{"name":"Oracle","prof":"68","parent":"SQL","children":{}}}},"NoSQL":{"name":"NoSQL","prof":"60","parent":"","children":{"Redis":{"name":"Redis","prof":"75","parent":"NoSQL","children":{}},"Memcache":{"name":"Memcache","prof":"65","parent":"NoSQL","children":{}}}},"移动开发":{"name":"移动开发","prof":"60","parent":"","children":{"Android":{"name":"Android","prof":"68","parent":"移动开发","children":{}},"IOS":{"name":"IOS","prof":"68","parent":"移动开发","children":{}}}}}';
+    console.log(str.length);
     </script>
 </body>
 

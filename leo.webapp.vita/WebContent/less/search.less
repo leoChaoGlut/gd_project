@@ -1,0 +1,37 @@
+@MARGIN: 15px;
+body {
+    width: auto;
+    height: auto;
+}
+
+.main {
+    // padding-top: @MARGIN;
+    .search-panel {
+        background: red;
+        padding: @MARGIN;
+        .can-choice-container {
+            background: green;
+            .can-choice {
+                display: inline-block;
+            }
+        }
+        .has-chosen-container {
+            margin-top: @MARGIN;
+            background: blue;
+            .has-chosen {
+                display: inline-block;
+                a {
+                    position: absolute;
+                    right: 10px;
+                }
+            }
+        }
+        li {
+            position: relative;
+            width: 150px;
+            margin-left: @MARGIN;
+            cursor: pointer;
+            text-align: center;
+        }
+    }
+}
