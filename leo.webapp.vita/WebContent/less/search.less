@@ -5,33 +5,78 @@ body {
 }
 
 .main {
-    // padding-top: @MARGIN;
+    margin-top: @MARGIN;
+    margin-bottom: @MARGIN;
+    position: relative;
+    // width: 1024px;
+    padding: @MARGIN;
     .search-panel {
-        background: red;
+        position: relative;
         padding: @MARGIN;
-        .can-choice-container {
-            background: green;
-            .can-choice {
-                display: inline-block;
+        margin-bottom: @MARGIN;
+        ul {
+            min-width: 50%;
+            margin: 0 auto;
+            li {
+                float: left;
+                padding-top: 2px;
+                margin-left: @MARGIN;
             }
         }
-        .has-chosen-container {
-            margin-top: @MARGIN;
-            background: blue;
-            .has-chosen {
+        .can-choice-label {
+            padding: 0 @MARGIN;
+        }
+        .search {
+            width: 50%;
+            margin: @MARGIN auto 0 auto;
+            input {
+                width: 70%;
+                height: 40px;
+                float: left;
+                text-indent: 10px;
+            }
+            button {
+                height: 40px;
+                float: left;
+                width: 30%;
+            }
+        }
+    }
+    .result-panel {
+        // background: red;
+        .sort-panel {
+            height: 30px;
+            margin-bottom: @MARGIN;
+            .sort-tabs {
                 display: inline-block;
-                a {
-                    position: absolute;
-                    right: 10px;
+                // background: blue;
+                li {
+                    // background: green;
+                    // padding: 0 @MARGIN;
+                    height: 30px;
+                    width: 50px;
+                    float: left;
+                    text-indent: 8px;
+                    line-height: 30px;
+                }
+                .sort-label {
+                    margin: 0 @MARGIN;
                 }
             }
         }
-        li {
-            position: relative;
-            width: 150px;
-            margin-left: @MARGIN;
-            cursor: pointer;
-            text-align: center;
+        .result {
+            // background: green;
+            padding-bottom: @MARGIN;
+            .result-item {
+                background: white;
+                margin: @MARGIN 0 0 @MARGIN;
+                float: left;
+            }
+        }
+    }
+    .page-panel{
+        margin-top: @MARGIN;
+        ul{
         }
     }
 }

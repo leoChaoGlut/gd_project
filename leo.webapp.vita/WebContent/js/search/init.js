@@ -13,7 +13,12 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
      * @return {[type]} [description]
      */
     var adjustSize = function() {
-        main.height(body.height() - TOP_HEIGHT);
+        // main.height(body.height() - TOP_HEIGHT);
+
+        var resultItems = $(".result-item");
+        resultItems.width((body.width() - 7 * MARGIN) / 4);
+        resultItems.height(resultItems.width());
+
     }
 
 
@@ -22,6 +27,7 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
         $(".main").on('selectstart', function(event) {
             return false;
         });
+
         adjustSize();
     });
     $(window).resize(function(event) {

@@ -11,38 +11,59 @@
     <link rel="stylesheet" href="../css/search.css">
 </head>
 
-<body ms-controller="vm_body" class="white-2" style="overflow-x: hidden;overflow-y: scroll;">
+<body ms-controller="vm_body" class="white-2" style="overflow-y: scroll;">
     <div class="top-bar shadow-1 grey lighten-3"></div>
-    <div class="main" ms-controller="vm_main">
-        <div class="search-panel" ms-controller="vm_search_panel">
-            <div class="can-choice-container">
-                <span>未选:</span>
-                <ul class="can-choice">
-                    <li class="chip" ms-repeat="canChoiceItems" ms-text="el"></li>
-                    <div style="clear: both;"></div>
-                </ul>
-            </div>
-            <div class="sub-skill"></div>
-            <div class="has-chosen-container">
-                <span>已选:</span>
-                <ul class="has-chosen">
-                    <li class="chip" ms-repeat="hasChosenItems">
-                        {{el}}
-                        <a href="#" ms-click="$remove">
-                            <i class="material-icons">close</i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="custom-search">
-                <div class="keywor"></div>
-                <div class="search-btn"></div>
+    <div class="main shadow-1" ms-controller="vm_main">
+        <div class="search-panel shadow-1" ms-controller="vm_search_panel">
+            <ul id="can-choice" class="shadow-1">
+                <li class="can-choice-label">可选:</li>
+                <li ms-repeat="canChoiceItems">
+                    <input type="checkbox" class="filled-in" ms-attr-id="el" />
+                    <label ms-attr-for="el">{{el}}</label>
+                </li>
+                <div style="clear: both;"></div>
+            </ul>
+            <div class="search shadow-1">
+                <input type="text" placeholder="自定义技术方向(可选)" style="margin:0;">
+                <button class="waves-effect waves-light btn">搜索</button>
+                <div style="clear: both;"></div>
             </div>
         </div>
-        <div class="result-panel">
-            <div class="sort-rule"></div>
-            <div class="result"></div>
+        <div class="result-panel" ms-controller="vm_result_panel">
+            <div class="sort-panel shadow-1">
+                <ul class="sort-tabs">
+                    <li class="sort-label">排序:</li>
+                    <li ms-repeat="sortRules"></li>
+                </ul>
+            </div>
+            <ul class="result shadow-1">
+                <li ms-repeat="results" class="result-item"></li>
+                <div style="clear:both;"></div>
+            </ul>
+            <div class="page-panel shadow-1">
+                <ul class="pagination">
+                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                    <li class="active"><a href="#!">1</a></li>
+                    <li class="waves-effect"><a href="#!">2</a></li>
+                    <li class="waves-effect"><a href="#!">3</a></li>
+                    <li class="waves-effect"><a href="#!">4</a></li>
+                    <li class="waves-effect"><a href="#!">5</a></li>
+                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                </ul>
+            </div>
         </div>
+        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+            <a class="btn-floating btn-large red">
+                <i class="material-icons">mode_edit</i>
+            </a>
+            <ul>
+                <li><a class="btn-floating red" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">insert_chart</i></a></li>
+                <li><a class="btn-floating yellow darken-1" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">format_quote</i></a></li>
+                <li><a href="#" class="btn-floating green" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">publish</i></a></li>
+                <li><a class="btn-floating blue" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px) translateX(0px); opacity: 0;"><i class="material-icons">attach_file</i></a></li>
+            </ul>
+        </div>
+        <div style="clear:both;"></div>
     </div>
     <script type="text/javascript" src="../js/lib/jquery.min.js"></script>
     <script type="text/javascript" src="../js/lib/materialize.min.js"></script>
