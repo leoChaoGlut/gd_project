@@ -9,8 +9,10 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import leo.bean.Chart;
 import leo.bean.UserPreview;
 import leo.mapper.VitaMapper;
+import leo.service.IChartService;
 import leo.service.IVitaService;
 
 public class MyTest {
@@ -21,24 +23,37 @@ public class MyTest {
 
 	@Test
 	public void test() {
-		IVitaService vitaService=ctx.getBean(IVitaService.class);
-//		VitaServiceImp vitaServiceImp = ctx.getBean(VitaServiceImp.class);
+		IVitaService vitaService = ctx.getBean(IVitaService.class);
+		// VitaServiceImp vitaServiceImp = ctx.getBean(VitaServiceImp.class);
 		VitaMapper vitaMapper = session.getMapper(VitaMapper.class);
 		List<Integer> skillIds = new ArrayList<>();
 		skillIds.add(1);
 		skillIds.add(3);
-//		HashSet<UserPreview> set = vitaService.getPreviewVitas(skillIds, 0, 4);
-//		System.out.println("===============");
-//		for (UserPreview userPreview : set) {
-//			System.out.println(userPreview.toString());
-//		}
+		// HashSet<UserPreview> set = vitaService.getPreviewVitas(skillIds, 0,
+		// 4);
+		// System.out.println("===============");
+		// for (UserPreview userPreview : set) {
+		// System.out.println(userPreview.toString());
+		// }
 		List<UserPreview> list = vitaMapper.selectPage(skillIds, 10, 3);
 		System.out.println(list.isEmpty());
 	}
 
 	@Test
 	public void test2() {
+		IChartService chartService = ctx.getBean(IChartService.class);
+		Chart chart = new Chart("1", "{'name':'2','prof':'69','parent':'1','children':{}}", (short) 0);
+		int count = chartService.createAChart(chart);
+		System.out.println(count);
+	}
 
+	@Test
+	public void test3() {
+		IChartService chartService = ctx.getBean(IChartService.class);
+		List<Chart> list = chartService.getChartsByEmail("2");
+		for (Chart chart : list) {
+			System.out.println(chart.toString());
+		}
 	}
 
 }

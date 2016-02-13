@@ -1,0 +1,214 @@
+@MARGIN: 15px;
+.main {
+    .left-bar {
+        position: relative;
+        float: left;
+        margin: @MARGIN 0 0 @MARGIN;
+        .chart-item-container {
+            margin: 30px 0;
+            overflow: hidden;
+            .chart-item {
+                .item-style;
+                .hover-float;
+            }
+            #pie {
+                background-image: url(../img/pie_example.png);
+                background-size: 100% 100%;
+            }
+            #tree {
+                background-image: url(../img/tree_example.png);
+                background-size: 100% 100%;
+            }
+        }
+        .upward {
+            .direction-switch;
+            top: 0;
+        }
+        .downward {
+            .direction-switch;
+            bottom: 0;
+        }
+    }
+    .content {
+        float: left;
+        margin: @MARGIN 0 0 @MARGIN;
+        .operation-panel {
+            float: left;
+            margin: @MARGIN 0 0 @MARGIN;
+            .btn-panel {
+                width: 100%;
+                margin-top: @MARGIN;
+                height: 30px;
+                line-height: 30px;
+                #create {
+                    width: 49%;
+                    float: left;
+                    cursor: pointer;
+                }
+                #show-preview {
+                    float: left;
+                    margin-left: 2%;
+                    width: 49%;
+                    cursor: pointer;
+                }
+            }
+            .data-panel {
+                .add-data-panel {
+                    display: inline-block;
+                    overflow-y: scroll;
+                    overflow-x: auto;
+                    // padding: @MARGIN 0 0 @MARGIN;
+                }
+            }
+        }
+        .preview {
+            float: left;
+            margin: @MARGIN 0 0 @MARGIN;
+            #pie-chart-container {
+                width: 100%;
+                height: 100%;
+                position: relative;
+                #pie-chart {
+                    width: 100%;
+                    height: 100%;
+                }
+                #back {
+                    position: absolute;
+                    margin: 10px 0 0 10px;
+                    opacity: 0;
+                }
+            }
+            #tree-chart {
+                width: 100%;
+                height: 100%;
+                display: none;
+                overflow: auto;
+                padding: @MARGIN 0 0 @MARGIN;
+            }
+        }
+    }
+}
+
+.skill-name {
+    cursor: pointer;
+    text-indent: 5px;
+    &:hover {
+        background: gray;
+    }
+}
+
+.direction-switch {
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    cursor: pointer;
+}
+
+.item-style {
+    text-align: center;
+    list-style-type: none;
+    margin: @MARGIN auto;
+    cursor: pointer;
+}
+
+.data-style {
+    min-height: 50px;
+    float: left;
+    display: inline-block;
+    margin: @MARGIN;
+}
+
+.opt-style {
+    width: 20px;
+    height: 100%;
+    display: inline-block;
+    box-shadow: 0px 1px 2px #888;
+    text-align: center;
+    margin-left: 10px;
+}
+
+input {
+    text-indent: 5px;
+}
+
+.hover-float {
+    transition: box-shadow .3s;
+    &:hover {
+        box-shadow: 0px 5px 22px #888;
+    }
+}
+
+.tree,
+#tree-chart {
+    position: relative;
+    margin: @MARGIN 0 0 @MARGIN;
+    .cur-chart {
+        position: absolute;
+        right: 0;
+    }
+    .addRoot {
+        margin-bottom: 15px;
+    }
+    .node {
+        width: 300px;
+        margin: 0px 50px;
+        .option {
+            display: inline-block;
+            background: #f5f5f5;
+            // .shadow-2;
+            .switch {
+                float: left;
+                background: #26a69a;
+                width: 20px;
+                text-align: center;
+                cursor: default;
+            }
+            .opts {
+                float: left;
+                display: none;
+                span {
+                    cursor: pointer;
+                    .opt-style;
+                    transition: all .3s;
+                    &:hover {
+                        box-shadow: 0px 1px 2px #888;
+                    }
+                    &:active {
+                        background: #26a69a;
+                    }
+                }
+                .add {}
+                .remove {}
+                .fold {}
+            }
+        }
+        .select {
+            // position: relative;
+            background: #f5f5f5;
+            float: left;
+            width: 150px;
+            box-shadow: 0px 1px 2px #888;
+            text-indent: 5px;
+            cursor: pointer;
+            ul {
+                display: none;
+                width: 150px;
+                position: absolute;
+                background: #f5f5f5;
+                li {
+                    width: 150px;
+                    div {
+                        margin-left: -5px;
+                        width: 150px;
+                    }
+                }
+                .range-field {
+                    label {
+                        margin-left: 6px;
+                        color: #26a69a;
+                    }
+                }
+            }
+        }
+    }
+}

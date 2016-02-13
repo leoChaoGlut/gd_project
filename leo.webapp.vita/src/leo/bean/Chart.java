@@ -1,4 +1,5 @@
 package leo.bean;
+
 /**
  * VitaChart entity. @author MyEclipse Persistence Tools
  */
@@ -8,9 +9,10 @@ public class Chart implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
-	private Integer userId;
+	private String email;
 	private String json;
-	private Short type;
+	private Short typeId;
+	private Short hasDeleted;
 
 	// Constructors
 
@@ -18,14 +20,30 @@ public class Chart implements java.io.Serializable {
 	public Chart() {
 	}
 
-	/** full constructor */
-	public Chart(Integer userId, String json, Short type) {
-		this.userId = userId;
+	public Chart(String email, String json, Short typeId) {
+		this.email = email;
 		this.json = json;
-		this.type = type;
+		this.typeId = typeId;
+	}
+
+	/** full constructor */
+
+	public Chart(String email, String json, Short typeId, Short hasDeleted) {
+		this.email = email;
+		this.json = json;
+		this.typeId = typeId;
+		this.hasDeleted = hasDeleted;
 	}
 
 	// Property accessors
+
+	public Short getHasDeleted() {
+		return hasDeleted;
+	}
+
+	public void setHasDeleted(Short hasDeleted) {
+		this.hasDeleted = hasDeleted;
+	}
 
 	public Integer getId() {
 		return this.id;
@@ -35,12 +53,12 @@ public class Chart implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Integer getUserId() {
-		return this.userId;
+	public String getEmail() {
+		return this.email;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getJson() {
@@ -51,12 +69,18 @@ public class Chart implements java.io.Serializable {
 		this.json = json;
 	}
 
-	public Short getType() {
-		return this.type;
+	public Short getTypeId() {
+		return this.typeId;
 	}
 
-	public void setType(Short type) {
-		this.type = type;
+	public void setTypeId(Short typeId) {
+		this.typeId = typeId;
+	}
+
+	@Override
+	public String toString() {
+		return "Chart [id=" + id + ", email=" + email + ", json=" + json + ", typeId=" + typeId + ", hasDeleted="
+				+ hasDeleted + "]";
 	}
 
 }

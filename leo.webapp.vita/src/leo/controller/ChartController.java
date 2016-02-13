@@ -11,40 +11,41 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import leo.bean.Chart;
 import leo.bean.Skill;
 import leo.bean.UserPreview;
+import leo.service.IChartService;
 import leo.service.IVitaService;
 import leo.util.Response;
 
 @Controller
-@RequestMapping("/vita")
-public class VitaController {
+@RequestMapping("/chart")
+public class ChartController {
 	private Logger log = Logger.getLogger(this.getClass());
 
 	@Autowired
-	IVitaService vitaService;
+	IChartService chartService;
 
 	@ResponseBody
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	public Response search(@RequestParam("skillIds[]") List<Integer> skillIds, int startIndex, int pageSize) {
-		HashSet<UserPreview> previewVitaSet = vitaService.getPreviewVitas(skillIds, startIndex, pageSize);
-		if (previewVitaSet == null) {
-			return Response.error();
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public Response create(Chart chart) {
+		int count = chartService.createAChart(chart);
+		if (count > 0) {
+			return Response.success(null);
 		} else {
-			return Response.success(previewVitaSet);
+			return Response.error();
 		}
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/getSkills", method = RequestMethod.GET)
-	public Response getSkills() {
-		List<Skill> skills = vitaService.getSkills();
-		if (skills == null) {
+	@RequestMapping(value = "/getChartsByEmail", method = RequestMethod.GET)
+	public Response getChartsByEmail(String email) {
+		List<Chart> charts = chartService.getChartsByEmail(email);
+		if (charts.isEmpty()) {
 			return Response.error();
 		} else {
-			return Response.success(skills);
+			return Response.success(charts);
 		}
 	}
-
 
 }

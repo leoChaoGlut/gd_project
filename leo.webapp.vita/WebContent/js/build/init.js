@@ -310,7 +310,42 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
         adjustSize();
 
         $("#create").on('click', function(event) {
+            var rootNodes = $(".tree").children(".node");
+            var len = rootNodes.length;
+            if (len > 0) {
+                treeData = {};
+                for (var i = 0; i < len; i++) {
+                    var el = $(rootNodes[i]);
+                    var select = el.children(".select");
+                    var skillName = select.children("span#skillName").text().trim();
+                    var prof = select.children("span#prof").text().trim();
 
+                    if (skillName != "" && skillName.indexOf("技能名") < 0 && prof != "" && prof.indexOf("熟练度") < 0) {
+                        treeData[skillName] = nodeDataBuilder(skillName, prof);
+                        var hasEmptyData = treeNodeDataBuilder(el, treeData[skillName]);
+                        if (hasEmptyData) {
+                            return;
+                        }
+                    } else {
+                        Materialize.toast("存在空数据~", 2500, 'rounded');
+                        return;
+                    }
+                }
+                // console.log(JSON.stringify(treeData));
+                $.post('../chart/create', {
+                    email: "",
+                    json: JSON.stringify(treeData),
+                    typeId: 0,
+                }, function(resp) {
+                    if (resp.status == 200) {
+                        location.href = "manage.html";
+                    } else {
+                        alert("创建失败");
+                    }
+                });
+            } else {
+                Materialize.toast("无数据~", 2500, 'rounded');
+            }
         });
 
 

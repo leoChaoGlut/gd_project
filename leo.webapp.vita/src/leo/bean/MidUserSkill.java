@@ -9,7 +9,7 @@ public class MidUserSkill implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
-	private Integer userId;
+	private String email;
 	private Short skillId;
 
 	// Constructors
@@ -19,8 +19,8 @@ public class MidUserSkill implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public MidUserSkill(Integer userId, Short skillId) {
-		this.userId = userId;
+	public MidUserSkill(String email, Short skillId) {
+		this.email = email;
 		this.skillId = skillId;
 	}
 
@@ -34,12 +34,12 @@ public class MidUserSkill implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public Integer getUserId() {
-		return this.userId;
+	public String getEmail() {
+		return this.email;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Short getSkillId() {

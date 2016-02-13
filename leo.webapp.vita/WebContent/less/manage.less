@@ -1,0 +1,41 @@
+@MARGIN: 15px;
+.main {
+    overflow-y: hidden;
+    overflow-x: scroll;
+    padding-right: @MARGIN;
+    ul {
+        height: 100%;
+        li {
+            // background: green;
+            position: relative;
+            cursor: pointer;
+            float: left;
+            margin: @MARGIN 0 @MARGIN @MARGIN;
+            box-shadow: 0px 2px 10px #888;
+            transition: all .5s;
+            background-color: #e0e0e0;
+            &:hover {
+                box-shadow: 0px 2px 20px #555;
+                background-color: #eeeeee ;
+            }
+            .delete-item {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
+        }
+        #vita_of_upload {
+            background-image: url(../img/vita.png);
+            background-size: 100px 100px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        #add-item {
+            background-image: url(../img/add-item.png);
+            background-size: 100px 100px;
+            background-repeat: no-repeat;
+            background-position: center;
+            // background: yellow;
+        }
+    }
+}
