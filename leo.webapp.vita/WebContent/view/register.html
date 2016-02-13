@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/lib/icon.css">
+    <link rel="stylesheet" href="../css/lib/materialize.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/register.css">
+</head>
+
+<body ms-controller="vm_body" class="white-2" style="overflow-x:hidden;overflow-y: auto;">
+    <div class="row" style="margin-top: 15vh;">
+        <form class="col s12" ms-controller="vm_form">
+            <div class="row">
+                <div class="input-field col s4 offset-s4">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="icon_prefix" type="email" class="validate" ms-on-blur="checkUid" ms-duplex="email">
+                    <label for="icon_prefix">电子邮箱</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s4 offset-s4">
+                    <i class="material-icons prefix">lock_open</i>
+                    <input id="icon_telephone" type="password" class="validate" ms-duplex="pwd" ms-on-focus="pwdFocus(0)" ms-on-blur="confirmPwd">
+                    <label for="icon_telephone">密码</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s4 offset-s4">
+                    <i class="material-icons prefix">lock_outline</i>
+                    <input id="confirm_pwd" type="password" class="validate" ms-duplex="pwd2" ms-on-focus="pwdFocus(1)" ms-on-blur="confirmPwd">
+                    <label for="confirm_pwd">确认密码</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s4 offset-s4">
+                    <i class="material-icons prefix">verified_user</i>
+                    <input id="validate_code" type="text" class="validate" ms-duplex="validateCode">
+                    <label for="validate_code">验证码</label>
+                </div>
+            </div>
+            <div class="row">
+                <a class="waves-effect waves-light btn col s4 offset-s4" ms-click="submit">注册</a>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="../js/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/lib/materialize.min.js"></script>
+    <script type="text/javascript" src="../js/lib/avalon.js" data-main="../js/register/main.js"></script>
+</body>
+
+</html>

@@ -32,4 +32,70 @@
 		<jackson.version>2.6.3</jackson.version>
 		<jackson.groupid>com.fasterxml.jackson.core</jackson.groupid>
 	</properties>
+	<dependencies>
+		<!-- Spring Begin -->
+		<dependency>
+			<artifactId>spring-context</artifactId>
+			<groupId>${spring.groupid}</groupId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<artifactId>spring-webmvc</artifactId>
+			<groupId>${spring.groupid}</groupId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<artifactId>spring-orm</artifactId>
+			<groupId>${spring.groupid}</groupId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- Spring End -->
+
+		<!-- Mybatis Begin -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+		<!-- Mybatis End -->
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.38</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<!-- jackson Begin -->
+		<dependency>
+			<groupId>${jackson.groupid}</groupId>
+			<version>${jackson.version}</version>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${jackson.groupid}</groupId>
+			<version>${jackson.version}</version>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>${jackson.groupid}</groupId>
+			<version>${jackson.version}</version>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<!-- jackson End -->
+	</dependencies>
 </project>

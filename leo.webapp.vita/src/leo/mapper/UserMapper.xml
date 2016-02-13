@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="leo.mapper.UserMapper">
+	<select id="selectOne" resultType="User" parameterType="User">
+		SELECT email,name FROM common_user
+		<where>
+			<if test="email != null">
+				email = #{email}
+			</if>
+			<if test="pwd != null">
+				AND pwd = #{pwd}
+			</if>
+		</where>
+	</select>
+	<insert id="insertOne" parameterType="User">
+		INSERT INTO common_user
+		(email,pwd) VALUES (#{email},#{pwd})
+	</insert>
+</mapper>
