@@ -1,8 +1,6 @@
 package leo.service.imp;
 
-import java.util.List;
-import java.util.Objects;
-
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,20 +13,15 @@ import leo.service.IUserService;
 @Service
 @Transactional
 public class UserServiceImp extends AbstractService implements IUserService {
+	private Logger log = Logger.getLogger(this.getClass());
 
 	@Autowired
 	UserMapper userMapper;
 
 	@Override
-	public List pageQuery(int startIndex, int pageSize) {
+	public User getUserInfo(User paramUser) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public User getUserInfo(User userParam) {
-		// TODO Auto-generated method stub
-		User user = userMapper.selectOne(userParam);
+		User user = userMapper.selectOne(paramUser);
 		return user;
 	}
 
@@ -44,12 +37,12 @@ public class UserServiceImp extends AbstractService implements IUserService {
 		int count = userMapper.insertOne(userParam);
 		return count == 0 ? null : userParam;
 	}
-	
+
 	@Override
 	public boolean isExists(User userParam) {
 		// TODO Auto-generated method stub
 		User user = userMapper.selectOne(userParam);
-		return Objects.nonNull(user);
+		return user != null;
 	}
 
 }

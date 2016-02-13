@@ -22,6 +22,5 @@ require.config({
 
 require(["init"], function() {
     console.log("main.js");
-
-
+    var userInfo = sessionStorage.userInfo;
 })

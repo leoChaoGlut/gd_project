@@ -1,38 +1,44 @@
 package leo.test;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.util.StringUtils;
 
-import leo.bean.User;
-import leo.mapper.UserMapper;
+import leo.bean.UserPreview;
+import leo.mapper.VitaMapper;
+import leo.service.IVitaService;
 
 public class MyTest {
+	ApplicationContext ctx = new ClassPathXmlApplicationContext("leo/config/spring-application-config.xml",
+			"leo/config/spring-mvc-config.xml", "leo/config/spring-mybatis-config.xml");
+	SqlSessionFactory factory = ctx.getBean(SqlSessionFactory.class);
+	SqlSession session = factory.openSession();
 
 	@Test
 	public void test() {
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("leo/config/spring-application-config.xml",
-				"leo/config/spring-mvc-config.xml", "leo/config/spring-mybatis-config.xml");
-		System.out.println(ctx);
-		SqlSessionFactory factory = ctx.getBean(SqlSessionFactory.class);
-		SqlSession session = factory.openSession();
-		UserMapper mapper = session.getMapper(UserMapper.class);
-		System.out.println(mapper);
+		IVitaService vitaService=ctx.getBean(IVitaService.class);
+//		VitaServiceImp vitaServiceImp = ctx.getBean(VitaServiceImp.class);
+		VitaMapper vitaMapper = session.getMapper(VitaMapper.class);
+		List<Integer> skillIds = new ArrayList<>();
+		skillIds.add(1);
+		skillIds.add(3);
+//		HashSet<UserPreview> set = vitaService.getPreviewVitas(skillIds, 0, 4);
+//		System.out.println("===============");
+//		for (UserPreview userPreview : set) {
+//			System.out.println(userPreview.toString());
+//		}
+		List<UserPreview> list = vitaMapper.selectPage(skillIds, 10, 3);
+		System.out.println(list.isEmpty());
+	}
 
-		User u = new User();
-		u.setEmail("3");
-		u.setPwd("123");
-		System.out.println(u.toString());
-		User user = mapper.selectOne(u);
-		System.out.println(Objects.nonNull(user) ? user.toString() : "null");
-		
-		int insertOne = mapper.insertOne(u);
-		System.out.println(insertOne);
+	@Test
+	public void test2() {
+
 	}
 
 }

@@ -17,15 +17,15 @@
         <div class="search-panel shadow-1" ms-controller="vm_search_panel">
             <ul id="can-choice" class="shadow-1">
                 <li class="can-choice-label">可选:</li>
-                <li ms-repeat="canChoiceItems">
-                    <input type="checkbox" class="filled-in" ms-attr-id="el" />
-                    <label ms-attr-for="el">{{el}}</label>
+                <li ms-repeat="canChoiceSkills">
+                    <input type="checkbox" class="filled-in" ms-attr-id="el.name"/>
+                    <label ms-attr-for="el.name">{{el.name}}</label>
                 </li>
                 <div style="clear: both;"></div>
             </ul>
             <div class="search shadow-1">
-                <input type="text" placeholder="自定义技术方向(可选)" style="margin:0;">
-                <button class="waves-effect waves-light btn">搜索</button>
+                <input type="text" placeholder="技术方向或求职者姓名" style="margin:0;">
+                <button class="waves-effect waves-light btn" ms-click="search">搜索</button>
                 <div style="clear: both;"></div>
             </div>
         </div>

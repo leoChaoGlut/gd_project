@@ -4,7 +4,7 @@ import leo.base.IBaseService;
 import leo.bean.User;
 
 public interface IUserService extends IBaseService {
-	User getUserInfo(User userParam);
+	User getUserInfo(User paramUser);
 
 	boolean logout();
 

@@ -13,6 +13,7 @@ public class User implements java.io.Serializable {
 	private Short age;
 	private String avatar;
 	private String pwd;
+	private Short seniority;
 
 	// Constructors
 
@@ -26,13 +27,13 @@ public class User implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public User(String email, String name, Short age, String avatar,
-			String pwd) {
+	public User(String email, String name, Short age, String avatar, String pwd, Short seniority) {
 		this.email = email;
 		this.name = name;
 		this.age = age;
 		this.avatar = avatar;
 		this.pwd = pwd;
+		this.seniority = seniority;
 	}
 
 	// Property accessors
@@ -77,9 +78,18 @@ public class User implements java.io.Serializable {
 		this.pwd = pwd;
 	}
 
+	public Short getSeniority() {
+		return seniority;
+	}
+
+	public void setSeniority(Short seniority) {
+		this.seniority = seniority;
+	}
+
 	@Override
 	public String toString() {
-		return "User [email=" + email + ", name=" + name + ", age=" + age + ", avatar=" + avatar + ", pwd=" + pwd + "]";
+		return "User [email=" + email + ", name=" + name + ", age=" + age + ", avatar=" + avatar + ", pwd=" + pwd
+				+ ", seniority=" + seniority + "]";
 	}
 
 }

@@ -10,23 +10,47 @@ define(function() {
         pwd: "",
         pwd2: "",
         validateCode: "",
+        avaliableEmail: false,
         confirm: {
             pwd: false,
             pwd2: false,
         },
-        submit: function() {
-
+        register: function() {
+            if (vm_form.pwd == vm_form.pwd2) {
+                if (vm_form.avaliableEmail) {
+                    $.ajax({
+                        url: "../user/register",
+                        type: "post",
+                        data: {
+                            email: vm_form.email,
+                            pwd: vm_form.pwd,
+                        },
+                        success: function(resp) {
+                            if (resp.status == 200) {
+                                sessionStorage.userInfo = resp.result;
+                                location.href = "manage.html";
+                            }
+                        }
+                    })
+                } else {
+                        alert("邮箱已存在");
+                }
+            } else {
+                alert("两次输入的密码不一致");
+            }
         },
-        checkUid: function() {
+        checkEmail: function() {
             $.ajax({
-                url: "../user/register",
-                type: "post",
+                url: "../user/checkEmail",
                 data: {
                     email: vm_form.email,
-                    pwd: vm_form.pwd,
                 },
-                success:function(resp){
-
+                success: function(resp) {
+                    if (resp.status == 200) {
+                        vm_form.avaliableEmail = true;
+                    } else {
+                        alert("邮箱已存在");
+                    }
                 }
             })
 
@@ -44,7 +68,6 @@ define(function() {
             }
         },
         confirmPwd: function() {
-            console.log('2');
             if (vm_form.confirm.pwd && vm_form.confirm.pwd2) {
                 if (vm_form.pwd != vm_form.pwd2) {
                     alert("两次输入的密码不一致");
@@ -52,9 +75,7 @@ define(function() {
             }
         },
     })
-    vm_form.$watch("confirm.*", function(a, b) {
-        console.log(a + "," + b);
-    })
+
     avalon.scan();
 
 

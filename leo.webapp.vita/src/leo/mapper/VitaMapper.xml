@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="leo.mapper.VitaMapper">
+	<select id="selectPage" resultType="UserPreview">
+		SELECT
+		cu.email AS email,
+		cu.`name` AS userName,
+		cu.age AS age,
+		cu.avatar
+		AS avatar,
+		cu.seniority AS seniority,
+		vs.`name` AS skillName
+		FROM
+		common_user cu
+		JOIN
+		vita_mid_user_skill mus1
+		ON
+		cu.email
+		= mus1.user_id
+		JOIN vita_skill vs
+		ON mus1.skill_id = vs.id
+		WHERE
+		mus1.user_id IN (
+		SELECT
+		mus0.user_id
+		FROM
+		vita_mid_user_skill mus0
+		WHERE
+		mus0.skill_id IN
+		<foreach collection="skillIds" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+		GROUP BY
+		mus0.user_id
+		)
+		ORDER BY
+		cu.email
+		LIMIT #{startIndex} , #{pageSize}
+	</select>
+</mapper>

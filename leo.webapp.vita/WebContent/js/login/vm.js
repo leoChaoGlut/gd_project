@@ -17,10 +17,11 @@ define(function() {
                     pwd: vm_form.pwd,
                 },
                 success: function(resp) {
-                    console.log(resp);
                     if (resp.status == 200) {
-                        window.userInfo = resp.result;
+                        sessionStorage.userInfo = resp.result;
                         location.href="manage.html";
+                    }else{
+                        alert("账号或密码错误");
                     }
                 }
             })
