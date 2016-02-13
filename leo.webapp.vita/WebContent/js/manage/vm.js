@@ -18,7 +18,7 @@ define(function() {
 
         },
         addItem: function() {
-            location.href = "build_vita.html";
+            location.href = "build.html";
         }
     })
 

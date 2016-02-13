@@ -3,7 +3,6 @@ define(function() {
 
     $.get("../vita/getSkills", function(resp) {
         if (resp.status == 200) {
-            console.log(resp.result);
             vm_search_panel.canChoiceSkills = resp.result;
         } else {
             alert("无技能");
@@ -20,7 +19,6 @@ define(function() {
     var vm_search_panel = avalon.define({
         $id: "vm_search_panel",
         canChoiceSkills: [],
-        hasChosenItems: ['前端', '后端', 'SQL', 'NoSQL'],
         search: function() {
             var skillIds = [];
             var canChoiceSkills = vm_search_panel.canChoiceSkills;
@@ -31,21 +29,17 @@ define(function() {
                 }
             }
             if (skillIds.length > 0) {
-                $.ajax({
-                    url: "../vita/search",
-                    data: {
-                        skillIds: skillIds,
-                        startIndex: 0,
-                        pageSize: 12
-                    },
-                    success: function(resp) {
-                        if (resp.status == 200) {
-                            vm_result_panel.results = resp.result;
-                        } else {
-                            alert("无数据");
-                        }
+                $.get("../vita/search", {
+                    skillIds: skillIds,
+                    startIndex: 0,
+                    pageSize: 12
+                }, function(resp) {
+                    if (resp.status == 200) {
+                        vm_result_panel.results = resp.result;
+                    } else {
+                        alert("无数据");
                     }
-                })
+                });
             } else {
                 alert("请选择查询条件");
             }
@@ -61,7 +55,12 @@ define(function() {
             name: "浏览次数",
             isAsc: true
         }],
-        results: []
+        results: [],
+        resultRendered: function() {
+            var resultItems = $(".result-item");
+            resultItems.width(($("body").width() - 7 * 15) / 4);
+            resultItems.height(resultItems.width());
+        },
     })
 
     avalon.scan();

@@ -37,7 +37,9 @@
                 </ul>
             </div>
             <ul class="result shadow-1">
-                <li ms-repeat="results" class="result-item"></li>
+                <li ms-repeat="results" class="result-item" data-repeat-rendered="resultRendered">
+                    {{el}}
+                </li>
                 <div style="clear:both;"></div>
             </ul>
             <div class="page-panel shadow-1">
