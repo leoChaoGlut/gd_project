@@ -20,7 +20,9 @@
 		JOIN vita_type vt ON vc.type_id
 		= vt.id
 		WHERE
-		vc.email = #{email};
+		vc.email = #{email}
+		AND
+		vc.has_deleted = 0
 	</select>
 
 	<!-- <delete id="deleteOnePhysically"> DELETE FROM vita_chart WHERE id = 
@@ -28,6 +30,12 @@
 	<update id="deleteOneByStatus">
 		UPDATE vita_chart
 		SET has_deleted = 1
+		WHERE
+		id = #{id}
+	</update>
+	<update id="updateOne" parameterType="Chart">
+		UPDATE vita_chart
+		SET json = #{json}
 		WHERE
 		id = #{id}
 	</update>

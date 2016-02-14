@@ -9,8 +9,16 @@ define(function() {
         email: userInfo.email
     }, function(resp) {
         if (resp.status == 200) {
-            console.log(resp.result);
-            vm_main.items = resp.result;
+            var chartPreviews = resp.result;
+            for (var i = 0, len = chartPreviews.length; i < len; i++) {
+                var chart = chartPreviews[i];
+                if (chart.typeId == 0) {
+                    vm_main.vitaOfUpload = chart;
+                    chartPreviews.splice(i, 1);
+                    break;
+                }
+            }
+            vm_main.items = chartPreviews;
         }
     })
 
@@ -21,19 +29,45 @@ define(function() {
     var vm_main = avalon.define({
         $id: "vm_main",
         items: [],
+        hasUploadVita: "0",
+        vitaOfUpload: {},
+        email: "",
+        prevetEvent: false,
         clickItem: function(index) {
 
+        },
+        choiceVita: function() {
+            if (vm_main.prevetEvent) {
+                vm_main.prevetEvent = false;
+            } else {
+                $("#inputUploadFile").click();
+            }
+        },
+        uploadVita: function() {
+            vm_main.prevetEvent = true;
+            if ($("#fileName").text()) {
+                if (vm_main.vitaOfUpload.id) {
+                    $("input:eq(0)").val(vm_main.vitaOfUpload.id);
+                }
+                $("#submitFile").click();
+                vm_main.prevetEvent = true;
+            } else {
+                alert("未选择上传文件");
+            }
         },
         addItem: function() {
             location.href = "build.html";
         },
+        fileNameChange: function() {
+            console.log($(this).val());
+            $("#fileName").text($(this).val());
+        },
         removeAChart: function(index) {
+            console.log(vm_main.items[index].id);
             // 显示正在删除..........
             $.ajax({
-                url: "../chart/delete",
-                data: {
-                    id: vm_main.items[index].id
-                },
+                url: "../chart/delete/" + vm_main.items[index].id,
+                type: "delete",
                 success: function(resp) {
                     if (resp.status == 200) {
                         // 显示删除成功..........
@@ -48,6 +82,8 @@ define(function() {
         }
     })
 
+    vm_main.email = $.parseJSON(localStorage.userInfo).email;
+    console.log(vm_main.email);
     avalon.scan();
 
     return {}

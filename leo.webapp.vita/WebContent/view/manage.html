@@ -21,7 +21,17 @@
     <div class="top-bar shadow-1 grey lighten-3"></div>
     <div class="main" ms-controller="vm_main">
         <ul>
-            <li id="vita_of_upload" , title="上传的简历"></li>
+            <li id="vita_of_upload" ms-attr-title="{{vitaOfUpload.typeName}}" ms-click="choiceVita">
+                <form action="../vita/upload" enctype="multipart/form-data" method="post" style="display:none;">
+                    <input type="text" name="uploadVitaID">
+                    <input type="text" name="email" ms-duplex="email">
+                    <input type="file" name="file" id="inputUploadFile" ms-on-change="fileNameChange">
+                    <input type="submit" id="submitFile">
+                </form>
+                <span>文件名:</span>
+                <span id="fileName"></span>
+                <span class="btn" style="z-index: 99;" ms-click="uploadVita">确定上传</span>
+            </li>
             <li ms-repeat="items" ms-attr-title="el.typeName" ms-attr-id="el.id" ms-click="clickItem($index)">
                 <a href="#" class="delete-item" ms-click="removeAChart($index)">
                     <i class="material-icons">delete</i>

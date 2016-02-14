@@ -1,11 +1,11 @@
 package leo.controller;
 
-import java.util.HashSet;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import leo.bean.Chart;
 import leo.bean.ChartPreview;
-import leo.bean.Skill;
-import leo.bean.UserPreview;
 import leo.service.IChartService;
-import leo.service.IVitaService;
 import leo.util.Response;
 
 @Controller
@@ -39,8 +36,8 @@ public class ChartController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-	public Response delete(Integer id) {
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+	public Response delete(@PathVariable("id") Integer id) {
 		int count = chartService.deleteAChart(id);
 		if (count > 0) {
 			return Response.success(null);

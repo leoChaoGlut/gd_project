@@ -1,6 +1,13 @@
 package leo.test;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -62,6 +69,29 @@ public class MyTest {
 		IChartService chartService = ctx.getBean(IChartService.class);
 		int count = chartService.deleteAChart(10);
 		System.out.println(count);
+	}
+
+	@Test
+	public void test5() throws IOException {
+		String fileName = "xx";
+		File dir = new File("C:/upload/vita/vv/");
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
+		File file = new File("C:/upload/vita/vv/" + fileName);
+		FileOutputStream os = new FileOutputStream(file);
+		String str = "aaaaaaa";
+
+		os.write(str.getBytes());
+		os.flush();
+		os.close();
+
+	}@Test
+	public void test6() throws IOException {
+		Calendar c = Calendar.getInstance();
+		Date date = c.getTime();
+		System.out.println(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(date));
+
 	}
 
 }

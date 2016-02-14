@@ -12,6 +12,8 @@ public interface ChartMapper {
 
 	int insertOne(Chart chart);
 	
+	int updateOne(Chart chart);
+	
 //	int deleteOnePhysically(Integer id);
 	
 	int deleteOneByStatus(Integer id);

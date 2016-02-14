@@ -18,13 +18,13 @@
 		vita_mid_user_skill mus1
 		ON
 		cu.email
-		= mus1.user_id
+		= mus1.email
 		JOIN vita_skill vs
 		ON mus1.skill_id = vs.id
 		WHERE
-		mus1.user_id IN (
+		mus1.email IN (
 		SELECT
-		mus0.user_id
+		mus0.email
 		FROM
 		vita_mid_user_skill mus0
 		WHERE
@@ -34,7 +34,7 @@
 			#{item}
 		</foreach>
 		GROUP BY
-		mus0.user_id
+		mus0.email
 		)
 		ORDER BY
 		cu.email

@@ -39,4 +39,11 @@ public class ChartServiceImp implements IChartService {
 		return chartPreviews;
 	}
 
+	@Override
+	public int updateAChart(Chart chart) {
+		// TODO Auto-generated method stub
+		int count = chartMapper.updateOne(chart);
+		return count;
+	}
+
 }

@@ -15,4 +15,9 @@
 	<!-- <mvc:resources location="/WEB-INF/js/" mapping="/js/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/css/" mapping="/css/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/page/" mapping="/page/**"></mvc:resources> -->
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+        <property name="defaultEncoding" value="utf-8"/>  
+        <property name="maxUploadSize" value="1024000"/>  
+     </bean>  
 </beans>

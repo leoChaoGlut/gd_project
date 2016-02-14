@@ -333,12 +333,25 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
                 }
                 // console.log(JSON.stringify(treeData));
 
-                var userInfo=$.parseJSON(localStorage.userInfo);
+                var userInfo = $.parseJSON(localStorage.userInfo);
+
+                var typeId = 0;
+
+                switch (vm.vm_body.curChart) {
+                    case "饼图":
+                        typeId = 2;
+                        break;
+                    case "树形图":
+                        typeId = 1;
+                        break;
+                    default:
+                        break;
+                }
 
                 $.post('../chart/create', {
                     email: userInfo.email,
                     json: JSON.stringify(treeData),
-                    typeId: 0,
+                    typeId: typeId,
                 }, function(resp) {
                     if (resp.status == 200) {
                         location.href = "manage.html";
