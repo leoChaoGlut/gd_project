@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import leo.bean.Chart;
+import leo.bean.ChartPreview;
 import leo.bean.UserPreview;
 import leo.mapper.VitaMapper;
 import leo.service.IChartService;
@@ -50,10 +51,17 @@ public class MyTest {
 	@Test
 	public void test3() {
 		IChartService chartService = ctx.getBean(IChartService.class);
-		List<Chart> list = chartService.getChartsByEmail("2");
-		for (Chart chart : list) {
-			System.out.println(chart.toString());
+		List<ChartPreview> list = chartService.getChartsByEmail("");
+		for (ChartPreview chartPreview : list) {
+			System.out.println(chartPreview.toString());
 		}
+	}
+
+	@Test
+	public void test4() {
+		IChartService chartService = ctx.getBean(IChartService.class);
+		int count = chartService.deleteAChart(10);
+		System.out.println(count);
 	}
 
 }

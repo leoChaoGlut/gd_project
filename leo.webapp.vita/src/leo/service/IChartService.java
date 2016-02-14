@@ -5,6 +5,7 @@ import java.util.List;
 
 import leo.base.IBaseService;
 import leo.bean.Chart;
+import leo.bean.ChartPreview;
 import leo.bean.Skill;
 import leo.bean.UserPreview;
 
@@ -13,5 +14,7 @@ public interface IChartService extends IBaseService {
 
 	int createAChart(Chart chart);
 	
-	List<Chart> getChartsByEmail(String email);
+	int deleteAChart(Integer id);
+	
+	List<ChartPreview> getChartsByEmail(String email);
 }

@@ -18,7 +18,7 @@ define(function() {
                 },
                 success: function(resp) {
                     if (resp.status == 200) {
-                        sessionStorage.userInfo = resp.result;
+                        localStorage.userInfo = JSON.stringify(resp.result);
                         location.href="manage.html";
                     }else{
                         alert("账号或密码错误");

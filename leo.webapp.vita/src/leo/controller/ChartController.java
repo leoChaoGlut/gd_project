@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import leo.bean.Chart;
+import leo.bean.ChartPreview;
 import leo.bean.Skill;
 import leo.bean.UserPreview;
 import leo.service.IChartService;
@@ -38,13 +39,24 @@ public class ChartController {
 	}
 
 	@ResponseBody
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+	public Response delete(Integer id) {
+		int count = chartService.deleteAChart(id);
+		if (count > 0) {
+			return Response.success(null);
+		} else {
+			return Response.error();
+		}
+	}
+
+	@ResponseBody
 	@RequestMapping(value = "/getChartsByEmail", method = RequestMethod.GET)
 	public Response getChartsByEmail(String email) {
-		List<Chart> charts = chartService.getChartsByEmail(email);
-		if (charts.isEmpty()) {
+		List<ChartPreview> chartPreviews = chartService.getChartsByEmail(email);
+		if (chartPreviews.isEmpty()) {
 			return Response.error();
 		} else {
-			return Response.success(charts);
+			return Response.success(chartPreviews);
 		}
 	}
 

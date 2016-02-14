@@ -332,8 +332,11 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
                     }
                 }
                 // console.log(JSON.stringify(treeData));
+
+                var userInfo=$.parseJSON(localStorage.userInfo);
+
                 $.post('../chart/create', {
-                    email: "",
+                    email: userInfo.email,
                     json: JSON.stringify(treeData),
                     typeId: 0,
                 }, function(resp) {

@@ -10,15 +10,26 @@
 		VALUES
 		(#{email},#{json},#{typeId})
 	</insert>
-	<select id="selectMore" resultType="Chart">
+	<select id="selectMore" resultType="ChartPreview">
 		SELECT
 		vc.id,
-		vc.email,
-		vc.json,
-		vc.type_id
+		vt.id AS typeId,
+		vt.`name` AS typeName
 		FROM
 		vita_chart vc
+		JOIN vita_type vt ON vc.type_id
+		= vt.id
 		WHERE
-		vc.email = #{email}
+		vc.email = #{email};
 	</select>
+
+	<!-- <delete id="deleteOnePhysically"> DELETE FROM vita_chart WHERE id = 
+		#{id} </delete> -->
+	<update id="deleteOneByStatus">
+		UPDATE vita_chart
+		SET has_deleted = 1
+		WHERE
+		id = #{id}
+	</update>
+
 </mapper>
