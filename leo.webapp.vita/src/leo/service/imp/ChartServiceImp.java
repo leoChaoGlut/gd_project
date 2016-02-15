@@ -33,10 +33,10 @@ public class ChartServiceImp implements IChartService {
 	}
 
 	@Override
-	public List<ChartPreview> getChartsByEmail(String email) {
+	public List<Chart> getChartsByEmail(String email) {
 		// TODO Auto-generated method stub
-		List<ChartPreview> chartPreviews = chartMapper.selectMore(email);
-		return chartPreviews;
+		List<Chart> charts = chartMapper.selectMore(email);
+		return charts;
 	}
 
 	@Override
@@ -44,6 +44,13 @@ public class ChartServiceImp implements IChartService {
 		// TODO Auto-generated method stub
 		int count = chartMapper.updateOne(chart);
 		return count;
+	}
+
+	@Override
+	public Chart getAChart(Integer id) {
+		// TODO Auto-generated method stub
+		Chart chart = chartMapper.selectOne(id);
+		return chart;
 	}
 
 }

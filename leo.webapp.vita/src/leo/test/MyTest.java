@@ -58,9 +58,9 @@ public class MyTest {
 	@Test
 	public void test3() {
 		IChartService chartService = ctx.getBean(IChartService.class);
-		List<ChartPreview> list = chartService.getChartsByEmail("");
-		for (ChartPreview chartPreview : list) {
-			System.out.println(chartPreview.toString());
+		List<Chart> list = chartService.getChartsByEmail("1");
+		for (Chart chart : list) {
+			System.out.println(chart.toString());
 		}
 	}
 
@@ -86,7 +86,9 @@ public class MyTest {
 		os.flush();
 		os.close();
 
-	}@Test
+	}
+
+	@Test
 	public void test6() throws IOException {
 		Calendar c = Calendar.getInstance();
 		Date date = c.getTime();
@@ -94,4 +96,10 @@ public class MyTest {
 
 	}
 
+	@Test
+	public void test7() throws IOException {
+		IChartService chartService = ctx.getBean(IChartService.class);
+		Chart chart = chartService.getAChart(17);
+		System.out.println(chart.toString());
+	}
 }

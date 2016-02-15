@@ -18,7 +18,7 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
     var backDom = $("#back");
     //var   
     var nodeCount = 1;
-
+    var echart;
     var treeData = {};
     //存储点击饼状图的次序,如:先点击前端,后点击HTML5,则存储的是["前端","HTML5"];
     var pathQueue = [];
@@ -104,7 +104,7 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
                     return true;
                 }
             } else {
-                Materialize.toast("存在空数据~", 2500, 'rounded');
+                Materialize.toast("存在空数据~3", 2500, 'rounded');
                 return true;
             }
         }
@@ -125,6 +125,7 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
         baseOption.series[0].data = data;
         return baseOption;
     };
+
     var buildPieChart = function(data) {
         echart.showLoading();
 
@@ -305,12 +306,12 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
             nodeCount++;
         });
 
-        window.echart = echarts.init(document.getElementById("pie-chart"));
+        echart = echarts.init(document.getElementById("pie-chart"));
 
         adjustSize();
 
         $("#create").on('click', function(event) {
-            var rootNodes = $(".tree").children(".node");
+            var rootNodes = $("#tree-container").children(".node");
             var len = rootNodes.length;
             if (len > 0) {
                 treeData = {};
@@ -327,7 +328,7 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
                             return;
                         }
                     } else {
-                        Materialize.toast("存在空数据~", 2500, 'rounded');
+                        Materialize.toast("存在空数据~2", 2500, 'rounded');
                         return;
                     }
                 }
@@ -366,7 +367,7 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
 
 
         $("#show-preview").on('click', function(event) {
-            var rootNodes = $(".tree").children(".node");
+            var rootNodes = $("#tree-container").children(".node");
             var len = rootNodes.length;
             if (len > 0) {
                 echart.clear();
@@ -385,7 +386,7 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
                             return;
                         }
                     } else {
-                        Materialize.toast("存在空数据~", 2500, 'rounded');
+                        Materialize.toast("存在空数据~1", 2500, 'rounded');
                         return;
                     }
                 }
@@ -396,8 +397,11 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
                         buildPieChart(treeData);
                         break;
                     case "树形图":
-                        var tree = $($(".add-data-panel")[0].innerHTML);
-                        buildTreeChart(tree);
+                        // var tree = $($(".add-data-panel")[0].innerHTML);
+                        // buildTreeChart(tree);
+                        var containerDom = $("#tree-chart");
+                        containerDom.children().remove();
+                        treeDomBuilder(containerDom,treeData);
                         break;
                     default:
                         break;
@@ -443,6 +447,17 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
     $(window).resize(function(event) {
         adjustSize();
     });
+    //unfinished
+    (function() {
+        var searchStr = location.search;
+        if (searchStr) {
+            var indexOfEqual = searchStr.lastIndexOf("=");
+            var chartID = searchStr.substr(indexOfEqual + 1);
+            $.get("../chart/get/" + chartID, function(resp) {
+
+            })
+        }
+    })();
 
     return {
         adjustSize: adjustSize

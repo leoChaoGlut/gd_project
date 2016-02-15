@@ -49,12 +49,22 @@ public class ChartController {
 	@ResponseBody
 	@RequestMapping(value = "/getChartsByEmail", method = RequestMethod.GET)
 	public Response getChartsByEmail(String email) {
-		List<ChartPreview> chartPreviews = chartService.getChartsByEmail(email);
-		if (chartPreviews.isEmpty()) {
+		List<Chart> charts = chartService.getChartsByEmail(email);
+		if (charts.isEmpty()) {
 			return Response.error();
 		} else {
-			return Response.success(chartPreviews);
+			return Response.success(charts);
 		}
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+	public Response get(@PathVariable("id") Integer id) {
+		Chart chart = chartService.getAChart(id);
+		if (chart == null) {
+			return Response.error();
+		} else {
+			return Response.success(chart);
+		}
+	}
 }

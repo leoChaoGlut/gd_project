@@ -34,7 +34,17 @@ define(function() {
         email: "",
         prevetEvent: false,
         clickItem: function(index) {
-
+            location.href = "build.html?id=" + vm_main.items[index].id
+        },
+        chartsRendered:function () {
+            //写到这里,在manage的li上渲染pie或tree
+            //写到这里,在manage的li上渲染pie或tree
+            //写到这里,在manage的li上渲染pie或tree
+            //写到这里,在manage的li上渲染pie或tree
+            //写到这里,在manage的li上渲染pie或tree
+            //写到这里,在manage的li上渲染pie或tree
+            //写到这里,在manage的li上渲染pie或tree
+            //写到这里,在manage的li上渲染pie或tree
         },
         choiceVita: function() {
             if (vm_main.prevetEvent) {
@@ -83,7 +93,6 @@ define(function() {
     })
 
     vm_main.email = $.parseJSON(localStorage.userInfo).email;
-    console.log(vm_main.email);
     avalon.scan();
 
     return {}

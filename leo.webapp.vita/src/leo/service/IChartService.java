@@ -15,5 +15,7 @@ public interface IChartService extends IBaseService {
 	
 	int updateAChart(Chart chart);
 	
-	List<ChartPreview> getChartsByEmail(String email);
+	Chart getAChart(Integer id);
+	
+	List<Chart> getChartsByEmail(String email);
 }

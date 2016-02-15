@@ -14,6 +14,9 @@ public class Chart implements java.io.Serializable {
 	private Short typeId;
 	private Short hasDeleted;
 
+	// 额外需要的字段
+	private String typeName;
+
 	// Constructors
 
 	/** default constructor */
@@ -36,6 +39,14 @@ public class Chart implements java.io.Serializable {
 	}
 
 	// Property accessors
+	
+	public String getTypeName() {
+		return typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
 
 	public Short getHasDeleted() {
 		return hasDeleted;

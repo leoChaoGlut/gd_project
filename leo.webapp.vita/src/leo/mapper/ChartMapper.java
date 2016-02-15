@@ -12,11 +12,13 @@ public interface ChartMapper {
 
 	int insertOne(Chart chart);
 	
+	Chart selectOne(Integer id);
+	
 	int updateOne(Chart chart);
 	
 //	int deleteOnePhysically(Integer id);
 	
 	int deleteOneByStatus(Integer id);
 
-	List<ChartPreview> selectMore(String email);
+	List<Chart> selectMore(String email);
 }

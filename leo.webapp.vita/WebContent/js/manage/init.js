@@ -1,4 +1,4 @@
-define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
+define(["velocity", "vm"], function(v, vm) {
     //constants 
     var TOP_HEIGHT = 40;
     var MARGIN = 15;
