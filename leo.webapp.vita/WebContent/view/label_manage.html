@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/lib/icon.css">
+    <link rel="stylesheet" href="../css/lib/materialize.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/label_manage.css">
+    <script>
+    if (!localStorage.userInfo) {
+        // alert("请先登录");
+        // location.href = "login.html";
+    }
+    </script>
+</head>
+
+<body ms-controller="vm_body" class="white-2">
+    <div class="top-bar shadow-1 grey lighten-3"></div>
+    <div class="main" ms-controller="vm_main">
+        <ul class="can-choice-panel skill-item-container">
+            <li class="skill-item">可选</li>
+            <li class="skill-item" ms-repeat="items" ms-if-loop="!el.hasChosen" ms-click="changeStatus($index)">{{el.name}}</li>
+        </ul>
+        <ul class="have-chosen-panel skill-item-container">
+            <li class="skill-item">已选</li>
+            <li class="skill-item" ms-repeat="items" ms-if-loop="el.hasChosen" ms-click="changeStatus($index)">{{el.name}}</li>
+        </ul>
+        <button class="waves-effect waves-light btn submit">提交</button>
+    </div>
+    <script type="text/javascript" src="../js/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/lib/materialize.min.js"></script>
+    <script type="text/javascript" src="../js/lib/avalon.js" data-main="../js/label_manage/main.js"></script>
+</body>
+
+</html>

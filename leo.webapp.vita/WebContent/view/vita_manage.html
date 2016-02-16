@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/lib/icon.css">
     <link rel="stylesheet" href="../css/lib/materialize.min.css">
     <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/manage.css">
+    <link rel="stylesheet" href="../css/vita_manage.css">
     <script>
     if (!localStorage.userInfo) {
         alert("请先登录");
@@ -30,9 +30,9 @@
                 </form>
                 <span>文件名:</span>
                 <span id="fileName"></span>
-                <span class="btn" style="z-index: 99;" ms-click="uploadVita">确定上传</span>
+                <span class="btn" style="z-index: 1;" ms-click="uploadVita">确定上传</span>
             </li>
-            <li ms-repeat="items" ms-attr-title="el.typeName" ms-attr-id="el.id" ms-click="clickItem($index)">
+            <li ms-repeat="items" ms-attr-title="el.typeName" ms-attr-id="el.id" ms-click="clickItem($index)" data-repeat-rendered="chartsRendered">
                 <a href="#" class="delete-item" ms-click="removeAChart($index)">
                     <i class="material-icons">delete</i>
                 </a>
@@ -44,7 +44,9 @@
     </div>
     <script type="text/javascript" src="../js/lib/jquery.min.js"></script>
     <script type="text/javascript" src="../js/lib/materialize.min.js"></script>
-    <script type="text/javascript" src="../js/lib/avalon.js" data-main="../js/manage/main.js"></script>
+    <script type="text/javascript" src="../js/lib/echarts.min.js"></script>
+    <script type="text/javascript" src="../js/common/chartBuilder.js"></script>
+    <script type="text/javascript" src="../js/lib/avalon.js" data-main="../js/vita_manage/main.js"></script>
 </body>
 
 </html>

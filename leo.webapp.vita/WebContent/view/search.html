@@ -37,7 +37,7 @@
                 </ul>
             </div>
             <ul class="result shadow-1">
-                <li ms-repeat="results" class="result-item" data-repeat-rendered="resultRendered">
+                <li ms-repeat="results" class="result-item" data-repeat-rendered="resultRendered" ms-click="showDetails($index)">
                     {{el}}
                 </li>
                 <div style="clear:both;"></div>

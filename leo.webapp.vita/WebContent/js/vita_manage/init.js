@@ -1,4 +1,4 @@
-define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
+define(["velocity", "vm"], function(v, vm) {
     //constants 
     var TOP_HEIGHT = 40;
     var MARGIN = 15;
@@ -6,19 +6,22 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
     //dom
     var body = $("body");
     var main = $(".main");
-    
+
     //function
     /**
      * [adjustSize description] 初始化部分dom的大小
      * @return {[type]} [description]
      */
     var adjustSize = function() {
-        // main.height(body.height() - TOP_HEIGHT);
-
-        var resultItems = $(".result-item");
-        resultItems.width((body.width() - 7 * MARGIN) / 4);
-        resultItems.height(resultItems.width());
-
+        main.height(body.height() - TOP_HEIGHT);
+        var ul = main.children('ul');
+        var lis = ul.children('li');
+        lis.width((body.width() - 4 * MARGIN) / 3);
+        // lis.height(lis.width());
+        lis.height(ul.height() - 2 * MARGIN);
+        // lis.css('margin-top', (ul.height() - lis.height()) / 2);
+        ul.width(lis.length * lis.width() + ((lis.length + 1) * MARGIN));
+        // ul.height(lis.height());
     }
 
 
@@ -27,10 +30,8 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
         $(".main").on('selectstart', function(event) {
             return false;
         });
-
         adjustSize();
     });
-    
     $(window).resize(function(event) {
         adjustSize();
     });

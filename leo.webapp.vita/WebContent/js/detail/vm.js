@@ -32,35 +32,49 @@ define(function() {
         hasUploadVita: "0",
         vitaOfUpload: {},
         email: "",
-        prevetEvent: false,
+        preventUploadEvent: false,
+        preventDeleteEvent: false,
         clickItem: function(index) {
-            location.href = "build.html?id=" + vm_main.items[index].id
+            if (vm_main.preventDeleteEvent) {
+                vm_main.preventDeleteEvent = false;
+            } else {
+                location.href = "build.html?id=" + vm_main.items[index].id
+            }
         },
-        chartsRendered:function () {
-            //写到这里,在manage的li上渲染pie或tree
-            //写到这里,在manage的li上渲染pie或tree
-            //写到这里,在manage的li上渲染pie或tree
-            //写到这里,在manage的li上渲染pie或tree
-            //写到这里,在manage的li上渲染pie或tree
-            //写到这里,在manage的li上渲染pie或tree
-            //写到这里,在manage的li上渲染pie或tree
-            //写到这里,在manage的li上渲染pie或tree
+        chartsRendered: function() {
+            var li = $("li");
+            li.splice(0, 1);
+            li.splice(li.length - 1, 1);
+            for (var i = 0, len = vm_main.items.length; i < len; i++) {
+                var item = vm_main.items[i];
+                var data = $.parseJSON(item.json);
+                switch (vm_main.items[i].typeId) {
+                    case 1:
+                        treeChartBuilder($(li[i]), data);
+                        break;
+                    case 2:
+                        pieChartBuilder($(li[i]),data);
+                        break;
+                    default:
+                        break;
+                }
+            }
         },
         choiceVita: function() {
-            if (vm_main.prevetEvent) {
-                vm_main.prevetEvent = false;
+            if (vm_main.preventUploadEvent) {
+                vm_main.preventUploadEvent = false;
             } else {
                 $("#inputUploadFile").click();
             }
         },
         uploadVita: function() {
-            vm_main.prevetEvent = true;
+            vm_main.preventUploadEvent = true;
             if ($("#fileName").text()) {
                 if (vm_main.vitaOfUpload.id) {
                     $("input:eq(0)").val(vm_main.vitaOfUpload.id);
                 }
                 $("#submitFile").click();
-                vm_main.prevetEvent = true;
+                vm_main.preventUploadEvent = true;
             } else {
                 alert("未选择上传文件");
             }
@@ -73,7 +87,7 @@ define(function() {
             $("#fileName").text($(this).val());
         },
         removeAChart: function(index) {
-            console.log(vm_main.items[index].id);
+            vm_main.preventDeleteEvent = true;
             // 显示正在删除..........
             $.ajax({
                 url: "../chart/delete/" + vm_main.items[index].id,

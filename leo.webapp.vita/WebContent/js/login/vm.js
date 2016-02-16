@@ -19,7 +19,7 @@ define(function() {
                 success: function(resp) {
                     if (resp.status == 200) {
                         localStorage.userInfo = JSON.stringify(resp.result);
-                        location.href="manage.html";
+                        location.href="vita_manage.html";
                     }else{
                         alert("账号或密码错误");
                     }

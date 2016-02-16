@@ -355,7 +355,7 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
                     typeId: typeId,
                 }, function(resp) {
                     if (resp.status == 200) {
-                        location.href = "manage.html";
+                        location.href = "vita_manage.html";
                     } else {
                         alert("创建失败");
                     }
@@ -401,7 +401,7 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
                         // buildTreeChart(tree);
                         var containerDom = $("#tree-chart");
                         containerDom.children().remove();
-                        treeDomBuilder(containerDom,treeData);
+                        treeChartBuilder(containerDom,treeData);
                         break;
                     default:
                         break;
@@ -447,6 +447,7 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
     $(window).resize(function(event) {
         adjustSize();
     });
+    
     //unfinished
     (function() {
         var searchStr = location.search;
@@ -454,7 +455,7 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
             var indexOfEqual = searchStr.lastIndexOf("=");
             var chartID = searchStr.substr(indexOfEqual + 1);
             $.get("../chart/get/" + chartID, function(resp) {
-
+                
             })
         }
     })();

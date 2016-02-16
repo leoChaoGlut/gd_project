@@ -61,6 +61,10 @@ define(function() {
             resultItems.width(($("body").width() - 7 * 15) / 4);
             resultItems.height(resultItems.width());
         },
+        showDetails: function(index) {
+            sessionStorage.email = vm_result_panel.results[index].email;
+            location.href = "detail.html?email=" + sessionStorage.email;
+        }
     })
 
     avalon.scan();

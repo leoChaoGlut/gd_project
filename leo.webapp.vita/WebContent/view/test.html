@@ -6,34 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-    li,
-    ul {
-        margin-left: 10px;
-    }
-    
-    ul {
-        background: red;
-    }
-    
-    li {
-        background-color: green;
-        list-style-type: none;
-        float: left;
-    }
-    
-    .addRoot {
-        cursor: pointer;
-    }
+
     </style>
 </head>
 
 <body ms-controller="vm_operation_panel">
-    <input type="checkbox" id="i1">
+    <div id="tree-container"></div>
     <script src="../js/lib/jquery.min.js"></script>
+    <script src="../js/common/chartBuilder.js"></script>
     <script>
-    var arr=[1,2,3];
-    arr.splice(0, 1);
-    console.log(arr);
+    var bb = (function() {
+        var field = 1;
+
+        function add() {
+            console.log(field++);
+        }
+
+        return {
+            add: add
+        }
+    })();
+
+    bb.add();
+    bb.add();
     </script>
 </body>
 
