@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2016-02-14 10:36:01
+Date: 2016-02-16 20:23:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -49,12 +49,14 @@ CREATE TABLE `vita_chart` (
   `email` varchar(250) DEFAULT NULL,
   `json` varchar(10000) DEFAULT NULL,
   `type_id` tinyint(4) DEFAULT NULL COMMENT '如果type_id=0 则代表该简历是用户上传的简历,对应的json就是服务器上存储的简历的url',
+  `has_deleted` tinyint(4) DEFAULT '0' COMMENT '0:未删除;1:已删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of vita_chart
 -- ----------------------------
+INSERT INTO `vita_chart` VALUES ('1', '1', '{\'name\':\'2\',\'prof\':\'69\',\'parent\':\'1\',\'children\':{}}', '0', '0');
 
 -- ----------------------------
 -- Table structure for vita_mid_chart_skill
@@ -95,7 +97,7 @@ CREATE TABLE `vita_mid_user_skill` (
   `email` varchar(250) DEFAULT NULL,
   `skill_id` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of vita_mid_user_skill
@@ -104,9 +106,9 @@ INSERT INTO `vita_mid_user_skill` VALUES ('1', '1', '5');
 INSERT INTO `vita_mid_user_skill` VALUES ('2', '1', '6');
 INSERT INTO `vita_mid_user_skill` VALUES ('3', '1', '7');
 INSERT INTO `vita_mid_user_skill` VALUES ('4', '2', '5');
-INSERT INTO `vita_mid_user_skill` VALUES ('5', '3', '5');
-INSERT INTO `vita_mid_user_skill` VALUES ('6', '3', '7');
 INSERT INTO `vita_mid_user_skill` VALUES ('7', '4', '6');
+INSERT INTO `vita_mid_user_skill` VALUES ('8', '3', '3');
+INSERT INTO `vita_mid_user_skill` VALUES ('9', '3', '4');
 
 -- ----------------------------
 -- Table structure for vita_role
@@ -152,8 +154,11 @@ CREATE TABLE `vita_type` (
   `id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of vita_type
 -- ----------------------------
+INSERT INTO `vita_type` VALUES ('0', '上传的简历');
+INSERT INTO `vita_type` VALUES ('1', '树形能力图');
+INSERT INTO `vita_type` VALUES ('2', '饼状能力图');
