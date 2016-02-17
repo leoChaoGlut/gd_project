@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2016-02-16 20:23:58
+Date: 2016-02-17 22:38:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,25 +20,26 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `common_user`;
 CREATE TABLE `common_user` (
-  `email` varchar(250) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(250) DEFAULT NULL,
   `name` varchar(10) DEFAULT NULL,
   `age` tinyint(4) DEFAULT NULL,
   `avatar` varchar(500) DEFAULT NULL,
   `pwd` varchar(25) DEFAULT NULL,
   `seniority` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of common_user
 -- ----------------------------
-INSERT INTO `common_user` VALUES ('1', 'name1', '18', null, '123', null);
-INSERT INTO `common_user` VALUES ('2', 'name2', null, null, '456', null);
-INSERT INTO `common_user` VALUES ('3', 'name3', null, null, '123', null);
-INSERT INTO `common_user` VALUES ('4', 'name4', null, null, '123', null);
-INSERT INTO `common_user` VALUES ('5', 'name5', null, null, '1234', null);
-INSERT INTO `common_user` VALUES ('6', 'name6', null, null, '123', null);
-INSERT INTO `common_user` VALUES ('7', null, null, null, '12', null);
+INSERT INTO `common_user` VALUES ('1', '1', 'name1', '18', null, '123', null);
+INSERT INTO `common_user` VALUES ('2', '2', 'name2', null, null, '456', null);
+INSERT INTO `common_user` VALUES ('3', '3', 'name3', null, null, '123', null);
+INSERT INTO `common_user` VALUES ('4', '4', 'name4', null, null, '123', null);
+INSERT INTO `common_user` VALUES ('5', '5', 'name5', null, null, '1234', null);
+INSERT INTO `common_user` VALUES ('6', '6', 'name6', null, null, '123', null);
+INSERT INTO `common_user` VALUES ('7', '7', null, null, null, '12', null);
 
 -- ----------------------------
 -- Table structure for vita_chart
@@ -46,32 +47,17 @@ INSERT INTO `common_user` VALUES ('7', null, null, null, '12', null);
 DROP TABLE IF EXISTS `vita_chart`;
 CREATE TABLE `vita_chart` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用于用户管理简历',
-  `email` varchar(250) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `json` varchar(10000) DEFAULT NULL,
   `type_id` tinyint(4) DEFAULT NULL COMMENT '如果type_id=0 则代表该简历是用户上传的简历,对应的json就是服务器上存储的简历的url',
   `has_deleted` tinyint(4) DEFAULT '0' COMMENT '0:未删除;1:已删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of vita_chart
 -- ----------------------------
-INSERT INTO `vita_chart` VALUES ('1', '1', '{\'name\':\'2\',\'prof\':\'69\',\'parent\':\'1\',\'children\':{}}', '0', '0');
-
--- ----------------------------
--- Table structure for vita_mid_chart_skill
--- ----------------------------
-DROP TABLE IF EXISTS `vita_mid_chart_skill`;
-CREATE TABLE `vita_mid_chart_skill` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `chart_id` int(11) DEFAULT NULL,
-  `skill_id` smallint(6) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of vita_mid_chart_skill
--- ----------------------------
+INSERT INTO `vita_chart` VALUES ('9', '1', '{\"1\":{\"name\":\"1\",\"prof\":\"74\",\"parent\":\"\",\"children\":{}}}', '2', '1');
 
 -- ----------------------------
 -- Table structure for vita_mid_user_role
@@ -79,7 +65,7 @@ CREATE TABLE `vita_mid_chart_skill` (
 DROP TABLE IF EXISTS `vita_mid_user_role`;
 CREATE TABLE `vita_mid_user_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(250) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `role_id` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -94,21 +80,15 @@ CREATE TABLE `vita_mid_user_role` (
 DROP TABLE IF EXISTS `vita_mid_user_skill`;
 CREATE TABLE `vita_mid_user_skill` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(250) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `skill_id` smallint(6) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of vita_mid_user_skill
 -- ----------------------------
-INSERT INTO `vita_mid_user_skill` VALUES ('1', '1', '5');
-INSERT INTO `vita_mid_user_skill` VALUES ('2', '1', '6');
-INSERT INTO `vita_mid_user_skill` VALUES ('3', '1', '7');
-INSERT INTO `vita_mid_user_skill` VALUES ('4', '2', '5');
-INSERT INTO `vita_mid_user_skill` VALUES ('7', '4', '6');
-INSERT INTO `vita_mid_user_skill` VALUES ('8', '3', '3');
-INSERT INTO `vita_mid_user_skill` VALUES ('9', '3', '4');
+INSERT INTO `vita_mid_user_skill` VALUES ('10', '1', '5');
 
 -- ----------------------------
 -- Table structure for vita_role
@@ -154,7 +134,7 @@ CREATE TABLE `vita_type` (
   `id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of vita_type

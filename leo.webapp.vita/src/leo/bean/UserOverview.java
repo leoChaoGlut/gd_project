@@ -1,6 +1,6 @@
 package leo.bean;
 
-public class UserPreview {
+public class UserOverview {
 	private String email;
 	private String userName;
 	private Short age;
@@ -8,10 +8,11 @@ public class UserPreview {
 	private Short seniority;
 	private String skillName;
 
-	public UserPreview() {
+	public UserOverview() {
 		// TODO Auto-generated constructor stub
 	}
 
+	// 添加的方法
 	public void addSkillName(String newSkillName) {
 		this.skillName += "," + newSkillName;
 	}
@@ -81,8 +82,8 @@ public class UserPreview {
 	@Override
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
-		if (obj instanceof UserPreview) {
-			UserPreview otherUserPreview = (UserPreview) obj;
+		if (obj instanceof UserOverview) {
+			UserOverview otherUserPreview = (UserOverview) obj;
 			return this.email.equals(otherUserPreview.getEmail());
 		} else {
 			return false;
