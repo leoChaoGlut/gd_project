@@ -5,7 +5,7 @@
 <mapper namespace="leo.mapper.UserMapper">
 	<select id="selectOne" resultType="User" parameterType="User">
 		SELECT
-		email,name
+		id,email,name
 		FROM
 		common_user
 		<where>

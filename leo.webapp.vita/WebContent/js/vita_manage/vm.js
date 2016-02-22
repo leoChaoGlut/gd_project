@@ -3,10 +3,8 @@ define(function() {
 
     var userInfo = $.parseJSON(localStorage.userInfo);
 
-    console.log(userInfo.email);
-
-    $.get("../chart/getChartsByEmail", {
-        email: userInfo.email
+    $.get("../chart/getChartsByUserId", {
+        userId: userInfo.id
     }, function(resp) {
         if (resp.status == 200) {
             var chartPreviews = resp.result;
@@ -31,7 +29,7 @@ define(function() {
         items: [],
         hasUploadVita: "0",
         vitaOfUpload: {},
-        email: "",
+        userId: "",
         preventUploadEvent: false,
         preventDeleteEvent: false,
         clickItem: function(index) {
@@ -106,7 +104,7 @@ define(function() {
         }
     })
 
-    vm_main.email = $.parseJSON(localStorage.userInfo).email;
+    vm_main.userId = $.parseJSON(localStorage.userInfo).id;
     avalon.scan();
 
     return {}

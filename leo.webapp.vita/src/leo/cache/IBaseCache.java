@@ -1,7 +1,8 @@
 package leo.cache;
 
-public interface IBaseCache<T> {
-	boolean setCache(T t);
+public interface IBaseCache<K, V> {
 
-	T getCache(Class clz);
+	void set(K k, V v);
+
+	V get(K k);
 }

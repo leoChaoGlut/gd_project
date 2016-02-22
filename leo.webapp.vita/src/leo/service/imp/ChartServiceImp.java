@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import leo.bean.Chart;
-import leo.bean.ChartPreview;
 import leo.mapper.ChartMapper;
 import leo.service.IChartService;
 
@@ -33,9 +32,9 @@ public class ChartServiceImp implements IChartService {
 	}
 
 	@Override
-	public List<Chart> getChartsByEmail(String email) {
+	public List<Chart> getChartsByUserId(Integer userId) {
 		// TODO Auto-generated method stub
-		List<Chart> charts = chartMapper.selectMore(email);
+		List<Chart> charts = chartMapper.selectMore(userId);
 		return charts;
 	}
 

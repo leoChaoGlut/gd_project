@@ -332,7 +332,7 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
                         return;
                     }
                 }
-                // console.log(JSON.stringify(treeData));
+                console.log(JSON.stringify(treeData));
 
                 var userInfo = $.parseJSON(localStorage.userInfo);
 
@@ -348,9 +348,9 @@ define(["velocity", "echarts", "vm"], function(v, echarts, vm) {
                     default:
                         break;
                 }
-
+                
                 $.post('../chart/create', {
-                    email: userInfo.email,
+                	userId: userInfo.id,
                     json: JSON.stringify(treeData),
                     typeId: typeId,
                 }, function(resp) {

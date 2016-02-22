@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import leo.base.AbstractService;
 import leo.bean.Skill;
 import leo.bean.User;
+import leo.bean.UserSkill;
 import leo.mapper.SkillMapper;
 import leo.mapper.UserMapper;
 import leo.service.IUserService;
@@ -52,20 +53,10 @@ public class UserServiceImp extends AbstractService implements IUserService {
 	}
 
 	@Override
-	public int updateSkills(List<Integer> skillIds, String email) {
+	public List<UserSkill> getSkills(Integer userId) {
 		// TODO Auto-generated method stub
-		
-		int count = 0;
-		skillMapper.deleteMore(email);
-		count = skillMapper.insertMore(skillIds, email);
-		return count;
-	}
-
-	@Override
-	public List<Skill> getSkills(String email) {
-		// TODO Auto-generated method stub
-		
-		return null;
+		List<UserSkill> skills = skillMapper.selectMoreByUserId(userId);
+		return skills;
 	}
 
 }

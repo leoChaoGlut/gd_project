@@ -3,9 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="leo.mapper.VitaMapper">
-	<select id="selectPage" resultType="UserPreview">
+	<select id="selectPage" resultType="UserOverview">
 		SELECT
-		cu.email AS email,
+		cu.id AS id,
 		cu.`name` AS userName,
 		cu.age AS age,
 		cu.avatar
@@ -17,14 +17,14 @@
 		JOIN
 		vita_mid_user_skill mus1
 		ON
-		cu.email
-		= mus1.email
+		cu.id
+		= mus1.user_id
 		JOIN vita_skill vs
 		ON mus1.skill_id = vs.id
 		WHERE
-		mus1.email IN (
+		mus1.user_id IN (
 		SELECT
-		mus0.email
+		mus0.user_id
 		FROM
 		vita_mid_user_skill mus0
 		WHERE
@@ -34,10 +34,10 @@
 			#{item}
 		</foreach>
 		GROUP BY
-		mus0.email
+		mus0.user_id
 		)
 		ORDER BY
-		cu.email
+		cu.id
 		LIMIT #{startIndex} , #{pageSize}
 	</select>
 </mapper>

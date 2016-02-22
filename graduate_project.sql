@@ -10,10 +10,25 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2016-02-17 22:38:17
+Date: 2016-02-22 20:06:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for common_log
+-- ----------------------------
+DROP TABLE IF EXISTS `common_log`;
+CREATE TABLE `common_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip` varchar(100) DEFAULT NULL COMMENT 'ip地址:192.168.1.1',
+  `visited_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of common_log
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for common_user
@@ -134,11 +149,11 @@ CREATE TABLE `vita_type` (
   `id` tinyint(4) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of vita_type
 -- ----------------------------
-INSERT INTO `vita_type` VALUES ('0', '上传的简历');
 INSERT INTO `vita_type` VALUES ('1', '树形能力图');
 INSERT INTO `vita_type` VALUES ('2', '饼状能力图');
+INSERT INTO `vita_type` VALUES ('5', '上传的简历');

@@ -6,9 +6,9 @@
 	<insert id="insertOne" parameterType="Chart">
 		INSERT INTO
 		vita_chart
-		(email,json,type_id)
+		(user_id,json,type_id)
 		VALUES
-		(#{email},#{json},#{typeId})
+		(#{userId},#{json},#{typeId})
 	</insert>
 	<select id="selectMore" resultType="Chart">
 		SELECT
@@ -21,7 +21,7 @@
 		JOIN vita_type vt ON vc.type_id
 		= vt.id
 		WHERE
-		vc.email = #{email}
+		vc.user_id = #{userId}
 		AND
 		vc.has_deleted = 0
 	</select>

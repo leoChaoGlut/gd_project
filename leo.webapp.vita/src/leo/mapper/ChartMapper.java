@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import leo.bean.Chart;
-import leo.bean.ChartPreview;
 
 @Repository
 public interface ChartMapper {
@@ -20,5 +19,5 @@ public interface ChartMapper {
 	
 	int deleteOneByStatus(Integer id);
 
-	List<Chart> selectMore(String email);
+	List<Chart> selectMore(Integer userId);
 }

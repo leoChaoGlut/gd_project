@@ -9,7 +9,7 @@ public class Chart implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
-	private String email;
+	private Integer userId;
 	private String json;
 	private Short typeId;
 	private Short hasDeleted;
@@ -23,25 +23,26 @@ public class Chart implements java.io.Serializable {
 	public Chart() {
 	}
 
-	public Chart(String email, String json, Short typeId) {
-		this.email = email;
-		this.json = json;
-		this.typeId = typeId;
+	// Property accessors
+
+	
+
+	public String getTypeName() {
+		return typeName;
 	}
 
-	/** full constructor */
-
-	public Chart(String email, String json, Short typeId, Short hasDeleted) {
-		this.email = email;
+	public Chart(Integer id, String json, Short hasDeleted) {
+		this.id = id;
 		this.json = json;
-		this.typeId = typeId;
 		this.hasDeleted = hasDeleted;
 	}
 
-	// Property accessors
-	
-	public String getTypeName() {
-		return typeName;
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public void setTypeName(String typeName) {
@@ -64,14 +65,6 @@ public class Chart implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public String getEmail() {
-		return this.email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getJson() {
 		return this.json;
 	}
@@ -90,8 +83,8 @@ public class Chart implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "Chart [id=" + id + ", email=" + email + ", json=" + json + ", typeId=" + typeId + ", hasDeleted="
-				+ hasDeleted + "]";
+		return "Chart [id=" + id + ", userId=" + userId + ", json=" + json + ", typeId=" + typeId + ", hasDeleted="
+				+ hasDeleted + ", typeName=" + typeName + "]";
 	}
 
 }

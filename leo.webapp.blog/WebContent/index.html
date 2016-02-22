@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Leo's Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- lib css -->
+    <link rel="stylesheet" href="css/lib/bootstrap.min.css">
+    <!-- my css -->
+    <link rel="stylesheet" href="css/layout.css">
+</head>
+
+<body ms-controller="vm_body">
+    <div class="head">
+        <div class="head_left"></div>
+        <div class="head_right">
+            <ul class="nav_group">
+                <li class="nav"></li>
+                <li class="nav"></li>
+                <li class="nav"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="body">
+        <div class="categories hidden-xs" ms-controller="vm_category">
+            <ul>
+                <li class="category" ms-repeat="categories"></li>
+                <div style="clear:both;"></div>
+            </ul>
+        </div>
+        <div class="articles" ms-controller="vm_article">
+            <ul>
+                <li class="article" ms-repeat="articles"></li>
+                <li class="load_more">加 载 更 多</li>
+                <div style="clear:both;"></div>
+            </ul>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    <!-- lib js-->
+    <script src="js/lib/jquery-2.2.0.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/avalon.modern.js"></script>
+    <script src="js/lib/velocity.min.js"></script>
+    <!-- my js -->
+    <script src="js/const.js"></script>
+    <script src="js/dom.js"></script>
+    <script src="js/vm.js"></script>
+    <script src="js/init.js"></script>
+</body>
+
+</html>

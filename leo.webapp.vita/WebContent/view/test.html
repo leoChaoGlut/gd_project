@@ -5,30 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style>
-
-    </style>
 </head>
 
-<body ms-controller="vm_operation_panel">
-    <div id="tree-container"></div>
-    <script src="../js/lib/jquery.min.js"></script>
-    <script src="../js/common/chartBuilder.js"></script>
+<body ms-controller="vm_body" class="white-2">
+    <input name="index_taskdeal" type="radio" value="aaa" ms-duplex-string="val">
+    <input name="index_taskdeal" type="radio" value="bbb" ms-duplex-string="val">
+
+    <script type="text/javascript" src="../js/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/lib/materialize.min.js"></script>
+    <script type="text/javascript" src="../js/lib/avalon.js">
+    </script>
     <script>
-    var bb = (function() {
-        var field = 1;
-
-        function add() {
-            console.log(field++);
+    var vm = avalon.define({
+        $id: "vm_body",
+        val: 'ccc',
+        form: {
+            taskdeal: '4'
         }
-
-        return {
-            add: add
-        }
-    })();
-
-    bb.add();
-    bb.add();
+    })
+    vm.$watch("val", function(val) {
+        console.log(val);
+    })
+    avalon.scan();
     </script>
 </body>
 

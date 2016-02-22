@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import leo.bean.Skill;
-import leo.bean.UserPreview;
+import leo.bean.UserOverview;
 import leo.mapper.SkillMapper;
 import leo.mapper.VitaMapper;
 import leo.service.IVitaService;
@@ -29,10 +29,10 @@ public class VitaServiceImp implements IVitaService {
 	SkillMapper skillMapper;
 
 	@Override
-	public HashSet<UserPreview> getPreviewVitas(List<Integer> skillIds, int startIndex, int pageSize) {
+	public HashSet<UserOverview> getPreviewVitas(List<Integer> skillIds, int startIndex, int pageSize) {
 		// TODO Auto-generated method stub
-		List<UserPreview> userPreviewList = vitaMapper.selectPage(skillIds, startIndex, pageSize);
-		HashSet<UserPreview> userPreviewSet = removeRepeatedItem(userPreviewList);
+		List<UserOverview> userPreviewList = vitaMapper.selectPage(skillIds, startIndex, pageSize);
+		HashSet<UserOverview> userPreviewSet = removeRepeatedItem(userPreviewList);
 		return userPreviewSet;
 	}
 
@@ -43,14 +43,14 @@ public class VitaServiceImp implements IVitaService {
 		return skills;
 	}
 
-	private HashSet<UserPreview> removeRepeatedItem(List<UserPreview> userPreviewList) {
+	private HashSet<UserOverview> removeRepeatedItem(List<UserOverview> userPreviewList) {
 		if (userPreviewList.isEmpty()) {
 			return null;
 		} else {
-			HashMap<String, UserPreview> userPreviewMap = new HashMap<>();
-			for (UserPreview newUserPreview : userPreviewList) {
+			HashMap<String, UserOverview> userPreviewMap = new HashMap<>();
+			for (UserOverview newUserPreview : userPreviewList) {
 				String email = newUserPreview.getEmail();
-				UserPreview oldUserPreview = userPreviewMap.get(email);
+				UserOverview oldUserPreview = userPreviewMap.get(email);
 				if (oldUserPreview == null) {
 					userPreviewMap.put(email, newUserPreview);
 				} else {
@@ -58,9 +58,9 @@ public class VitaServiceImp implements IVitaService {
 					userPreviewMap.put(email, oldUserPreview);
 				}
 			}
-			HashSet<UserPreview> userPreviewSet = new HashSet<>();
-			Set<Entry<String, UserPreview>> entrySet = userPreviewMap.entrySet();
-			for (Entry<String, UserPreview> entry : entrySet) {
+			HashSet<UserOverview> userPreviewSet = new HashSet<>();
+			Set<Entry<String, UserOverview>> entrySet = userPreviewMap.entrySet();
+			for (Entry<String, UserOverview> entry : entrySet) {
 				userPreviewSet.add(entry.getValue());
 			}
 			return userPreviewSet;

@@ -11,4 +11,16 @@
 		FROM
 		vita_skill
 	</select>
+	<select id="selectMoreByUserId" resultType="UserSkill">
+		SELECT
+		vs.id AS
+		skillId,
+		vs.`name` AS skillName
+		FROM
+		vita_skill vs
+		JOIN
+		vita_mid_user_skill mus ON mus.skill_id = vs.id
+		WHERE
+		mus.user_id=#{userId}
+	</select>
 </mapper>

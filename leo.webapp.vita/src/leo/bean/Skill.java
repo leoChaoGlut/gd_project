@@ -1,4 +1,5 @@
 package leo.bean;
+
 /**
  * VitaSkill entity. @author MyEclipse Persistence Tools
  */
@@ -47,6 +48,11 @@ public class Skill implements java.io.Serializable {
 
 	public void setParentId(Short parentId) {
 		this.parentId = parentId;
+	}
+
+	@Override
+	public String toString() {
+		return "Skill [id=" + id + ", name=" + name + ", parentId=" + parentId + "]";
 	}
 
 }

@@ -19,14 +19,14 @@
 
 <body ms-controller="vm_body" class="white-2">
     <div class="top-bar shadow-1 grey lighten-3"></div>
-    <div class="main" ms-controller="vm_main">
-        <ul class="can-choice-panel skill-item-container">
-            <li class="skill-item">可选</li>
-            <li class="skill-item" ms-repeat="items" ms-if-loop="!el.hasChosen" ms-click="changeStatus($index)">{{el.name}}</li>
+    <div class="main shadow-1" ms-controller="vm_main">
+        <ul class="can-choice-panel skill-item-container shadow-1">
+            <li class="skill-item shadow-1">可选</li>
+            <li class="skill-item shadow-1" ms-repeat="items" ms-if-loop="!el.hasChosen" ms-click="changeStatus($index)">{{el.name}}</li>
         </ul>
-        <ul class="have-chosen-panel skill-item-container">
-            <li class="skill-item">已选</li>
-            <li class="skill-item" ms-repeat="items" ms-if-loop="el.hasChosen" ms-click="changeStatus($index)">{{el.name}}</li>
+        <ul class="have-chosen-panel skill-item-container shadow-1">
+            <li class="skill-item shadow-1">已选</li>
+            <li class="skill-item shadow-1" ms-repeat="items" ms-if-loop="el.hasChosen" ms-click="changeStatus($index)">{{el.name}}</li>
         </ul>
         <button class="waves-effect waves-light btn submit">提交</button>
     </div>

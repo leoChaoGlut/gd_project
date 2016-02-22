@@ -7,7 +7,7 @@ package leo.bean;
 public class User implements java.io.Serializable {
 
 	// Fields
-
+	private Integer id;
 	private String email;
 	private String name;
 	private Short age;
@@ -26,7 +26,6 @@ public class User implements java.io.Serializable {
 		this.email = email;
 	}
 
-	/** full constructor */
 	public User(String email, String name, Short age, String avatar, String pwd, Short seniority) {
 		this.email = email;
 		this.name = name;
@@ -37,6 +36,25 @@ public class User implements java.io.Serializable {
 	}
 
 	// Property accessors
+
+	/** full constructor */
+	public User(Integer id, String email, String name, Short age, String avatar, String pwd, Short seniority) {
+		this.id = id;
+		this.email = email;
+		this.name = name;
+		this.age = age;
+		this.avatar = avatar;
+		this.pwd = pwd;
+		this.seniority = seniority;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getEmail() {
 		return this.email;
