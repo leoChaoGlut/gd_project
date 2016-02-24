@@ -1,5 +1,9 @@
 var Init = (function() {
-
+    (function init() {
+        $.get('article/list/0/10', function(resp) {
+            Vm.article.articles = resp.result;
+        });
+    })()
 
     function resize() {
         var avalWidth = Dom.body.width();

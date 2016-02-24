@@ -12,7 +12,7 @@
 		<property name="prefix" value="/WEB-INF/page/"></property>
 		<property name="suffix" value=".html"></property>
 	</bean>
-	<mvc:resources location="/WEB-INF/js/" mapping="/js/**"></mvc:resources>
+<!-- 	<mvc:resources location="/WEB-INF/js/" mapping="/js/**"></mvc:resources>
 	<mvc:resources location="/WEB-INF/css/" mapping="/css/**"></mvc:resources>
-	<mvc:resources location="/WEB-INF/page/" mapping="/page/**"></mvc:resources>
+	<mvc:resources location="/WEB-INF/page/" mapping="/page/**"></mvc:resources> -->
 </beans>

@@ -5,7 +5,11 @@
 <mapper namespace="leo.mapper.ArticleMapper">
 	<select id="selectMore" resultType="Article">
 		SELECT
-		*
+		title,
+		description,
+		postDate,
+		view,
+		article_code AS articleCode
 		FROM
 		blog_article
 		LIMIT
