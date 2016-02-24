@@ -13,7 +13,7 @@ var Init = (function() {
         } else {
             avalWidth -= 3 * CONST.MARGIN_NORMAL;
             Dom.categories.width(avalWidth * 0.15);
-            Dom.articles.width(avalWidth * 0.85 - 1);
+            Dom.articles.width(avalWidth * 0.85 - CONST.MARGIN_NORMAL);
         }
     }
 

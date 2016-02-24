@@ -1,7 +1,5 @@
 package leo.util;
 
-import org.junit.Test;
-
 public class SQLBuilder {
 
 	private StringBuilder sql;

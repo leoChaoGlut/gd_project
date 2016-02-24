@@ -1,4 +1,5 @@
 @MARGIN_NORMAL: 20px;
+@MARGIN_SMALL: 5px;
 * {
     margin: 0;
     padding: 0;
@@ -77,34 +78,39 @@ ul {
 .article {
     .shadow_1;
     display: block;
-    height: 200px;
+    // height: 200px;
     margin: 0 @MARGIN_NORMAL @MARGIN_NORMAL @MARGIN_NORMAL;
+    cursor: pointer;
+    padding: @MARGIN_SMALL 0 0 0;
 }
 
 .article_title {
     height: 30px;
-    background-color: red;
+    line-height: 30px;
+    font-size: 1.4em;
+    margin-left: 10px;
 }
 
 .article_description {
-    height: 140px;
-    background-color: blue;
+    // height: 140px;
+    text-indent: 2em;
+    margin: @MARGIN_SMALL 0;
+    padding: 0 0 0 @MARGIN_SMALL;
 }
 
 .article_other {
     height: 30px;
     list-style-type: none;
-    background-color: yellow;
+    line-height: 30px;
 }
 
 .post_date {
-    float: left;
-    width: 50px;
+    float: right;
+    margin: 0 @MARGIN_NORMAL;
 }
 
 .view_count {
-    float: left;
-    width: 50px;
+    float: right;
 }
 
 .load_more {
@@ -112,6 +118,7 @@ ul {
     text-align: center;
     line-height: 30px;
     height: 30px;
+    padding: 0;
 }
 
 .foot {}

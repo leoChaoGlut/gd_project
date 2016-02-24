@@ -1,5 +1,9 @@
 package leo.bean;
 
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 
  * @author leo
@@ -18,11 +22,12 @@ public class Article {
 	/**
 	 * 发文日期
 	 */
-	private String postDate;
+	@JsonFormat(pattern = "yyyy-MM-dd hh:mm", timezone = "GMT+8")
+	private Date postDate;
 	/**
 	 * 阅读量
 	 */
-	private String view;
+	private int view;
 	/**
 	 * 文章详情链接
 	 */
@@ -32,7 +37,7 @@ public class Article {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Article(String title, String description, String postDate, String view, String articleCode) {
+	public Article(String title, String description, Date postDate, int view, String articleCode) {
 		this.title = title;
 		this.description = description;
 		this.postDate = postDate;
@@ -56,19 +61,19 @@ public class Article {
 		this.description = description;
 	}
 
-	public String getPostDate() {
+	public Date getPostDate() {
 		return postDate;
 	}
 
-	public void setPostDate(String postDate) {
+	public void setPostDate(Date postDate) {
 		this.postDate = postDate;
 	}
 
-	public String getView() {
+	public int getView() {
 		return view;
 	}
 
-	public void setView(String view) {
+	public void setView(int view) {
 		this.view = view;
 	}
 

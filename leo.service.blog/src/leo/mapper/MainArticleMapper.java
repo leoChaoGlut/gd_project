@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import leo.bean.MainArticle;
-import leo.util.SQLBuilder;
 
 @Repository
 public interface MainArticleMapper {

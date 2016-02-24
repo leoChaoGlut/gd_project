@@ -32,14 +32,15 @@
         <div class="articles" ms-controller="vm_article">
             <ul>
                 <li class="article" ms-repeat="articles">
-                    <div class="article_title"></div>
-                    <div class="article_description"></div>
+                    <div class="article_title" ms-text="el.title"></div>
+                    <div class="article_description" ms-text="el.description"></div>
                     <ul class="article_other">
-                        <li class="post_date"></li>
-                        <li class="view_count"></li>
+                        <li class="post_date" ms-text="el.postDate"></li>
+                        <li class="view_count" ms-text="el.view"></li>
                     </ul>
+                    <div style="clear:both;"></div>
                 </li>
-                <li class="load_more">加 载 更 多</li>
+                <li class="load_more" ms-click="loadMore">加 载 更 多</li>
                 <div style="clear:both;"></div>
             </ul>
         </div>

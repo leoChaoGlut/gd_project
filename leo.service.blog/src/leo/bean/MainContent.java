@@ -1,7 +1,5 @@
 package leo.bean;
 
-import leo.util.SQLBuilder;
-
 /**
  * MainContent entity. @author MyEclipse Persistence Tools
  */
