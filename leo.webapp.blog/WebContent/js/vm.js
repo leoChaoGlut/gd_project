@@ -1,21 +1,29 @@
 var Vm = (function() {
     var body = avalon.define({
         $id: "vm_body",
-
+        hideDetail: function() {
+            $("body").css('overflow', 'auto');
+            Dom.mc.children().remove();
+            Dom.acc.hide(CONST.DURATION);
+            Dom.mc.hide(CONST.DURATION);
+        },
     })
 
     var article = avalon.define({
         $id: "vm_article",
-        articles: [1, 2, 3],
+        articles: [],
         curPage: 1,
         showDetail: function(index) {
             var articleCode = article.articles[index].articleCode;
             $.get('article/' + articleCode, function(resp) {
                 if (resp.status == 200) {
                     var dom = resp.result;
-                    $(".article_content").append(dom);
-                    $(".article_content_container").show(CONST.DURATION);
-                    $(".article_content").show(CONST.DURATION);
+                    $(".my_content").append(dom);
+                    Dom.acc.css('top', window.scrollY + "px");
+                    Dom.mc.css('top', window.scrollY + "px");
+                    Dom.acc.show(CONST.DURATION);
+                    Dom.mc.show(CONST.DURATION);
+                    $("body").css('overflow', 'hidden');
                 } else {
                     alert("获取文章详情出错");
                 }

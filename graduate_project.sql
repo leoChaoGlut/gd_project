@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2016-02-25 20:43:27
+Date: 2016-02-25 23:45:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -226,6 +226,25 @@ CREATE TABLE `blog_category` (
 -- ----------------------------
 -- Records of blog_category
 -- ----------------------------
+INSERT INTO `blog_category` VALUES ('2827053', '蓝桥杯', '22');
+INSERT INTO `blog_category` VALUES ('2835511', 'Algorithm', '19');
+INSERT INTO `blog_category` VALUES ('2875343', 'javaSE', '35');
+INSERT INTO `blog_category` VALUES ('3113265', 'Android', '18');
+INSERT INTO `blog_category` VALUES ('3133333', 'HDOJ', '1');
+INSERT INTO `blog_category` VALUES ('3171195', 'JavaEE', '11');
+INSERT INTO `blog_category` VALUES ('3262135', 'ExtJS', '8');
+INSERT INTO `blog_category` VALUES ('5567471', 'S2SH', '19');
+INSERT INTO `blog_category` VALUES ('5612323', 'JSON', '1');
+INSERT INTO `blog_category` VALUES ('5786317', '阿里面试准备', '14');
+INSERT INTO `blog_category` VALUES ('5805859', 'Data Structure', '7');
+INSERT INTO `blog_category` VALUES ('5811059', 'JVM', '5');
+INSERT INTO `blog_category` VALUES ('5828687', 'Database', '2');
+INSERT INTO `blog_category` VALUES ('6027219', '前端', '9');
+INSERT INTO `blog_category` VALUES ('6027783', '后端', '6');
+INSERT INTO `blog_category` VALUES ('6057403', 'Redis', '1');
+INSERT INTO `blog_category` VALUES ('6088209', 'Docker', '1');
+INSERT INTO `blog_category` VALUES ('6101637', '并发', '1');
+INSERT INTO `blog_category` VALUES ('6104138', '爬虫', '2');
 
 -- ----------------------------
 -- Table structure for blog_mid_user_article

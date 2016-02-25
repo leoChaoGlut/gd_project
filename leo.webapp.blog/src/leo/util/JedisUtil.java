@@ -12,7 +12,7 @@ public class JedisUtil {
 	private static JedisPool jedisPool;
 	private static Lock lock = new ReentrantLock();
 
-	public static Jedis getInstance() {
+	public static Jedis getResource() {
 		if (jedisPool == null) {
 			lock.lock();
 			try {
@@ -28,5 +28,9 @@ public class JedisUtil {
 			}
 		}
 		return jedisPool.getResource();
+	}
+
+	public static void returnResource(Jedis jedis) {
+		jedisPool.returnResource(jedis);
 	}
 }

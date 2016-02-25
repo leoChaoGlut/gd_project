@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="leo.mapper.CategoryMapper">
+	<insert id="insertMore" parameterType="Category">
+		INSERT INTO
+		blog_category(id,name,article_count)
+		VALUES
+		<foreach collection="categories" item="item" separator=",">
+			(#{item.id},#{item.name},#{item.count})
+		</foreach>
+	</insert>
+</mapper>

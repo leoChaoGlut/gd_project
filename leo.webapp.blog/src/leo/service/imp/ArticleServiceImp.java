@@ -27,15 +27,26 @@ public class ArticleServiceImp implements IArticleService {
 
 	@Override
 	public String getContent(String articleId) {
-		// TODO Auto-generated method stub
-		Jedis jedis = JedisUtil.getInstance();
-		String content = jedis.get(articleId);
-		if (content == null) {
-			// TODO 如果redis中没有key对应的value,应该做何处理?
-			// TODO 如果redis中没有key对应的value,应该做何处理?
-			// TODO 如果redis中没有key对应的value,应该做何处理?
-			// TODO 如果redis中没有key对应的value,应该做何处理?
-			// TODO 如果redis中没有key对应的value,应该做何处理?
+		String content = null;
+		Jedis jedis = null;
+		try {
+			// TODO Auto-generated method stub
+			// jedis = JedisUtil.getResource();
+			jedis = new Jedis("localhost");
+			content = jedis.get(articleId);
+			if (content == null) {
+				// TODO 如果redis中没有key对应的value,应该做何处理?
+				// TODO 如果redis中没有key对应的value,应该做何处理?
+				// TODO 如果redis中没有key对应的value,应该做何处理?
+				// TODO 如果redis中没有key对应的value,应该做何处理?
+				// TODO 如果redis中没有key对应的value,应该做何处理?
+			}
+		} finally {
+			// TODO: handle finally clause
+			if (jedis != null) {
+				// JedisUtil.returnResource(jedis);
+				jedis.close();
+			}
 		}
 		return content;
 	}

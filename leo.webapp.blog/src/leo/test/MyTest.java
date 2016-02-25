@@ -1,22 +1,22 @@
 package leo.test;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.tomcat.jni.File;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.alibaba.fastjson.JSON;
+
 import leo.bean.Article;
+import leo.bean.Category;
+import leo.mapper.CategoryMapper;
 import leo.service.IArticleService;
-import leo.util.JedisUtil;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
 
 public class MyTest {
 	ApplicationContext ctx = new ClassPathXmlApplicationContext("leo/config/spring-application-config.xml",
@@ -40,5 +40,19 @@ public class MyTest {
 		String content = articleService.getContent("50445420");
 		System.out.println(content);
 	}
-	
+
+	@Test
+	public void test2() throws Exception {
+		BufferedReader br = new BufferedReader(new FileReader("c://1.txt"));
+		String lineData = "";
+		StringBuilder sb = new StringBuilder();
+		while ((lineData = br.readLine()) != null) {
+			sb.append(lineData);
+		}
+		List<Category> categories = JSON.parseArray(sb.toString(), Category.class);
+		CategoryMapper categoryMapper = ctx.getBean(CategoryMapper.class);
+		int count = categoryMapper.insertMore(categories);
+		System.out.println(count);
+	}
+
 }
