@@ -31,9 +31,9 @@
         </div>
         <div class="articles" ms-controller="vm_article">
             <ul>
-                <li class="article" ms-repeat="articles">
-                    <div class="article_title" ms-text="el.title"></div>
-                    <div class="article_description" ms-text="el.description"></div>
+                <li class="article" ms-repeat="articles" ms-click="showDetail($index)">
+                    <div class="article_title">{{el.title}}</div>
+                    <div class="article_description">{{el.description}}</div>
                     <ul class="article_other">
                         <li class="post_date" ms-text="el.postDate"></li>
                         <li class="view_count" ms-text="el.view"></li>
@@ -45,6 +45,11 @@
             </ul>
         </div>
         <div style="clear:both;"></div>
+    </div>
+    <!-- modal -->
+    <div class="article_content_container" style="display:none;">
+    </div>
+    <div class="article_content" style="display:none;">
     </div>
     <!-- lib js-->
     <script src="js/lib/jquery-2.2.0.min.js"></script>

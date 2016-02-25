@@ -5,6 +5,11 @@
     padding: 0;
 }
 
+body {
+    position: relative;
+    padding-top: @MARGIN_NORMAL;
+}
+
 ul {
     list-style-type: none;
 }
@@ -21,7 +26,7 @@ ul {
     position: relative;
     height: 150px;
     .shadow_1;
-    margin: @MARGIN_NORMAL;
+    margin: 0 @MARGIN_NORMAL @MARGIN_NORMAL @MARGIN_NORMAL;
     overflow: hidden
 }
 
@@ -122,3 +127,22 @@ ul {
 }
 
 .foot {}
+
+.article_content_container {
+    position: absolute;
+    background-color: #222;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.7;
+    top: 0;
+}
+
+.article_content {
+    position: absolute;
+    background-color: white;
+    overflow: auto;
+    left: 5vw;
+    top: 5vh;
+    width: 90vw;
+    height: 90vh;
+}

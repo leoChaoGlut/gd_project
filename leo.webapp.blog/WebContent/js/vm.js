@@ -7,16 +7,26 @@ var Vm = (function() {
     var article = avalon.define({
         $id: "vm_article",
         articles: [1, 2, 3],
-        curPage: 132,
+        curPage: 1,
+        showDetail: function(index) {
+            var articleCode = article.articles[index].articleCode;
+            $.get('article/' + articleCode, function(resp) {
+                if (resp.status == 200) {
+                    var dom = resp.result;
+                    $(".article_content").append(dom);
+                    $(".article_content_container").show(CONST.DURATION);
+                    $(".article_content").show(CONST.DURATION);
+                } else {
+                    alert("获取文章详情出错");
+                }
+            });
+        },
         loadMore: function() {
-            $.get('article/list/' + article.curPage + '/1', function(resp) {
+            $.get('article/list/' + article.curPage * 10 + '/10', function(resp) {
                 if (resp.status == 200) {
                     var result = resp.result;
                     if (result) {
-                        // TODO  无法处理
-                        for (var i = 0; i < result.length; i++) {
-                            article.articles.push(result[i]);
-                        }
+                        article.articles.pushArray(result);
                         article.curPage++;
                     }
                 } else {

@@ -7,4 +7,7 @@ import leo.bean.Article;
 
 public interface IArticleService extends IBaseService<Article> {
 	List<Article> getArticles(int startIndex, int pageSize);
+
+	String getContent(String articleId);
+
 }

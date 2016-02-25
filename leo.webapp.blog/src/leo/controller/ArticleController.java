@@ -1,5 +1,6 @@
 package leo.controller;
 
+import java.lang.ref.SoftReference;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,19 @@ public class ArticleController {
 	@ResponseBody
 	public Response pageQuery(@PathVariable("startIndex") int startIndex, @PathVariable("pageSize") int pageSize) {
 		List<Article> articles = articleService.getArticles(startIndex, pageSize);
-		if (articles.isEmpty()) {
+		return Response.success(articles);
+	}
+
+	@RequestMapping(value = "/{articleId}", method = RequestMethod.GET)
+	@ResponseBody
+	public Response getOne(@PathVariable("articleId") String articleId) {
+		String content = articleService.getContent(articleId);
+		if (content == null) {
 			return Response.error();
 		} else {
-			return Response.success(articles);
+			SoftReference<String> srContent = new SoftReference<String>(content);
+			return Response.success(srContent.get());
 		}
+
 	}
 }
