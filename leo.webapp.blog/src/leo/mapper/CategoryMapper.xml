@@ -11,4 +11,10 @@
 			(#{item.id},#{item.name},#{item.count})
 		</foreach>
 	</insert>
+	<select id="selectAll" resultType="Category">
+		SELECT
+		*
+		FROM
+		blog_category
+	</select>
 </mapper>

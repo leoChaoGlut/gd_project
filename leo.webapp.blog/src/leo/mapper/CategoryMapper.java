@@ -11,7 +11,7 @@ import leo.bean.Category;
 
 @Repository
 public interface CategoryMapper {
-	List<Article> selectMore(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
+	List<Category> selectAll();
 
 	int insertMore(@Param("categories") List<Category> categories);
 }

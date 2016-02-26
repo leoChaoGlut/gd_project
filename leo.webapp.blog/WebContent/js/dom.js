@@ -6,5 +6,7 @@ var Dom = (function() {
         articles: $(".articles"),
         acc: $(".article_content_container"),
         mc: $(".my_content"),
+        loader: $(".loading"),
+        content: $(".my_content"),
     }
 })()

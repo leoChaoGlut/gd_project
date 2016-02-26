@@ -31,8 +31,7 @@ public class ArticleServiceImp implements IArticleService {
 		Jedis jedis = null;
 		try {
 			// TODO Auto-generated method stub
-			// jedis = JedisUtil.getResource();
-			jedis = new Jedis("localhost");
+			jedis = JedisUtil.getResource();
 			content = jedis.get(articleId);
 			if (content == null) {
 				// TODO 如果redis中没有key对应的value,应该做何处理?
@@ -43,10 +42,7 @@ public class ArticleServiceImp implements IArticleService {
 			}
 		} finally {
 			// TODO: handle finally clause
-			if (jedis != null) {
-				// JedisUtil.returnResource(jedis);
-				jedis.close();
-			}
+			JedisUtil.returnResource(jedis);
 		}
 		return content;
 	}

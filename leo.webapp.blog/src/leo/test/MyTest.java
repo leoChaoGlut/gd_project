@@ -17,6 +17,7 @@ import leo.bean.Article;
 import leo.bean.Category;
 import leo.mapper.CategoryMapper;
 import leo.service.IArticleService;
+import leo.service.ICategoryService;
 
 public class MyTest {
 	ApplicationContext ctx = new ClassPathXmlApplicationContext("leo/config/spring-application-config.xml",
@@ -55,4 +56,12 @@ public class MyTest {
 		System.out.println(count);
 	}
 
+	@Test
+	public void test3() {
+		ICategoryService categoryService = ctx.getBean(ICategoryService.class);
+		List<Category> categories = categoryService.getAllCategories();
+		for (Category category : categories) {
+			System.out.println(category.toString());
+		}
+	}
 }

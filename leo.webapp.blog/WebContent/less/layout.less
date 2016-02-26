@@ -49,9 +49,11 @@ ul {
     .shadow_1;
     cursor: pointer;
     float: left;
-    width: 90px;
+    width: 70px;
     height: 30px;
     margin: 0 0 0 @MARGIN_NORMAL;
+    text-align: center;
+    line-height: 30px;
 }
 
 .body {
@@ -69,8 +71,12 @@ ul {
 .category {
     .shadow_1;
     display: block;
-    height: 30px;
-    margin: @MARGIN_NORMAL;
+    height: 20px;
+    margin: @MARGIN_SMALL @MARGIN_NORMAL;
+    text-indent: 1rem;
+    line-height: 20px;
+    font-size: 1.3rem;
+    cursor: pointer;
 }
 
 .articles {
@@ -83,7 +89,6 @@ ul {
 .article {
     .shadow_1;
     display: block;
-    // height: 200px;
     margin: 0 @MARGIN_NORMAL @MARGIN_NORMAL @MARGIN_NORMAL;
     cursor: pointer;
     padding: @MARGIN_SMALL 0 0 0;
@@ -94,10 +99,11 @@ ul {
     line-height: 30px;
     font-size: 1.4em;
     margin-left: 10px;
+    padding-right: @MARGIN_NORMAL;
+    overflow: hidden;
 }
 
 .article_description {
-    // height: 140px;
     text-indent: 2em;
     margin: @MARGIN_SMALL 0;
     padding: 0 0 0 @MARGIN_SMALL;
@@ -107,6 +113,7 @@ ul {
     height: 30px;
     list-style-type: none;
     line-height: 30px;
+    font-size: 1rem;
 }
 
 .post_date {

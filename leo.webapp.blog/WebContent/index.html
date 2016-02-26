@@ -7,25 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- lib css -->
     <link rel="stylesheet" href="css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="css/lib/jquery.shCircleLoader.css">
     <!-- my css -->
     <link rel="stylesheet" href="css/layout.css">
 </head>
 
 <body ms-controller="vm_body">
-    <div class="head">
+    <div class="head" ms-controller="vm_head">
         <div class="head_left"></div>
         <div class="head_right">
             <ul class="nav_group">
-                <li class="nav"></li>
-                <li class="nav"></li>
-                <li class="nav"></li>
+                <li class="nav" ms-repeat="navs" ms-text="el"></li>
             </ul>
         </div>
     </div>
     <div class="body">
         <div class="categories hidden-xs" ms-controller="vm_category">
-            <ul>
-                <li class="category" ms-repeat="categories"></li>
+            <ul style="padding: 15px 0 10px 0;">
+                <li class="category" ms-repeat="categories">{{el.name}} <span style="float: right;margin:0 10px 0 0;">({{el.count}})</span></li>
                 <div style="clear:both;"></div>
             </ul>
         </div>
@@ -35,8 +34,8 @@
                     <div class="article_title">{{el.title}}</div>
                     <div class="article_description">{{el.description}}</div>
                     <ul class="article_other">
-                        <li class="post_date" ms-text="el.postDate"></li>
-                        <li class="view_count" ms-text="el.view"></li>
+                        <li class="post_date">创建日期:{{el.postDate}}</li>
+                        <li class="view_count">阅读量:{{el.view}}</li>
                     </ul>
                     <div style="clear:both;"></div>
                 </li>
@@ -49,13 +48,16 @@
     <!-- modal -->
     <div class="article_content_container" style="display:none;" ms-click="hideDetail">
     </div>
+    <div class="loading" style="height:100px;position:absolute;display:none;">
+    </div>
     <div class="my_content" style="display:none;">
     </div>
     <!-- lib js-->
     <script src="js/lib/jquery-2.2.0.min.js"></script>
-    <script src="js/lib/bootstrap.min.js"></script>
+    <!-- <script src="js/lib/bootstrap.min.js"></script> -->
     <script src="js/lib/avalon.modern.js"></script>
     <script src="js/lib/velocity.min.js"></script>
+    <script src="js/lib/jquery.shCircleLoader-min.js"></script>
     <!-- my js -->
     <script src="js/const.js"></script>
     <script src="js/dom.js"></script>
