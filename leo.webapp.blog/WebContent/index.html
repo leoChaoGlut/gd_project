@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Leo's Blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- lib css -->
-    <link rel="stylesheet" href="css/lib/bootstrap.min.css">
     <link rel="stylesheet" href="css/lib/jquery.shCircleLoader.css">
     <!-- my css -->
     <link rel="stylesheet" href="css/layout.css">
@@ -17,7 +16,7 @@
         <div class="head_left"></div>
         <div class="head_right">
             <ul class="nav_group">
-                <li class="nav" ms-repeat="navs" ms-text="el"></li>
+                <li class="nav" ms-repeat="navs" ms-text="el" ms-click="clickNav($index)"></li>
             </ul>
         </div>
     </div>
@@ -35,11 +34,11 @@
                     <div class="article_description">{{el.description}}</div>
                     <ul class="article_other">
                         <li class="post_date">创建日期:{{el.postDate}}</li>
-                        <li class="view_count">阅读量:{{el.view}}</li>
+                        <li class="view_count">阅读量:{{el.viewCount}}</li>
                     </ul>
                     <div style="clear:both;"></div>
                 </li>
-                <li class="load_more" ms-click="loadMore">加 载 更 多</li>
+                <li class="load_more" ms-click="loadMore" ms-if="isHomePage">加 载 更 多</li>
                 <div style="clear:both;"></div>
             </ul>
         </div>
@@ -48,16 +47,18 @@
     <!-- modal -->
     <div class="article_content_container" style="display:none;" ms-click="hideDetail">
     </div>
-    <div class="loading" style="height:100px;position:absolute;display:none;">
-    </div>
     <div class="my_content" style="display:none;">
+    </div>
+    <div id="loading" class="loading" style="height:100px;position:absolute;display:none;">
+    </div>
+    <div class="about_blog" style="display:none;">
+    </div>
+    <div class="about_me" style="display:none;">
     </div>
     <!-- lib js-->
     <script src="js/lib/jquery-2.2.0.min.js"></script>
-    <script src="js/lib/bootstrap.min.js"></script>
-    <script src="js/lib/avalon.js"></script>
-    <script src="js/lib/velocity.min.js"></script>
     <script src="js/lib/jquery.shCircleLoader-min.js"></script>
+    <script src="js/lib/avalon.js"></script>
     <!-- my js -->
     <script src="js/const.js"></script>
     <script src="js/dom.js"></script>

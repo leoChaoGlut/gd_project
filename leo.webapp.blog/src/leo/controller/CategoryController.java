@@ -23,32 +23,26 @@ public class CategoryController {
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public Response getAll() {
-		List<Category> articles = categoryService.getAllCategories();
-		return Response.success(articles);
+		try {
+			List<Category> articles = categoryService.getAllCategories();
+			return Response.success(articles);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return Response.error();
+		}
+
 	}
-	// TODO 将article_code的值放到Id中 
-	// TODO 将article_code的值放到Id中 
-	// TODO 将article_code的值放到Id中 
-	// TODO 将article_code的值放到Id中 
-	// TODO 将article_code的值放到Id中 
-	// TODO 将article_code的值放到Id中 
-	// TODO 将article_code的值放到Id中 
-	// TODO 将article_code的值放到Id中 
-	// TODO 将article_code的值放到Id中 
-	// TODO 将article_code的值放到Id中 
-	// TODO 将article_code的值放到Id中 
-	// TODO 将article_code的值放到Id中 
-	// TODO 将article_code的值放到Id中 
-	// TODO 将article_code的值放到Id中 
-	// TODO 将article_code的值放到Id中 
-	// TODO 将article_code的值放到Id中 
-	// TODO 将article_code的值放到Id中 
-	// TODO 将article_code的值放到Id中 
-	// TODO 将article_code的值放到Id中 
+
 	@RequestMapping(value = "/{categoryName}/articles", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public Response getArticles(@PathVariable("categoryName") String categoryName) {
-		List<Article> articles = categoryService.getArticles(categoryName);
-		return Response.success(articles);
+		try {
+			List<Article> articles = categoryService.getArticles(categoryName);
+			return Response.success(articles);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return Response.error();
+		}
+
 	}
 }

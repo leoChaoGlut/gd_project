@@ -1,7 +1,7 @@
 package leo.util;
 
 public class Status {
-	class Code {
+	public class Code {
 		public static final int OK = 200;
 		public static final int UNAUTHORIZED = 401;
 		public static final int FORBIDDEN = 403;
@@ -9,7 +9,7 @@ public class Status {
 		public static final int INTERNAL_SERVER_ERROR = 500;
 	}
 
-	class Msg {
+	public class Msg {
 		public static final String OK = "OK";
 		public static final String UNAUTHORIZED = "UNAUTHORIZED";
 		// public static final String FORBIDDEN_MSG = 403;

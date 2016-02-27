@@ -1,13 +1,35 @@
 var Init = (function() {
     (function init() {
-        $.get('article/list/0/10', function(resp) {
-            Vm.article.articles = resp.result;
+        $.ajax({
+            url: 'article/list/0/10',
+            success: function(resp) {
+                if (resp.status == 200) {
+                    Vm.article.articles = resp.result;
+                } else {
+                    alert("获取文章详情出错");
+                }
+            },
+            error: function() {
+                alert("获取文章详情出错");
+            },
+            complete: function(resp) {}
         });
-        $.get('category/all', function(resp) {
-            Vm.category.categories = resp.result;
+        $.ajax({
+            url: 'category/all',
+            success: function(resp) {
+                if (resp.status == 200) {
+                    Vm.category.categories = resp.result;
+                } else {
+                    alert("获取文章详情出错");
+                }
+            },
+            error: function() {
+                alert("获取文章详情出错");
+            },
+            complete: function(resp) {}
         });
         Dom.loader.shCircleLoader({
-            color: "#2bbbad"
+            color: "#2bbbad",
         });
     })()
 
@@ -32,6 +54,6 @@ var Init = (function() {
     });
 
     return {
-
+        resize: resize,
     }
 })()

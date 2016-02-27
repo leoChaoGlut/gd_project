@@ -8,5 +8,6 @@ var Dom = (function() {
         mc: $(".my_content"),
         loader: $(".loading"),
         content: $(".my_content"),
+        bd: $("body"),
     }
 })()

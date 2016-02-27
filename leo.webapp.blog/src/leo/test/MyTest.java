@@ -2,7 +2,6 @@ package leo.test;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,6 +15,7 @@ import com.alibaba.fastjson.JSON;
 import leo.bean.Article;
 import leo.bean.Category;
 import leo.bean.CategoryArticle;
+import leo.mapper.ArticleMapper;
 import leo.mapper.CategoryMapper;
 import leo.mapper.TestMapper;
 import leo.service.IArticleService;
@@ -86,6 +86,33 @@ public class MyTest {
 		ICategoryService categoryService = ctx.getBean(ICategoryService.class);
 		List<Article> articles = categoryService.getArticles("JVM");
 		for (Article article : articles) {
+			System.out.println(article.toString());
+		}
+	}
+
+	@Test
+	public void test6() {
+		TestMapper mapper = ctx.getBean(TestMapper.class);
+		List<Article> list = JSONFileReader.parseArray(Article.class, "C://2");
+//		list.sort(new Comparator<Article>() {
+//
+//			@Override
+//			public int compare(Article o1, Article o2) {
+//				// TODO Auto-generated method stub
+//				return o1.getId() - o2.getId();
+//			}
+//		});
+		for (Article article : list) {
+			System.out.println(article.toString());
+		}
+		mapper.insertArticles(list);
+	}
+
+	@Test
+	public void test7() {
+		ArticleMapper articleMapper = ctx.getBean(ArticleMapper.class);
+		List<Article> list = articleMapper.pageQuery(0, 10);
+		for (Article article : list) {
 			System.out.println(article.toString());
 		}
 	}

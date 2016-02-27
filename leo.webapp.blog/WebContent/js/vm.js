@@ -1,15 +1,11 @@
 var Vm = (function() {
 
-    function showModal() {
-        Dom.acc.css('top', window.scrollY + "px");
-        Dom.acc.show(CONST.DURATION);
-        $("body").css('overflow', 'hidden');
-    }
 
     function showLoading() {
         Dom.loader.css('top', (window.scrollY + $(window).height() / 2 - 50) + "px");
         Dom.loader.css('left', ($(window).width() / 2 - 50) + "px");
         Dom.loader.show(CONST.DURATION);
+        Dom.bd.css('overflow', 'hidden');
         body.isLoading = true;
     }
 
@@ -20,14 +16,15 @@ var Vm = (function() {
 
     function hideModal() {
         // Dom.acc.css('top', window.scrollY + "px");
-        Dom.acc.hide(CONST.DURATION);
-        $("body").css('overflow', 'auto');
+        Dom.acc.hide();
+        Dom.bd.css('overflow', 'auto');
     }
 
 
     var body = avalon.define({
         $id: "vm_body",
         isLoading: false,
+        isHomePage: true,
         hideDetail: function() {
             if (!body.isLoading) {
                 Dom.mc.children().remove();
@@ -43,16 +40,21 @@ var Vm = (function() {
         curPage: 1,
         showDetail: function(index) {
             showLoading();
-            showModal();
-            var articleCode = article.articles[index].articleCode;
+            var articleId = article.articles[index].articleId;
             $.ajax({
-                url: 'article/' + articleCode,
+                url: 'article/' + articleId,
                 success: function(resp) {
                     if (resp.status == 200) {
                         var dom = resp.result;
                         Dom.content.append(dom);
+
+                        Dom.acc.css('top', window.scrollY + "px");
+                        Dom.bd.css('overflow', 'hidden');
                         Dom.mc.css('top', window.scrollY + "px");
-                        Dom.mc.show(CONST.DURATION);
+
+                        Dom.acc.fadeIn(300, function() {
+                            Dom.mc.fadeIn(500, function() {});
+                        });
                     } else {
                         alert("获取文章详情出错");
                         hideModal();
@@ -94,15 +96,16 @@ var Vm = (function() {
                 },
                 complete: function(resp) {
                     hideLoading();
+                    Dom.bd.css('overflow', 'auto');
                 }
             });
-        }
+        },
     })
     var category = avalon.define({
         $id: "vm_category",
         categories: [],
         loadArticles: function(index) {
-            showModal();
+            body.isHomePage = false;
             showLoading();
             var categoryName = category.categories[index].name;
             $.ajax({
@@ -119,7 +122,7 @@ var Vm = (function() {
                 },
                 complete: function(resp) {
                     hideLoading();
-                    hideModal();
+                    Dom.bd.css('overflow', 'auto');
                 }
             });
         }
@@ -127,7 +130,41 @@ var Vm = (function() {
 
     var head = avalon.define({
         $id: "vm_head",
-        navs: ["关于博客"],
+        navs: ["首页", "关于博客", "关于作者"],
+        clickNav: function(index) {
+            switch (index) {
+                case 0:
+                    if (!body.isHomePage) {
+                        showLoading();
+                        body.isHomePage = true;
+                        $.ajax({
+                            url: 'article/list/0/10',
+                            success: function(resp) {
+                                if (resp.status == 200) {
+                                    Vm.article.articles = resp.result;
+                                } else {
+                                    alert("加载出错");
+                                }
+                            },
+                            error: function() {
+                                alert("加载出错");
+                            },
+                            complete: function(resp) {
+                                hideLoading();
+                                Dom.bd.css('overflow', 'auto');
+                            }
+                        });
+                    }
+                    break;
+                case 1:
+
+                    break;
+                case 2:
+                    break;
+                default:
+                    break;
+            }
+        }
     })
 
 

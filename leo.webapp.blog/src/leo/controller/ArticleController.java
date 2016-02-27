@@ -24,8 +24,13 @@ public class ArticleController {
 	@RequestMapping(value = "/list/{startIndex}/{pageSize}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public Response pageQuery(@PathVariable("startIndex") int startIndex, @PathVariable("pageSize") int pageSize) {
-		List<Article> articles = articleService.getArticles(startIndex, pageSize);
-		return Response.success(articles);
+		try {
+			List<Article> articles = articleService.getArticles(startIndex, pageSize);
+			return Response.success(articles);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return Response.error();
+		}
 	}
 
 	@RequestMapping(value = "/{articleId}", method = RequestMethod.GET)

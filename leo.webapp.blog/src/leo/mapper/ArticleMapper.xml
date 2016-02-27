@@ -6,11 +6,11 @@
 
 	<select id="pageQuery" resultType="Article">
 		SELECT
+		article_id AS articleId,
 		title,
 		description,
-		postDate,
-		view,
-		article_code AS articleCode
+		post_date AS postDate,
+		view_count AS viewCount
 		FROM
 		blog_article
 		LIMIT
@@ -19,17 +19,17 @@
 
 	<select id="selectMore" resultType="Article">
 		SELECT
-		ba.article_code,
+		ba.article_id AS articleId,
 		ba.title,
 		ba.description,
-		ba.postDate,
-		ba.`view`
+		ba.post_date AS postDate,
+		ba.view_count AS viewCount
 		FROM
 		blog_mid_category_article mca
 		JOIN blog_category bc ON
 		mca.category_name = bc.`name`
 		JOIN blog_article ba ON mca.article_id =
-		ba.article_code
+		ba.article_id
 		WHERE
 		bc.`name` = #{categoryName}
 	</select>

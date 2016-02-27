@@ -10,10 +10,7 @@ import leo.bean.Article;
 import leo.bean.Category;
 import leo.mapper.ArticleMapper;
 import leo.mapper.CategoryMapper;
-import leo.service.IArticleService;
 import leo.service.ICategoryService;
-import leo.util.JedisUtil;
-import redis.clients.jedis.Jedis;
 
 @Service
 @Transactional

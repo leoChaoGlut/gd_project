@@ -26,6 +26,11 @@ public class Response {
 		return resp;
 	}
 
+	public static Response error(int errorCode, String errorMsg) {
+		Response resp = new Response(errorCode, errorMsg, null);
+		return resp;
+	}
+
 	public int getStatus() {
 		return status;
 	}

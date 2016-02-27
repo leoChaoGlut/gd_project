@@ -1,9 +1,5 @@
 package leo.bean;
 
-import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 /**
  * 
  * @author leo
@@ -11,6 +7,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * @Comments 存储文章信息
  */
 public class Article {
+	/**
+	 * 自增id
+	 */
+	private int id;
+	/**
+	 * 文章id
+	 */
+	private int articleId;
 	/**
 	 * 标题
 	 */
@@ -22,27 +26,31 @@ public class Article {
 	/**
 	 * 发文日期
 	 */
-	@JsonFormat(pattern = "yyyy-MM-dd hh:mm", timezone = "GMT+8")
-	private Date postDate;
+	// @JsonFormat(pattern = "yyyy-MM-dd hh:mm")
+	private String postDate;
 	/**
 	 * 阅读量
 	 */
-	private int view;
-	/**
-	 * 文章详情链接
-	 */
-	private String articleCode;
+	private int viewCount;
 
 	public Article() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Article(String title, String description, Date postDate, int view, String articleCode) {
+	public Article(int articleId, String title, String description, String postDate, int viewCount) {
+		this.articleId = articleId;
 		this.title = title;
 		this.description = description;
 		this.postDate = postDate;
-		this.view = view;
-		this.articleCode = articleCode;
+		this.viewCount = viewCount;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -61,34 +69,34 @@ public class Article {
 		this.description = description;
 	}
 
-	public Date getPostDate() {
+	public String getPostDate() {
 		return postDate;
 	}
 
-	public void setPostDate(Date postDate) {
+	public void setPostDate(String postDate) {
 		this.postDate = postDate;
 	}
 
-	public int getView() {
-		return view;
+	public int getViewCount() {
+		return viewCount;
 	}
 
-	public void setView(int view) {
-		this.view = view;
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
 	}
 
-	public String getArticleCode() {
-		return articleCode;
+	public int getArticleId() {
+		return articleId;
 	}
 
-	public void setArticleCode(String articleCode) {
-		this.articleCode = articleCode;
+	public void setArticleId(int articleId) {
+		this.articleId = articleId;
 	}
 
 	@Override
 	public String toString() {
-		return "Article [title=" + title + ", description=" + description + ", postDate=" + postDate + ", view=" + view
-				+ ", articleCode=" + articleCode + "]";
+		return "Article [id=" + id + ", articleId=" + articleId + ", title=" + title + ", description=" + description
+				+ ", postDate=" + postDate + ", viewCount=" + viewCount + "]";
 	}
 
 }
