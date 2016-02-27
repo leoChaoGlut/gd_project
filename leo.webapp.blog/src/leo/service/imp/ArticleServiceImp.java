@@ -21,7 +21,7 @@ public class ArticleServiceImp implements IArticleService {
 	@Override
 	public List<Article> getArticles(int startIndex, int pageSize) {
 		// TODO Auto-generated method stub
-		List<Article> articles = articleMapper.selectMore(startIndex, pageSize);
+		List<Article> articles = articleMapper.pageQuery(startIndex, pageSize);
 		return articles;
 	}
 

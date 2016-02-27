@@ -3,7 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="leo.mapper.ArticleMapper">
-	<select id="selectMore" resultType="Article">
+
+	<select id="pageQuery" resultType="Article">
 		SELECT
 		title,
 		description,
@@ -14,5 +15,22 @@
 		blog_article
 		LIMIT
 		#{startIndex},#{pageSize}
+	</select>
+
+	<select id="selectMore" resultType="Article">
+		SELECT
+		ba.article_code,
+		ba.title,
+		ba.description,
+		ba.postDate,
+		ba.`view`
+		FROM
+		blog_mid_category_article mca
+		JOIN blog_category bc ON
+		mca.category_name = bc.`name`
+		JOIN blog_article ba ON mca.article_id =
+		ba.article_code
+		WHERE
+		bc.`name` = #{categoryName}
 	</select>
 </mapper>

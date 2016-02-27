@@ -15,9 +15,12 @@ import com.alibaba.fastjson.JSON;
 
 import leo.bean.Article;
 import leo.bean.Category;
+import leo.bean.CategoryArticle;
 import leo.mapper.CategoryMapper;
+import leo.mapper.TestMapper;
 import leo.service.IArticleService;
 import leo.service.ICategoryService;
+import leo.util.JSONFileReader;
 
 public class MyTest {
 	ApplicationContext ctx = new ClassPathXmlApplicationContext("leo/config/spring-application-config.xml",
@@ -64,4 +67,27 @@ public class MyTest {
 			System.out.println(category.toString());
 		}
 	}
+
+	/**
+	 * 插入blog_mid_category_article
+	 */
+	@Test
+	public void test4() {
+		TestMapper mapper = ctx.getBean(TestMapper.class);
+		List<CategoryArticle> list = JSONFileReader.parseArray(CategoryArticle.class, "c://1");
+		for (CategoryArticle categoryArticle : list) {
+			System.out.println(categoryArticle.toString());
+		}
+		mapper.insertMore(list);
+	}
+
+	@Test
+	public void test5() {
+		ICategoryService categoryService = ctx.getBean(ICategoryService.class);
+		List<Article> articles = categoryService.getArticles("JVM");
+		for (Article article : articles) {
+			System.out.println(article.toString());
+		}
+	}
+
 }

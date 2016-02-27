@@ -10,5 +10,7 @@ import leo.bean.Article;
 
 @Repository
 public interface ArticleMapper {
-	List<Article> selectMore(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
+	List<Article> pageQuery(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize);
+
+	List<Article> selectMore(@Param("categoryName") String categoryName);
 }

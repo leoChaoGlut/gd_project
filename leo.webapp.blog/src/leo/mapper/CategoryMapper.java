@@ -14,4 +14,5 @@ public interface CategoryMapper {
 	List<Category> selectAll();
 
 	int insertMore(@Param("categories") List<Category> categories);
+
 }

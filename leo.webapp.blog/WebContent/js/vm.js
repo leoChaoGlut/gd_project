@@ -18,12 +18,13 @@ var Vm = (function() {
         body.isLoading = false;
     }
 
-
     function hideModal() {
         // Dom.acc.css('top', window.scrollY + "px");
         Dom.acc.hide(CONST.DURATION);
         $("body").css('overflow', 'auto');
     }
+
+
     var body = avalon.define({
         $id: "vm_body",
         isLoading: false,
@@ -69,20 +70,30 @@ var Vm = (function() {
 
         },
         loadMore: function() {
+            showLoading();
             var dom = $(this);
-            $.get('article/list/' + article.curPage * 10 + '/10', function(resp) {
-                if (resp.status == 200) {
-                    var result = resp.result;
-                    if (result) {
-                        if (result.length > 0) {
-                            article.articles.pushArray(result);
-                            article.curPage++;
-                        } else {
-                            dom.hide(CONST.DURATION);
+            $.ajax({
+                url: 'article/list/' + article.curPage * 10 + '/10',
+                success: function(resp) {
+                    if (resp.status == 200) {
+                        var result = resp.result;
+                        if (result) {
+                            if (result.length > 0) {
+                                article.articles.pushArray(result);
+                                article.curPage++;
+                            } else {
+                                dom.hide(CONST.DURATION);
+                            }
                         }
+                    } else {
+                        alert("加载出错");
                     }
-                } else {
+                },
+                error: function() {
                     alert("加载出错");
+                },
+                complete: function(resp) {
+                    hideLoading();
                 }
             });
         }
@@ -90,6 +101,28 @@ var Vm = (function() {
     var category = avalon.define({
         $id: "vm_category",
         categories: [],
+        loadArticles: function(index) {
+            showModal();
+            showLoading();
+            var categoryName = category.categories[index].name;
+            $.ajax({
+                url: 'category/' + categoryName + '/articles',
+                success: function(resp) {
+                    if (resp.status == 200) {
+                        article.articles = resp.result;
+                    } else {
+                        alert("加载出错");
+                    }
+                },
+                error: function() {
+                    alert("加载出错");
+                },
+                complete: function(resp) {
+                    hideLoading();
+                    hideModal();
+                }
+            });
+        }
     })
 
     var head = avalon.define({

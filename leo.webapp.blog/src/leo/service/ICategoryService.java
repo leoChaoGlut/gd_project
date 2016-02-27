@@ -9,4 +9,6 @@ import leo.bean.Category;
 public interface ICategoryService extends IBaseService<Article> {
 	List<Category> getAllCategories();
 
+	List<Article> getArticles(String categoryName);
+
 }

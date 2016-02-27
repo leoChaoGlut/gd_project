@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50622
 File Encoding         : 65001
 
-Date: 2016-02-26 21:41:47
+Date: 2016-02-27 17:58:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -657,6 +657,204 @@ INSERT INTO `blog_category` VALUES ('6057403', 'Redis', '1');
 INSERT INTO `blog_category` VALUES ('6088209', 'Docker', '1');
 INSERT INTO `blog_category` VALUES ('6101637', '并发', '1');
 INSERT INTO `blog_category` VALUES ('6104138', '爬虫', '2');
+
+-- ----------------------------
+-- Table structure for blog_mid_category_article
+-- ----------------------------
+DROP TABLE IF EXISTS `blog_mid_category_article`;
+CREATE TABLE `blog_mid_category_article` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `article_id` int(11) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `category_name` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1619 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of blog_mid_category_article
+-- ----------------------------
+INSERT INTO `blog_mid_category_article` VALUES ('1437', '50736941', null, '爬虫');
+INSERT INTO `blog_mid_category_article` VALUES ('1438', '50736941', null, '前端');
+INSERT INTO `blog_mid_category_article` VALUES ('1439', '50722680', null, '爬虫');
+INSERT INTO `blog_mid_category_article` VALUES ('1440', '50707500', null, '前端');
+INSERT INTO `blog_mid_category_article` VALUES ('1441', '50706720', null, '并发');
+INSERT INTO `blog_mid_category_article` VALUES ('1442', '50706720', null, 'JVM');
+INSERT INTO `blog_mid_category_article` VALUES ('1443', '50631271', null, '后端');
+INSERT INTO `blog_mid_category_article` VALUES ('1444', '50616588', null, 'Docker');
+INSERT INTO `blog_mid_category_article` VALUES ('1445', '50612621', null, '后端');
+INSERT INTO `blog_mid_category_article` VALUES ('1446', '50598379', null, '前端');
+INSERT INTO `blog_mid_category_article` VALUES ('1447', '50586369', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1448', '50575570', null, 'Algorithm');
+INSERT INTO `blog_mid_category_article` VALUES ('1449', '50534257', null, '前端');
+INSERT INTO `blog_mid_category_article` VALUES ('1450', '50510404', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1451', '50482534', null, '前端');
+INSERT INTO `blog_mid_category_article` VALUES ('1452', '50464986', null, 'Redis');
+INSERT INTO `blog_mid_category_article` VALUES ('1453', '50451958', null, '后端');
+INSERT INTO `blog_mid_category_article` VALUES ('1454', '50450571', null, '前端');
+INSERT INTO `blog_mid_category_article` VALUES ('1455', '50447953', null, '后端');
+INSERT INTO `blog_mid_category_article` VALUES ('1456', '50445420', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1457', '50445420', null, 'JVM');
+INSERT INTO `blog_mid_category_article` VALUES ('1458', '50445316', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1459', '50442715', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1460', '50442715', null, 'JVM');
+INSERT INTO `blog_mid_category_article` VALUES ('1461', '50440566', null, 'JavaEE');
+INSERT INTO `blog_mid_category_article` VALUES ('1462', '50418219', null, '后端');
+INSERT INTO `blog_mid_category_article` VALUES ('1463', '50416900', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1464', '50416900', null, 'Algorithm');
+INSERT INTO `blog_mid_category_article` VALUES ('1465', '50392160', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1466', '50379710', null, '前端');
+INSERT INTO `blog_mid_category_article` VALUES ('1467', '50314151', null, '前端');
+INSERT INTO `blog_mid_category_article` VALUES ('1468', '50314151', null, '后端');
+INSERT INTO `blog_mid_category_article` VALUES ('1469', '50311435', null, '前端');
+INSERT INTO `blog_mid_category_article` VALUES ('1470', '49679123', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1471', '49661301', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1472', '49556817', null, 'JavaEE');
+INSERT INTO `blog_mid_category_article` VALUES ('1473', '49339539', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1474', '49247333', null, 'Android');
+INSERT INTO `blog_mid_category_article` VALUES ('1475', '48982053', null, 'JavaEE');
+INSERT INTO `blog_mid_category_article` VALUES ('1476', '48894721', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1477', '48845295', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1478', '48736297', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1479', '48734635', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1480', '48731797', null, 'S2SH');
+INSERT INTO `blog_mid_category_article` VALUES ('1481', '48731797', null, 'JavaEE');
+INSERT INTO `blog_mid_category_article` VALUES ('1482', '48629151', null, 'Android');
+INSERT INTO `blog_mid_category_article` VALUES ('1483', '48628501', null, 'Android');
+INSERT INTO `blog_mid_category_article` VALUES ('1484', '48605661', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1485', '48594959', null, 'Database');
+INSERT INTO `blog_mid_category_article` VALUES ('1486', '48580753', null, 'Database');
+INSERT INTO `blog_mid_category_article` VALUES ('1487', '48413053', null, 'JVM');
+INSERT INTO `blog_mid_category_article` VALUES ('1488', '48413053', null, '阿里面试准备');
+INSERT INTO `blog_mid_category_article` VALUES ('1489', '48413037', null, '阿里面试准备');
+INSERT INTO `blog_mid_category_article` VALUES ('1490', '48413037', null, 'JVM');
+INSERT INTO `blog_mid_category_article` VALUES ('1491', '48345999', null, '阿里面试准备');
+INSERT INTO `blog_mid_category_article` VALUES ('1492', '48345999', null, 'Data Structure');
+INSERT INTO `blog_mid_category_article` VALUES ('1493', '48345999', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1494', '48341765', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1495', '48341765', null, '阿里面试准备');
+INSERT INTO `blog_mid_category_article` VALUES ('1496', '48319657', null, '阿里面试准备');
+INSERT INTO `blog_mid_category_article` VALUES ('1497', '48319657', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1498', '48296739', null, 'Android');
+INSERT INTO `blog_mid_category_article` VALUES ('1499', '48296739', null, '阿里面试准备');
+INSERT INTO `blog_mid_category_article` VALUES ('1500', '48294973', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1501', '48294973', null, '阿里面试准备');
+INSERT INTO `blog_mid_category_article` VALUES ('1502', '48222501', null, '阿里面试准备');
+INSERT INTO `blog_mid_category_article` VALUES ('1503', '48222501', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1504', '48222501', null, 'Data Structure');
+INSERT INTO `blog_mid_category_article` VALUES ('1505', '48213435', null, 'Data Structure');
+INSERT INTO `blog_mid_category_article` VALUES ('1506', '48213435', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1507', '48213435', null, '阿里面试准备');
+INSERT INTO `blog_mid_category_article` VALUES ('1508', '48212153', null, 'Data Structure');
+INSERT INTO `blog_mid_category_article` VALUES ('1509', '48212153', null, '阿里面试准备');
+INSERT INTO `blog_mid_category_article` VALUES ('1510', '48212153', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1511', '48196273', null, '阿里面试准备');
+INSERT INTO `blog_mid_category_article` VALUES ('1512', '48196273', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1513', '48195795', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1514', '48195795', null, '阿里面试准备');
+INSERT INTO `blog_mid_category_article` VALUES ('1515', '48181841', null, 'Data Structure');
+INSERT INTO `blog_mid_category_article` VALUES ('1516', '48181841', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1517', '48181841', null, '阿里面试准备');
+INSERT INTO `blog_mid_category_article` VALUES ('1518', '48177411', null, '阿里面试准备');
+INSERT INTO `blog_mid_category_article` VALUES ('1519', '47833563', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1520', '47778799', null, 'Data Structure');
+INSERT INTO `blog_mid_category_article` VALUES ('1521', '47778799', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1522', '47711443', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1523', '47711443', null, 'JavaEE');
+INSERT INTO `blog_mid_category_article` VALUES ('1524', '47681847', null, 'Android');
+INSERT INTO `blog_mid_category_article` VALUES ('1525', '47373197', null, 'JavaEE');
+INSERT INTO `blog_mid_category_article` VALUES ('1526', '47357727', null, 'JavaEE');
+INSERT INTO `blog_mid_category_article` VALUES ('1527', '47357727', null, 'S2SH');
+INSERT INTO `blog_mid_category_article` VALUES ('1528', '47346621', null, 'JavaEE');
+INSERT INTO `blog_mid_category_article` VALUES ('1529', '47324565', null, 'Android');
+INSERT INTO `blog_mid_category_article` VALUES ('1530', '47302035', null, 'ExtJS');
+INSERT INTO `blog_mid_category_article` VALUES ('1531', '47298887', null, 'ExtJS');
+INSERT INTO `blog_mid_category_article` VALUES ('1532', '47115909', null, 'JavaEE');
+INSERT INTO `blog_mid_category_article` VALUES ('1533', '47049579', null, 'S2SH');
+INSERT INTO `blog_mid_category_article` VALUES ('1534', '47049499', null, 'S2SH');
+INSERT INTO `blog_mid_category_article` VALUES ('1535', '47037383', null, 'S2SH');
+INSERT INTO `blog_mid_category_article` VALUES ('1536', '47023165', null, 'Android');
+INSERT INTO `blog_mid_category_article` VALUES ('1537', '47009215', null, 'Android');
+INSERT INTO `blog_mid_category_article` VALUES ('1538', '46974889', null, 'S2SH');
+INSERT INTO `blog_mid_category_article` VALUES ('1539', '46971795', null, 'Android');
+INSERT INTO `blog_mid_category_article` VALUES ('1540', '46908515', null, 'Data Structure');
+INSERT INTO `blog_mid_category_article` VALUES ('1541', '46908515', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1542', '46844981', null, 'S2SH');
+INSERT INTO `blog_mid_category_article` VALUES ('1543', '46834687', null, 'Android');
+INSERT INTO `blog_mid_category_article` VALUES ('1544', '46773353', null, 'JavaEE');
+INSERT INTO `blog_mid_category_article` VALUES ('1545', '46773353', null, 'Android');
+INSERT INTO `blog_mid_category_article` VALUES ('1546', '46765807', null, 'ExtJS');
+INSERT INTO `blog_mid_category_article` VALUES ('1547', '46664895', null, 'JSON');
+INSERT INTO `blog_mid_category_article` VALUES ('1548', '46664895', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1549', '46651201', null, 'Android');
+INSERT INTO `blog_mid_category_article` VALUES ('1550', '46623481', null, 'S2SH');
+INSERT INTO `blog_mid_category_article` VALUES ('1551', '46602137', null, 'S2SH');
+INSERT INTO `blog_mid_category_article` VALUES ('1552', '46581259', null, 'Android');
+INSERT INTO `blog_mid_category_article` VALUES ('1553', '46580879', null, 'S2SH');
+INSERT INTO `blog_mid_category_article` VALUES ('1554', '46580735', null, 'S2SH');
+INSERT INTO `blog_mid_category_article` VALUES ('1555', '46467975', null, 'S2SH');
+INSERT INTO `blog_mid_category_article` VALUES ('1556', '46432105', null, 'S2SH');
+INSERT INTO `blog_mid_category_article` VALUES ('1557', '46427609', null, 'S2SH');
+INSERT INTO `blog_mid_category_article` VALUES ('1558', '46399177', null, 'ExtJS');
+INSERT INTO `blog_mid_category_article` VALUES ('1559', '46399177', null, 'S2SH');
+INSERT INTO `blog_mid_category_article` VALUES ('1560', '46398493', null, 'S2SH');
+INSERT INTO `blog_mid_category_article` VALUES ('1561', '46388029', null, 'S2SH');
+INSERT INTO `blog_mid_category_article` VALUES ('1562', '46351575', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1563', '46013901', null, 'ExtJS');
+INSERT INTO `blog_mid_category_article` VALUES ('1564', '45935027', null, 'ExtJS');
+INSERT INTO `blog_mid_category_article` VALUES ('1565', '45932181', null, 'ExtJS');
+INSERT INTO `blog_mid_category_article` VALUES ('1566', '45932091', null, 'ExtJS');
+INSERT INTO `blog_mid_category_article` VALUES ('1567', '45790447', null, 'S2SH');
+INSERT INTO `blog_mid_category_article` VALUES ('1568', '45695305', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1569', '45691771', null, 'S2SH');
+INSERT INTO `blog_mid_category_article` VALUES ('1570', '45667393', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1571', '45511715', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1572', '45486447', null, 'JavaEE');
+INSERT INTO `blog_mid_category_article` VALUES ('1573', '45477207', null, 'Android');
+INSERT INTO `blog_mid_category_article` VALUES ('1574', '45426011', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1575', '45271663', null, 'Algorithm');
+INSERT INTO `blog_mid_category_article` VALUES ('1576', '45267777', null, 'Android');
+INSERT INTO `blog_mid_category_article` VALUES ('1577', '45252625', null, 'Android');
+INSERT INTO `blog_mid_category_article` VALUES ('1578', '45199997', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1579', '45194737', null, 'HDOJ');
+INSERT INTO `blog_mid_category_article` VALUES ('1580', '45126407', null, 'Android');
+INSERT INTO `blog_mid_category_article` VALUES ('1581', '45091855', null, 'Android');
+INSERT INTO `blog_mid_category_article` VALUES ('1582', '44955667', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1583', '44907079', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1584', '44725051', null, 'Algorithm');
+INSERT INTO `blog_mid_category_article` VALUES ('1585', '44706561', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1586', '44698817', null, 'Algorithm');
+INSERT INTO `blog_mid_category_article` VALUES ('1587', '44682655', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1588', '44593287', null, 'Algorithm');
+INSERT INTO `blog_mid_category_article` VALUES ('1589', '44590865', null, 'Algorithm');
+INSERT INTO `blog_mid_category_article` VALUES ('1590', '44493769', null, 'Algorithm');
+INSERT INTO `blog_mid_category_article` VALUES ('1591', '44492889', null, 'Algorithm');
+INSERT INTO `blog_mid_category_article` VALUES ('1592', '44340743', null, 'Algorithm');
+INSERT INTO `blog_mid_category_article` VALUES ('1593', '44302871', null, 'Algorithm');
+INSERT INTO `blog_mid_category_article` VALUES ('1594', '44001325', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1595', '43951155', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1596', '43936435', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1597', '43866467', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1598', '43669609', null, 'Algorithm');
+INSERT INTO `blog_mid_category_article` VALUES ('1599', '43637989', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1600', '43637971', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1601', '43601607', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1602', '43567759', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1603', '43532277', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1604', '43447435', null, 'javaSE');
+INSERT INTO `blog_mid_category_article` VALUES ('1605', '43269729', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1606', '43231957', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1607', '42875217', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1608', '42835521', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1609', '42833823', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1610', '42803691', null, 'Algorithm');
+INSERT INTO `blog_mid_category_article` VALUES ('1611', '42716587', null, 'Algorithm');
+INSERT INTO `blog_mid_category_article` VALUES ('1612', '42710285', null, '蓝桥杯');
+INSERT INTO `blog_mid_category_article` VALUES ('1613', '42673285', null, 'Algorithm');
+INSERT INTO `blog_mid_category_article` VALUES ('1614', '42644941', null, 'Algorithm');
+INSERT INTO `blog_mid_category_article` VALUES ('1615', '42590249', null, 'Algorithm');
+INSERT INTO `blog_mid_category_article` VALUES ('1616', '42590223', null, 'Algorithm');
+INSERT INTO `blog_mid_category_article` VALUES ('1617', '42590119', null, 'Algorithm');
+INSERT INTO `blog_mid_category_article` VALUES ('1618', '42581377', null, '蓝桥杯');
 
 -- ----------------------------
 -- Table structure for blog_mid_user_article

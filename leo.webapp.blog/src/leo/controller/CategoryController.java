@@ -26,5 +26,29 @@ public class CategoryController {
 		List<Category> articles = categoryService.getAllCategories();
 		return Response.success(articles);
 	}
-
+	// TODO 将article_code的值放到Id中 
+	// TODO 将article_code的值放到Id中 
+	// TODO 将article_code的值放到Id中 
+	// TODO 将article_code的值放到Id中 
+	// TODO 将article_code的值放到Id中 
+	// TODO 将article_code的值放到Id中 
+	// TODO 将article_code的值放到Id中 
+	// TODO 将article_code的值放到Id中 
+	// TODO 将article_code的值放到Id中 
+	// TODO 将article_code的值放到Id中 
+	// TODO 将article_code的值放到Id中 
+	// TODO 将article_code的值放到Id中 
+	// TODO 将article_code的值放到Id中 
+	// TODO 将article_code的值放到Id中 
+	// TODO 将article_code的值放到Id中 
+	// TODO 将article_code的值放到Id中 
+	// TODO 将article_code的值放到Id中 
+	// TODO 将article_code的值放到Id中 
+	// TODO 将article_code的值放到Id中 
+	@RequestMapping(value = "/{categoryName}/articles", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public Response getArticles(@PathVariable("categoryName") String categoryName) {
+		List<Article> articles = categoryService.getArticles(categoryName);
+		return Response.success(articles);
+	}
 }
