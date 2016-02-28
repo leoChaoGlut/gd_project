@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- lib css -->
     <link rel="stylesheet" href="css/lib/jquery.shCircleLoader.css">
+    <link rel="stylesheet" href="css/lib/default.css">
     <!-- my css -->
     <link rel="stylesheet" href="css/layout.css">
 </head>
 
-<body ms-controller="vm_body">
+<body ms-controller="vm_body" ms-click="hideModal">
     <div class="head" ms-controller="vm_head">
         <div class="head_left"></div>
         <div class="head_right">
@@ -44,19 +45,41 @@
         </div>
         <div style="clear:both;"></div>
     </div>
-    <!-- modal -->
-    <div class="article_content_container" style="display:none;" ms-click="hideDetail">
-    </div>
-    <div class="my_content" style="display:none;">
+    <div class="my_content" style="display:none;" ms-click="clickModal">
     </div>
     <div id="loading" class="loading" style="height:100px;position:absolute;display:none;">
     </div>
-    <div class="about_blog" style="display:none;">
-    </div>
-    <div class="about_me" style="display:none;">
+    <div class="about_blog" style="display:none;" ms-click="clickModal">
+        <br>
+        <h2 style="text-align: center;">数据抓取自我的CSDN,最新动态请点击:<a href="http://blog.csdn.net/lc0817" title="">这里</a> </h2>
+        <br>
+        <h3 style="text-align: center;">后台所用的爬虫仅适合爬取CSDN文章数据,详情请点击:<a href="https://github.com/leoChaoGlut/spider4CSDN" title="">这里</a> </h3>
+        <br>
+        <h4 style="text-align: center;">该网站的Github源码在:<a href="https://github.com/leoChaoGlut/gd_project" title="">这里</a> </h4>
+        <br>
+        <h5 style="text-align: center;">由于数据是抓取的,所以有可能导致样式混乱,该功能待加强.</h5>
+        <br>
+        <br>
+        <h5 style="text-align: center;">===============================华丽的分割线...以下是学习历程...===============================</h5>
+        <br>
+        <br>
+        <br>
+        <h5 style="text-align: center;">大二下学期暑假:开始接触Java</h5>
+        <br>
+        <h4 style="text-align: center;">大三上学期:开始学习算法,坚持了4个月左右,拿了人生中第一个国家级个人三等奖项,从此算法学习告一段落.</h4>
+        <br>
+        <h3 style="text-align: center;">大三下学期:学着学着,有了一定的开发基础,有幸跟董院长和杨教授做项目.一个是学校的请假app,另一个是学校的工会管理系统,也是第一次通过编程转到钱~哈哈..(尽管只有4700+RMB..)</h3>
+        <br>
+        <h4 style="text-align: center;">大四上学期期中:过了阿里的笔试和一面,但可惜,二面没过..学校校招,去了4个公司,拿了4个offer.相对比较有名的只有品高了.</h4>
+        <br>
+        <h3 style="text-align: center;">20151126:到达品高实习.参与2个项目,一个做了数据挖掘相关,一个则是改着无穷无尽的bug.......</h3>
+        <br>
+        <h5 style="text-align: center;">今天20160228:即将结束品高实习,一些事情让我挺失望的,所以选择结束实习.</h5>
+        <br>
     </div>
     <!-- lib js-->
     <script src="js/lib/jquery-2.2.0.min.js"></script>
+    <script src="js/lib/velocity.min.js"></script>
     <script src="js/lib/jquery.shCircleLoader-min.js"></script>
     <script src="js/lib/avalon.js"></script>
     <!-- my js -->

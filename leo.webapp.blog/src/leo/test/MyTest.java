@@ -14,13 +14,10 @@ import com.alibaba.fastjson.JSON;
 
 import leo.bean.Article;
 import leo.bean.Category;
-import leo.bean.CategoryArticle;
 import leo.mapper.ArticleMapper;
 import leo.mapper.CategoryMapper;
-import leo.mapper.TestMapper;
 import leo.service.IArticleService;
 import leo.service.ICategoryService;
-import leo.util.JSONFileReader;
 
 public class MyTest {
 	ApplicationContext ctx = new ClassPathXmlApplicationContext("leo/config/spring-application-config.xml",
@@ -73,12 +70,12 @@ public class MyTest {
 	 */
 	@Test
 	public void test4() {
-		TestMapper mapper = ctx.getBean(TestMapper.class);
-		List<CategoryArticle> list = JSONFileReader.parseArray(CategoryArticle.class, "c://1");
-		for (CategoryArticle categoryArticle : list) {
-			System.out.println(categoryArticle.toString());
-		}
-		mapper.insertMore(list);
+//		TestMapper mapper = ctx.getBean(TestMapper.class);
+//		List<CategoryArticle> list = JSONFileReader.parseArray(CategoryArticle.class, "c://1");
+//		for (CategoryArticle categoryArticle : list) {
+//			System.out.println(categoryArticle.toString());
+//		}
+//		mapper.insertMore(list);
 	}
 
 	@Test
@@ -92,8 +89,8 @@ public class MyTest {
 
 	@Test
 	public void test6() {
-		TestMapper mapper = ctx.getBean(TestMapper.class);
-		List<Article> list = JSONFileReader.parseArray(Article.class, "C://2");
+//		TestMapper mapper = ctx.getBean(TestMapper.class);
+//		List<Article> list = JSONFileReader.parseArray(Article.class, "C://2");
 //		list.sort(new Comparator<Article>() {
 //
 //			@Override
@@ -102,10 +99,10 @@ public class MyTest {
 //				return o1.getId() - o2.getId();
 //			}
 //		});
-		for (Article article : list) {
-			System.out.println(article.toString());
-		}
-		mapper.insertArticles(list);
+		// for (Article article : list) {
+		// System.out.println(article.toString());
+		// }
+		//	mapper.insertArticles(list);
 	}
 
 	@Test

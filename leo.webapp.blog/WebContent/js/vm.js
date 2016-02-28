@@ -4,20 +4,24 @@ var Vm = (function() {
     function showLoading() {
         Dom.loader.css('top', (window.scrollY + $(window).height() / 2 - 50) + "px");
         Dom.loader.css('left', ($(window).width() / 2 - 50) + "px");
-        Dom.loader.show(CONST.DURATION);
-        Dom.bd.css('overflow', 'hidden');
+
+        Dom.loader.velocity("fadeIn", CONST.DURATION);
+
         body.isLoading = true;
     }
 
-    function hideLoading() {
-        Dom.loader.hide(CONST.DURATION);
+    function hideLoading(callBack) {
         body.isLoading = false;
+        Dom.loader.velocity("fadeOut", {
+            duration: CONST.DURATION,
+            delay: CONST.DURATION,
+            complete: callBack
+        });
     }
 
-    function hideModal() {
-        // Dom.acc.css('top', window.scrollY + "px");
-        Dom.acc.hide();
-        Dom.bd.css('overflow', 'auto');
+    function hideModal(callBack) {
+        Dom.acc.velocity("fadeOut", CONST.DURATION, callBack);
+        Dom.bd.css('overflow-y', 'auto');
     }
 
 
@@ -25,12 +29,32 @@ var Vm = (function() {
         $id: "vm_body",
         isLoading: false,
         isHomePage: true,
-        hideDetail: function() {
-            if (!body.isLoading) {
-                Dom.mc.children().remove();
-                Dom.mc.hide(CONST.DURATION);
-                hideModal();
+        hasClickedModal: false,
+        clickModal: function() {
+            body.hasClickedModal = true;
+        },
+        hideModal: function() {
+            if (!body.isLoading && !body.hasClickedModal) {
+                if (Dom.aboutBlog.is(":hidden")) {
+                    Dom.mc.children().remove();
+                    Dom.mc.velocity("fadeOut", {
+                        duration: CONST.DURATION,
+                        complete: function() {
+                            Dom.bd.css('background-color', '#f0f0f0');
+                            Dom.bd.css('overflow-y', 'auto');
+                        }
+                    });
+                } else {
+                    Dom.aboutBlog.velocity("fadeOut", {
+                        duration: CONST.DURATION,
+                        complete: function() {
+                            Dom.bd.css('background-color', '#f0f0f0');
+                            Dom.bd.css('overflow-y', 'auto');
+                        }
+                    });
+                }
             }
+            body.hasClickedModal = false;
         },
     })
 
@@ -47,25 +71,29 @@ var Vm = (function() {
                     if (resp.status == 200) {
                         var dom = resp.result;
                         Dom.content.append(dom);
-
-                        Dom.acc.css('top', window.scrollY + "px");
-                        Dom.bd.css('overflow', 'hidden');
                         Dom.mc.css('top', window.scrollY + "px");
 
-                        Dom.acc.fadeIn(300, function() {
-                            Dom.mc.fadeIn(500, function() {});
-                        });
+                        hideLoading(function() {
+                            Dom.mc.velocity("fadeIn", {
+                                duration: CONST.DURATION,
+                                complete: function() {
+                                    Dom.bd.css('background-color', '#a0a0a0');
+                                    Dom.bd.css('overflow-y', 'hidden');
+                                }
+                            });
+                        })
+
                     } else {
                         alert("获取文章详情出错");
-                        hideModal();
+                        // hideModal();
                     }
                 },
                 error: function() {
                     alert("获取文章详情出错");
-                    hideModal();
+                    // hideModal();
                 },
                 complete: function(resp) {
-                    hideLoading();
+                    // hideLoading();
                 }
             });
 
@@ -84,7 +112,7 @@ var Vm = (function() {
                                 article.articles.pushArray(result);
                                 article.curPage++;
                             } else {
-                                dom.hide(CONST.DURATION);
+                                dom.velocity("fadeOut", CONST.DURATION);
                             }
                         }
                     } else {
@@ -96,7 +124,7 @@ var Vm = (function() {
                 },
                 complete: function(resp) {
                     hideLoading();
-                    Dom.bd.css('overflow', 'auto');
+                    Dom.bd.css('overflow-y', 'auto');
                 }
             });
         },
@@ -122,7 +150,7 @@ var Vm = (function() {
                 },
                 complete: function(resp) {
                     hideLoading();
-                    Dom.bd.css('overflow', 'auto');
+                    Dom.bd.css('overflow-y', 'auto');
                 }
             });
         }
@@ -130,7 +158,7 @@ var Vm = (function() {
 
     var head = avalon.define({
         $id: "vm_head",
-        navs: ["首页", "关于博客", "关于作者"],
+        navs: ["首页", "关于博客"],
         clickNav: function(index) {
             switch (index) {
                 case 0:
@@ -151,12 +179,23 @@ var Vm = (function() {
                             },
                             complete: function(resp) {
                                 hideLoading();
-                                Dom.bd.css('overflow', 'auto');
+                                Dom.bd.css('overflow-y', 'auto');
                             }
                         });
                     }
                     break;
                 case 1:
+                    body.hasClickedModal = true;
+
+                    Dom.aboutBlog.css('top', window.scrollY + "px");
+
+                    Dom.aboutBlog.velocity("fadeIn", {
+                        duration: CONST.DURATION,
+                        complete: function() {
+                            Dom.bd.css('background-color', '#a0a0a0');
+                            Dom.bd.css('overflow-y', 'hidden');
+                        }
+                    });
 
                     break;
                 case 2:

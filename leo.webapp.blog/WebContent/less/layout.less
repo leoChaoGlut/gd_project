@@ -8,11 +8,10 @@
 body {
     position: relative;
     padding-top: @MARGIN_NORMAL;
-    // font-family: Arial, Helvetica, sans-serif;
-    // font-size: 100%;
-    // line-height: 1em;
-    // color: #4e4e4e;
-    // min-width: 920px;
+    transition: all 0.5s;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #212121;
+    background-color: #f0f0f0;
 }
 
 ul {
@@ -82,7 +81,7 @@ ul {
     margin: @MARGIN_SMALL @MARGIN_NORMAL;
     text-indent: 1rem;
     line-height: 20px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     cursor: pointer;
     overflow: hidden;
 }
@@ -115,7 +114,8 @@ ul {
     text-indent: 2em;
     margin: @MARGIN_SMALL 0;
     padding: @MARGIN_SMALL;
-    color: #777;
+    overflow: hidden;
+    // color: #777;
 }
 
 .article_other {
@@ -158,16 +158,23 @@ ul {
 }
 
 .my_content,
-.about_blog,
-.about_me {
+.about_blog {
     position: absolute;
-    background-color: white;
+    background-color: #f0f0f0;
     overflow: auto;
     left: 5vw;
     margin-top: 5vh;
     width: 90vw;
     height: 90vh;
     border-radius: @MARGIN_SMALL;
+}
+
+.article_content {
+    line-height: 30px;
+}
+
+.about_blog {
+    // color: #666;
 }
 
 @media (max-width:767px) {

@@ -6,8 +6,9 @@ var Dom = (function() {
         articles: $(".articles"),
         acc: $(".article_content_container"),
         mc: $(".my_content"),
-        loader: $(".loading"),
+        loader: $("#loading"),
         content: $(".my_content"),
         bd: $("body"),
+        aboutBlog: $(".about_blog"),
     }
 })()

@@ -17,8 +17,14 @@ import leo.util.Response;
 @Controller
 @RequestMapping("/article")
 public class ArticleController {
-
-	@Autowired
+	// TODO 设置js,css文件的过期时间.
+	// TODO 设置js,css文件的过期时间.
+	// TODO 设置js,css文件的过期时间.
+	// TODO 设置js,css文件的过期时间.
+	// TODO 设置js,css文件的过期时间.
+	// TODO 设置js,css文件的过期时间.
+	// TODO 设置js,css文件的过期时间.
+	@Autowired	
 	private IArticleService articleService;
 
 	@RequestMapping(value = "/list/{startIndex}/{pageSize}", method = RequestMethod.GET, produces = "application/json")

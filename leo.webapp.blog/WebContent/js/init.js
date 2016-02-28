@@ -30,12 +30,19 @@ var Init = (function() {
         });
         Dom.loader.shCircleLoader({
             color: "#2bbbad",
+            duration: 0.5
         });
     })()
 
 
     function resize() {
         var avalWidth = Dom.body.width();
+
+        // if (Dom.bd.css('overflow-y') == "hidden") {
+        //     avalWidth -= CONST.SCROLL_BAR_WIDTH;
+        // }
+
+
         if (Dom.categories.is(':hidden')) {
             avalWidth -= 2 * CONST.MARGIN_NORMAL;
             Dom.articles.width(avalWidth);
