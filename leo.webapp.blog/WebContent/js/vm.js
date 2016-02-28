@@ -128,6 +128,13 @@ var Vm = (function() {
                 }
             });
         },
+        rendered: function() {
+            Dom.bd.css('background-color', '#f0f0f0');
+            Dom.loader.velocity("fadeOut", {
+                duration: CONST.DURATION,
+                delay: CONST.DURATION
+            });
+        }
     })
     var category = avalon.define({
         $id: "vm_category",

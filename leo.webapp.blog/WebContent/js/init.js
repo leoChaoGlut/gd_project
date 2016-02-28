@@ -28,10 +28,11 @@ var Init = (function() {
             },
             complete: function(resp) {}
         });
-        Dom.loader.shCircleLoader({
-            color: "#2bbbad",
-            duration: 0.5
-        });
+        // Dom.loader.shCircleLoader({
+        //     color: "#2bbbad",
+        //     duration: 0.5
+        // });
+
     })()
 
     //TODO js控制宽度,显示详情的时候不要让dom乱动.
@@ -63,7 +64,6 @@ var Init = (function() {
     }
 
     resize();
-
 
     $(window).resize(function(event) {
         resize();

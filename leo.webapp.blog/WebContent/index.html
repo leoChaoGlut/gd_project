@@ -10,9 +10,18 @@
     <link rel="stylesheet" href="css/lib/default.css">
     <!-- my css -->
     <link rel="stylesheet" href="css/layout.css">
+    <script src="js/lib/jquery-2.2.0.min.js"></script>
+    <script src="js/lib/jquery.shCircleLoader-min.js"></script>
 </head>
 
 <body ms-controller="vm_body" ms-click="hideModal">
+    <div id="loading" class="loading" style="height:100px;position:absolute;top:45%;left:45%;"></div>
+    <script>
+    $("#loading").shCircleLoader({
+        color: "#2bbbad",
+        duration: 0.5
+    });
+    </script>
     <div class="head" ms-controller="vm_head">
         <div class="head_left"></div>
         <div class="head_right">
@@ -30,7 +39,7 @@
         </div>
         <div class="articles" ms-controller="vm_article">
             <ul>
-                <li class="article" ms-repeat="articles" ms-click="showDetail($index)">
+                <li class="article" ms-repeat="articles" ms-click="showDetail($index)" data-repeat-rendered="rendered">
                     <div class="article_title">{{el.title}}</div>
                     <div class="article_description">{{el.description}}</div>
                     <ul class="article_other">
@@ -46,8 +55,6 @@
         <div style="clear:both;"></div>
     </div>
     <div class="my_content" style="display:none;" ms-click="clickModal">
-    </div>
-    <div id="loading" class="loading" style="height:100px;position:absolute;display:none;">
     </div>
     <div class="about_blog" style="display:none;" ms-click="clickModal">
         <br>
@@ -78,9 +85,9 @@
         <br>
     </div>
     <!-- lib js-->
-    <script src="js/lib/jquery-2.2.0.min.js"></script>
+    <!-- <script src="js/lib/jquery-2.2.0.min.js"></script> -->
     <script src="js/lib/velocity.min.js"></script>
-    <script src="js/lib/jquery.shCircleLoader-min.js"></script>
+    <!-- <script src="js/lib/jquery.shCircleLoader-min.js"></script> -->
     <script src="js/lib/avalon.js"></script>
     <!-- my js -->
     <script src="js/const.js"></script>
