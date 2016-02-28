@@ -34,7 +34,16 @@ var Init = (function() {
         });
     })()
 
-
+    //TODO js控制宽度,显示详情的时候不要让dom乱动.
+    //TODO js控制宽度,显示详情的时候不要让dom乱动.
+    //TODO js控制宽度,显示详情的时候不要让dom乱动.
+    //TODO js控制宽度,显示详情的时候不要让dom乱动.
+    //TODO js控制宽度,显示详情的时候不要让dom乱动.
+    //TODO js控制宽度,显示详情的时候不要让dom乱动.
+    //TODO js控制宽度,显示详情的时候不要让dom乱动.
+    //TODO js控制宽度,显示详情的时候不要让dom乱动.
+    //TODO js控制宽度,显示详情的时候不要让dom乱动.
+    //TODO js控制宽度,显示详情的时候不要让dom乱动.
     function resize() {
         var avalWidth = Dom.body.width();
 
