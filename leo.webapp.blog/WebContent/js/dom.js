@@ -10,5 +10,7 @@ var Dom = (function() {
         content: $(".my_content"),
         bd: $("body"),
         aboutBlog: $(".about_blog"),
+        win: $(window),
+
     }
 })()

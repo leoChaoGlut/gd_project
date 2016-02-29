@@ -165,7 +165,7 @@ var Vm = (function() {
 
     var head = avalon.define({
         $id: "vm_head",
-        navs: ["首页", "关于博客"],
+        navs: ["所有文章", "关于博客"],
         clickNav: function(index) {
             switch (index) {
                 case 0:

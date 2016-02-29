@@ -6,11 +6,11 @@ var Init = (function() {
                 if (resp.status == 200) {
                     Vm.article.articles = resp.result;
                 } else {
-                    alert("获取文章详情出错");
+                    alert("获取文章详情出错,请刷新试试~");
                 }
             },
             error: function() {
-                alert("获取文章详情出错");
+                alert("获取文章详情出错,请刷新试试~");
             },
             complete: function(resp) {}
         });
@@ -20,11 +20,11 @@ var Init = (function() {
                 if (resp.status == 200) {
                     Vm.category.categories = resp.result;
                 } else {
-                    alert("获取文章详情出错");
+                    alert("获取文章详情出错,请刷新试试~");
                 }
             },
             error: function() {
-                alert("获取文章详情出错");
+                alert("获取文章详情出错,请刷新试试~");
             },
             complete: function(resp) {}
         });
@@ -46,11 +46,8 @@ var Init = (function() {
     //TODO js控制宽度,显示详情的时候不要让dom乱动.
     //TODO js控制宽度,显示详情的时候不要让dom乱动.
     function resize() {
-        var avalWidth = Dom.body.width();
 
-        // if (Dom.bd.css('overflow-y') == "hidden") {
-        //     avalWidth -= CONST.SCROLL_BAR_WIDTH;
-        // }
+        var avalWidth = Dom.body.width();
 
 
         if (Dom.categories.is(':hidden')) {
