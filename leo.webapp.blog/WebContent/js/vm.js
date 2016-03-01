@@ -84,13 +84,17 @@ var Vm = (function() {
                         })
 
                     } else {
-                        alert("获取文章详情出错");
-                        // hideModal();
+                        var doReload = confirm("获取文章详情出错,点击'确定'按钮重新加载页面~");
+                        if (doReload) {
+                            location.reload();
+                        }
                     }
                 },
                 error: function() {
-                    alert("获取文章详情出错");
-                    // hideModal();
+                    var doReload = confirm("加载出错,点击'确定'按钮重新加载页面~");
+                    if (doReload) {
+                        location.reload();
+                    }
                 },
                 complete: function(resp) {
                     // hideLoading();
@@ -116,11 +120,17 @@ var Vm = (function() {
                             }
                         }
                     } else {
-                        alert("加载出错");
+                        var doReload = confirm("加载出错,点击'确定'按钮重新加载页面~");
+                        if (doReload) {
+                            location.reload();
+                        }
                     }
                 },
                 error: function() {
-                    alert("加载出错");
+                    var doReload = confirm("加载出错,点击'确定'按钮重新加载页面~");
+                    if (doReload) {
+                        location.reload();
+                    }
                 },
                 complete: function(resp) {
                     hideLoading();
@@ -149,11 +159,17 @@ var Vm = (function() {
                     if (resp.status == 200) {
                         article.articles = resp.result;
                     } else {
-                        alert("加载出错");
+                        var doReload = confirm("加载出错,点击'确定'按钮重新加载页面~");
+                        if (doReload) {
+                            location.reload();
+                        }
                     }
                 },
                 error: function() {
-                    alert("加载出错");
+                    var doReload = confirm("加载出错,点击'确定'按钮重新加载页面~");
+                    if (doReload) {
+                        location.reload();
+                    }
                 },
                 complete: function(resp) {
                     hideLoading();
@@ -178,11 +194,17 @@ var Vm = (function() {
                                 if (resp.status == 200) {
                                     Vm.article.articles = resp.result;
                                 } else {
-                                    alert("加载出错");
+                                    var doReload = confirm("加载出错,点击'确定'按钮重新加载页面~");
+                                    if (doReload) {
+                                        location.reload();
+                                    }
                                 }
                             },
                             error: function() {
-                                alert("加载出错");
+                                var doReload = confirm("加载出错,点击'确定'按钮重新加载页面~");
+                                if (doReload) {
+                                    location.reload();
+                                }
                             },
                             complete: function(resp) {
                                 hideLoading();

@@ -35,6 +35,7 @@ public class ArticleController {
 			return Response.success(articles);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			return Response.error();
 		}
 	}

@@ -28,6 +28,7 @@ public class CategoryController {
 			return Response.success(articles);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			return Response.error();
 		}
 
@@ -41,6 +42,7 @@ public class CategoryController {
 			return Response.success(articles);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			return Response.error();
 		}
 

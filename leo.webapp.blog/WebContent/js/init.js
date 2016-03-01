@@ -6,12 +6,13 @@ var Init = (function() {
                 if (resp.status == 200) {
                     Vm.article.articles = resp.result;
                 } else {
-                    alert("获取文章详情出错,请刷新试试~");
+                    var doReload = confirm("获取文章详情出错,点击'确定'按钮重新加载页面~");
+                    if (doReload) {
+                        location.reload();
+                    }
                 }
             },
-            error: function() {
-                alert("获取文章详情出错,请刷新试试~");
-            },
+            error: function() {},
             complete: function(resp) {}
         });
         $.ajax({
@@ -20,12 +21,13 @@ var Init = (function() {
                 if (resp.status == 200) {
                     Vm.category.categories = resp.result;
                 } else {
-                    alert("获取文章详情出错,请刷新试试~");
+                    var doReload = confirm("获取文章详情出错,点击'确定'按钮重新加载页面~");
+                    if (doReload) {
+                        location.reload();
+                    }
                 }
             },
-            error: function() {
-                alert("获取文章详情出错,请刷新试试~");
-            },
+            error: function() {},
             complete: function(resp) {}
         });
         // Dom.loader.shCircleLoader({
