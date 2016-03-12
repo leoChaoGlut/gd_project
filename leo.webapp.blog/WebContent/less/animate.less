@@ -1,0 +1,32 @@
+/* 必需 */
+
+@MARGIN_NORMAL: 20px;
+@MARGIN_SMALL: 5px;
+.expand-transition {
+    transition: all .3s ease;
+    // padding: 10px;
+    overflow: hidden;
+}
+
+
+/* .expand-enter 定义进入的开始状态 */
+
+
+/* .expand-leave 定义离开的结束状态 */
+
+.expand-enter,
+.expand-leave {
+    height: 0;
+    // padding: 0 10px;
+    opacity: 0;
+}
+
+.optAnimate-transition {
+    transition: all 0.4s ease;
+    margin-top: -200px;
+}
+
+.optAnimate-enter,
+.optAnimate-leave {
+    margin-top: 0;
+}

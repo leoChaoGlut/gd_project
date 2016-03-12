@@ -6,94 +6,81 @@
     <title>Leo's Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- lib css -->
-    <link rel="stylesheet" href="css/lib/jquery.shCircleLoader.css">
-    <link rel="stylesheet" href="css/lib/default.css">
+    <link rel="stylesheet" href="css/lib/icon.css">
+    <link rel="stylesheet" href="css/lib/materialize.min.css">
     <!-- my css -->
     <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- lib js -->
     <script src="js/lib/jquery-2.2.0.min.js"></script>
-    <script src="js/lib/jquery.shCircleLoader-min.js"></script>
+    <script src="js/lib/vue.min.js"></script>
 </head>
 
-<body ms-controller="vm_body" ms-click="hideModal">
-    <div id="loading" class="loading" style="height:100px;position:absolute;top:45%;left:45%;"></div>
-    <script>
-    $("#loading").shCircleLoader({
-        color: "#2bbbad",
-        duration: 0.5
-    });
-    </script>
-    <div class="head" ms-controller="vm_head">
-        <div class="head_left"></div>
-        <div class="head_right">
-            <ul class="nav_group">
-                <li class="nav" ms-repeat="navs" ms-text="el" ms-click="clickNav($index)"></li>
-            </ul>
-        </div>
+<body>
+    <div class="row" id="container">
+        <div class="col l3 m1 s0" style="height:1px;"></div>
+        <article-container id="articleContainer" class="col l6 m10 s12">
+            <article v-on:click="showModal($index)" v-for="article of articles" transition="expand">
+                <h4 class="title">{{article.title}}</h4>
+                <p class="description">{{article.description}}</p>
+                <span class="view_count">阅读量:{{article.viewCount}}</span>
+                <span class="post_date">创建日期:{{article.postDate}}</span>
+            </article>
+            <loading v-show="isLoading" style="margin-top:20px;">
+                <load></load>
+            </loading>
+            <no-more-data v-show="noMoreData">
+                <i class="small material-icons">info_outline</i> 所有文章加载完毕
+                <i class="small material-icons">info_outline</i>
+            </no-more-data>
+        </article-container>
     </div>
-    <div class="body">
-        <div class="categories hidden-xs" ms-controller="vm_category">
-            <ul style="padding: 15px 0 10px 0;">
-                <li class="category" ms-repeat="categories" ms-click="loadArticles($index)">{{el.name}} <span style="float: right;margin:0 10px 0 0;">({{el.count}})</span></li>
-                <div style="clear:both;"></div>
-            </ul>
-        </div>
-        <div class="articles" ms-controller="vm_article">
+    <!-- options -->
+    <options id="options">
+        <div class="fixed-action-btn horizontal" style="bottom: 25px; right: 25px;">
+            <a class="btn-floating btn-large red">
+                <i class="large material-icons">mode_edit</i>
+            </a>
             <ul>
-                <li class="article" ms-repeat="articles" ms-click="showDetail($index)" data-repeat-rendered="rendered">
-                    <div class="article_title">{{el.title}}</div>
-                    <div class="article_description">{{el.description}}</div>
-                    <ul class="article_other">
-                        <li class="post_date">创建日期:{{el.postDate}}</li>
-                        <li class="view_count">阅读量:{{el.viewCount}}</li>
-                    </ul>
-                    <div style="clear:both;"></div>
-                </li>
-                <li class="load_more" ms-click="loadMore" ms-if="isHomePage">加 载 更 多</li>
-                <div style="clear:both;"></div>
+                <li><a data-position="top" data-delay="50" data-tooltip="About Me" class="btn-floating blue tooltipped" title="About Me"><i class="material-icons">person_pin</i></a></li>
+                <li><a data-position="top" data-delay="50" data-tooltip="文章类别" class="btn-floating yellow tooltipped darken-1" title="文章类别" v-on:click="showCategory"><i class="material-icons">subject</i>
+                </a></li>
+                <li><a data-position="top" data-delay="50" data-tooltip="返回顶部" class="btn-floating green tooltipped" href="#" title="返回顶部"><i class="material-icons">publish</i></a></li>
             </ul>
         </div>
-        <div style="clear:both;"></div>
+    </options>
+    <!-- modal -->
+    <div id="myModal" class="modal modal-fixed-footer" style="width:80%;">
+        <div class="modal-content">
+            <loading v-show="isLoading">
+                <load></load>
+            </loading>
+        </div>
+        <div class="modal-footer" style="color:#8d8d8d;text-align: center;line-height: 56px;">
+            由于数据抓取自CSDN,可能会有部分样式出现混乱.可点击右侧Go按钮跳转到原文观看.
+            <a href="#!" data-position="left" data-delay="50" data-tooltip="跳转到我的CSDN" class="tooltipped modal-action waves-effect waves-green btn-flat cyan lighten-2" style="color:white;" v-on:click="loadContentFromCSDN">Go</a>
+        </div>
     </div>
-    <div class="my_content" style="display:none;" ms-click="clickModal">
-    </div>
-    <div class="about_blog" style="display:none;" ms-click="clickModal">
-        <br>
-        <h2 style="text-align: center;">数据抓取自我的CSDN,最新动态请点击:<a href="http://blog.csdn.net/lc0817" title="">这里</a> </h2>
-        <br>
-        <h3 style="text-align: center;">后台所用的爬虫仅适合爬取CSDN文章数据,详情请点击:<a href="https://github.com/leoChaoGlut/spider4CSDN" title="">这里</a> </h3>
-        <br>
-        <h4 style="text-align: center;">该网站的Github源码在:<a href="https://github.com/leoChaoGlut/gd_project" title="">这里</a> </h4>
-        <br>
-        <h5 style="text-align: center;">由于数据是抓取的,所以有可能导致样式混乱,该功能待加强.</h5>
-        <br>
-        <br>
-        <h5 style="text-align: center;">===============================华丽的分割线...以下是学习历程...===============================</h5>
-        <br>
-        <br>
-        <br>
-        <h5 style="text-align: center;">大二下学期暑假:开始接触Java</h5>
-        <br>
-        <h4 style="text-align: center;">大三上学期:开始学习算法,坚持了4个月左右,拿了人生中第一个国家级个人三等奖项,从此算法学习告一段落.</h4>
-        <br>
-        <h3 style="text-align: center;">大三下学期:学着学着,有了一定的开发基础,有幸跟董院长和杨教授做项目.一个是学校的请假app,另一个是学校的工会管理系统,也是第一次通过编程赚到钱~哈哈..(尽管只有4700+RMB..)</h3>
-        <br>
-        <h4 style="text-align: center;">大四上学期期中:过了阿里的笔试和一面,但可惜,二面没过..学校校招,去了4个公司,拿了4个offer.相对比较有名的只有品高了.</h4>
-        <br>
-        <h3 style="text-align: center;">20151126:到达品高实习.参与2个项目,一个做了数据挖掘相关,一个则是改着无穷无尽的bug.......</h3>
-        <br>
-        <h5 style="text-align: center;">今天20160228:即将结束品高实习,一些事情让我挺失望的,所以选择结束实习.</h5>
-        <br>
-    </div>
-    <!-- lib js-->
-    <!-- <script src="js/lib/jquery-2.2.0.min.js"></script> -->
-    <script src="js/lib/velocity.min.js"></script>
-    <!-- <script src="js/lib/jquery.shCircleLoader-min.js"></script> -->
-    <script src="js/lib/avalon.js"></script>
-    <!-- my js -->
+    <!-- category -->
+    <category id="category">
+        <ul>
+            <li v-for="category in categories">
+                {{category.name}}
+                <article-count>
+                    ( {{category.count}} )
+                </article-count>
+            </li>
+        </ul>
+    </category>
     <script src="js/const.js"></script>
     <script src="js/dom.js"></script>
+    <script src="js/component.js"></script>
     <script src="js/vm.js"></script>
+    <script src="js/util.js"></script>
     <script src="js/init.js"></script>
+    <!-- lib js -->
+    <!-- <script src="js/lib/velocity.min.js"></script> -->
+    <script src="js/lib/materialize.min.js"></script>
 </body>
 
 </html>
