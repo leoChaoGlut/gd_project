@@ -40,6 +40,13 @@ var Vm = (function() {
                     }, CONST.DURATION);
                 }
                 this.isFolded = !this.isFolded;
+            },
+            withoutCategory: function() {
+                articleContainer.$data.articles.length = 0;
+                articleContainer.$data.articles = [];
+                articleContainer.$data.noMoreData = false;
+                Vm.articleContainer.$data.startIndex = 0;
+                Util.getArticles();
             }
         }
     })
@@ -61,8 +68,19 @@ var Vm = (function() {
         el: "#category",
         data: {
             categories: [],
+            curIndex: -1,
         },
-        methods: {}
+        methods: {
+            showArticlesOfACategory: function(index) {
+                if (this.curIndex != index) {
+                    articleContainer.$data.articles.length = 0;
+                    articleContainer.$data.articles = [];
+                    var categoryName = this.categories[index].name;
+                    Util.getArticlesByCategory(categoryName);
+                    this.curIndex = index;
+                }
+            }
+        }
     })
     return {
         articleContainer: articleContainer,

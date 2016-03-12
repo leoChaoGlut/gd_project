@@ -42,10 +42,10 @@
                 <i class="large material-icons">mode_edit</i>
             </a>
             <ul>
-                <li><a data-position="top" data-delay="50" data-tooltip="About Me" class="btn-floating blue tooltipped" title="About Me"><i class="material-icons">person_pin</i></a></li>
-                <li><a data-position="top" data-delay="50" data-tooltip="文章类别" class="btn-floating yellow tooltipped darken-1" title="文章类别" v-on:click="showCategory"><i class="material-icons">subject</i>
-                </a></li>
-                <li><a data-position="top" data-delay="50" data-tooltip="返回顶部" class="btn-floating green tooltipped" href="#" title="返回顶部"><i class="material-icons">publish</i></a></li>
+                <li><a data-position="top" data-delay="50" data-tooltip="所有文章" class="btn-floating red tooltipped" href="#" v-on:click="withoutCategory"><i class="material-icons">view_agenda</i></a></li>
+                <li><a data-position="top" data-delay="50" data-tooltip="文章类别" class="btn-floating yellow tooltipped darken-1" v-on:click="showCategory"><i class="material-icons">subject</i></a></li>
+                <li><a data-position="top" data-delay="50" data-tooltip="About Me" class="btn-floating blue tooltipped"><i class="material-icons">person_pin</i></a></li>
+                <li><a data-position="top" data-delay="50" data-tooltip="返回顶部" class="btn-floating green tooltipped" href="#"><i class="material-icons">publish</i></a></li>
             </ul>
         </div>
     </options>
@@ -58,13 +58,13 @@
         </div>
         <div class="modal-footer" style="color:#8d8d8d;text-align: center;line-height: 56px;">
             由于数据抓取自CSDN,可能会有部分样式出现混乱.可点击右侧Go按钮跳转到原文观看.
-            <a href="#!" data-position="left" data-delay="50" data-tooltip="跳转到我的CSDN" class="tooltipped modal-action waves-effect waves-green btn-flat cyan lighten-2" style="color:white;" v-on:click="loadContentFromCSDN">Go</a>
+            <a href="#!" data-position="left" data-delay="50" data-tooltip="跳转到我的CSDN" class="tooltipped modal-action waves-effect waves-green btn-flat blue" style="color:white;" v-on:click="loadContentFromCSDN">Go</a>
         </div>
     </div>
     <!-- category -->
     <category id="category">
         <ul>
-            <li v-for="category in categories">
+            <li v-for="category in categories" v-on:click="showArticlesOfACategory($index)">
                 {{category.name}}
                 <article-count>
                     ( {{category.count}} )
