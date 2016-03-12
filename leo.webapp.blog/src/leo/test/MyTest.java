@@ -18,6 +18,9 @@ import leo.mapper.ArticleMapper;
 import leo.mapper.CategoryMapper;
 import leo.service.IArticleService;
 import leo.service.ICategoryService;
+import leo.util.JSONFileReader;
+import leo.util.JedisUtil;
+import redis.clients.jedis.Jedis;
 
 public class MyTest {
 	ApplicationContext ctx = new ClassPathXmlApplicationContext("leo/config/spring-application-config.xml",
@@ -70,12 +73,13 @@ public class MyTest {
 	 */
 	@Test
 	public void test4() {
-//		TestMapper mapper = ctx.getBean(TestMapper.class);
-//		List<CategoryArticle> list = JSONFileReader.parseArray(CategoryArticle.class, "c://1");
-//		for (CategoryArticle categoryArticle : list) {
-//			System.out.println(categoryArticle.toString());
-//		}
-//		mapper.insertMore(list);
+		// TestMapper mapper = ctx.getBean(TestMapper.class);
+		// List<CategoryArticle> list =
+		// JSONFileReader.parseArray(CategoryArticle.class, "c://1");
+		// for (CategoryArticle categoryArticle : list) {
+		// System.out.println(categoryArticle.toString());
+		// }
+		// mapper.insertMore(list);
 	}
 
 	@Test
@@ -89,28 +93,44 @@ public class MyTest {
 
 	@Test
 	public void test6() {
-//		TestMapper mapper = ctx.getBean(TestMapper.class);
-//		List<Article> list = JSONFileReader.parseArray(Article.class, "C://2");
-//		list.sort(new Comparator<Article>() {
-//
-//			@Override
-//			public int compare(Article o1, Article o2) {
-//				// TODO Auto-generated method stub
-//				return o1.getId() - o2.getId();
-//			}
-//		});
+		// TestMapper mapper = ctx.getBean(TestMapper.class);
+		// List<Article> list = JSONFileReader.parseArray(Article.class,
+		// "C://2");
+		// list.sort(new Comparator<Article>() {
+		//
+		// @Override
+		// public int compare(Article o1, Article o2) {
+		// // TODO Auto-generated method stub
+		// return o1.getId() - o2.getId();
+		// }
+		// });
 		// for (Article article : list) {
 		// System.out.println(article.toString());
 		// }
-		//	mapper.insertArticles(list);
+		// mapper.insertArticles(list);
 	}
 
+	/**
+	 * 通过json转换为Article List 再存到数据库
+	 */
 	@Test
 	public void test7() {
+		List<Article> articles = JSONFileReader.parseArray(Article.class, "C:/1");
 		ArticleMapper articleMapper = ctx.getBean(ArticleMapper.class);
-		List<Article> list = articleMapper.pageQuery(0, 10);
-		for (Article article : list) {
-			System.out.println(article.toString());
+		articleMapper.insertMore(articles);
+	}
+
+	/**
+	 * 
+	 */
+	@Test
+	public void test8() {
+		Jedis jedis = JedisUtil.getResource();
+		List<Article> articles = JSONFileReader.parseArray(Article.class, "C:/1");
+		for (Article article : articles) {
+			int articleId = article.getArticleId();
+			System.out.println(articleId);
+			jedis.set(articleId + "", JSONFileReader.getStringContent("C://articles/" + articleId));
 		}
 	}
 

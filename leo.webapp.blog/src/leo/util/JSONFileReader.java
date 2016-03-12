@@ -1,6 +1,7 @@
 package leo.util;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
@@ -30,6 +31,27 @@ public class JSONFileReader {
 			closeResource(fr, br);
 		}
 		return list;
+	}
+
+	public static String getStringContent(String filePath) {
+		FileReader fr = null;
+		BufferedReader br = null;
+		try {
+			fr = new FileReader(filePath);
+			br = new BufferedReader(fr);
+			String lineData = "";
+			StringBuilder sb = new StringBuilder();
+			while ((lineData = br.readLine()) != null) {
+				sb.append(lineData);
+			}
+			return sb.toString();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeResource(fr, br);
+		}
+		return null;
 	}
 
 	private static void closeResource(FileReader fr, BufferedReader br) {

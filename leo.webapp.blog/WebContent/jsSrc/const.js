@@ -9,5 +9,6 @@ var CONST = (function() {
         PAGE_SIZE: 10,
         OK: 200,
         CATEGORY_WIDTH: 250,
+        ALL_ARTICLE_PAGE: -1,
     }
 })()

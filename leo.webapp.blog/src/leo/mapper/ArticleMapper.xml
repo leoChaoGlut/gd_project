@@ -19,18 +19,30 @@
 
 	<select id="selectMore" resultType="Article">
 		SELECT
-		ba.article_id AS articleId,
+		ba.article_id AS
+		articleId,
 		ba.title,
 		ba.description,
 		ba.post_date AS postDate,
 		ba.view_count AS viewCount
 		FROM
 		blog_mid_category_article mca
-		JOIN blog_category bc ON
+		JOIN
+		blog_category bc ON
 		mca.category_name = bc.`name`
-		JOIN blog_article ba ON mca.article_id =
+		JOIN blog_article ba
+		ON mca.article_id =
 		ba.article_id
 		WHERE
 		bc.`name` = #{categoryName}
 	</select>
+
+	<insert id="insertMore" parameterType="Article">
+		INSERT INTO
+		blog_article(article_id,title,description,post_date,view_count)
+		VALUES
+		<foreach collection="articles" item="item" separator=",">
+			(#{item.articleId},#{item.title},#{item.description},#{item.postDate},#{item.viewCount})
+		</foreach>
+	</insert>
 </mapper>
