@@ -30,11 +30,20 @@ var Vm = (function() {
         },
         methods: {
             showCategory: function() {
+                Dom.category.velocity("stop");
                 if (this.isFolded) {
+                    Dom.category.find("li").css("opacity", 0);
                     Dom.category.velocity({
-                        right: 0
-                    }, CONST.DURATION);
+                        right: 0,
+                    }, {
+                        delay: 100,
+                        duration: CONST.DURATION,
+                        complete: function() {
+                            Materialize.showStaggeredList('#category ul');
+                        }
+                    });
                 } else {
+                    Dom.category.find("li").velocity("stop");
                     Dom.category.velocity({
                         right: -CONST.CATEGORY_WIDTH
                     }, CONST.DURATION);
@@ -49,7 +58,12 @@ var Vm = (function() {
                     Vm.articleContainer.$data.startIndex = 0;
                     Util.getArticles();
                     category.$data.curIndex = CONST.ALL_ARTICLE_PAGE;
+                } else {
+                    $('body,html').animate({ scrollTop: 0 }, CONST.DURATION * 2);
                 }
+            },
+            goToTheTop: function() {
+                $('body,html').animate({ scrollTop: 0 }, CONST.DURATION * 2);
             }
         }
     })

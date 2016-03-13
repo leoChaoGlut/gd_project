@@ -10,14 +10,58 @@
     <link rel="stylesheet" href="css/lib/materialize.min.css">
     <!-- my css -->
     <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <!-- lib js -->
-    <script src="js/lib/jquery-2.2.0.min.js"></script>
-    <script src="js/lib/vue.min.js"></script>
 </head>
 
 <body>
-    <div class="row" id="container">
+    <div id="loader" style="text-align: center;margin:10% 0 0 0;">
+        <div class="preloader-wrapper big active" style="text-align: center;">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+            <div class="spinner-layer spinner-red">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+            <div class="spinner-layer spinner-yellow">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+            <div class="spinner-layer spinner-green">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="container" style="display: none;">
         <div class="col l3 m1 s0" style="height:1px;"></div>
         <article-container id="articleContainer" class="col l6 m10 s12">
             <article v-on:click="showModal($index)" v-for="article of articles" transition="expand">
@@ -36,16 +80,16 @@
         </article-container>
     </div>
     <!-- options -->
-    <options id="options">
+    <options id="options" style="display: none;">
         <div class="fixed-action-btn horizontal" style="bottom: 25px; right: 25px;">
             <a class="btn-floating btn-large red">
-                <i class="large material-icons">mode_edit</i>
+                <i class="large material-icons">settings</i>
             </a>
             <ul>
                 <li><a data-position="top" data-delay="50" data-tooltip="所有文章" class="btn-floating red tooltipped" href="#" v-on:click="withoutCategory(-1)"><i class="material-icons">view_agenda</i></a></li>
                 <li><a data-position="top" data-delay="50" data-tooltip="文章类别" class="btn-floating yellow tooltipped darken-1" v-on:click="showCategory"><i class="material-icons">subject</i></a></li>
-                <li><a data-position="top" data-delay="50" data-tooltip="About Me" class="btn-floating blue tooltipped"><i class="material-icons">person_pin</i></a></li>
-                <li><a data-position="top" data-delay="50" data-tooltip="返回顶部" class="btn-floating green tooltipped" href="#"><i class="material-icons">publish</i></a></li>
+                <li><a data-position="top" data-delay="50" data-tooltip="About Me" class="btn-floating blue tooltipped"><i class="material-icons">face</i></a></li>
+                <li><a data-position="top" data-delay="50" data-tooltip="返回顶部" class="btn-floating green tooltipped" v-on:click="goToTheTop"><i class="material-icons">publish</i></a></li>
             </ul>
         </div>
     </options>
@@ -72,15 +116,17 @@
             </li>
         </ul>
     </category>
+    <!-- lib js -->
+    <script src="js/lib/jquery-2.2.0.min.js"></script>
+    <script src="js/lib/vue.min.js"></script>
+    <script src="js/lib/materialize.min.js"></script>
+    <!-- my js -->
     <script src="js/const.js"></script>
     <script src="js/dom.js"></script>
     <script src="js/component.js"></script>
     <script src="js/vm.js"></script>
     <script src="js/util.js"></script>
     <script src="js/init.js"></script>
-    <!-- lib js -->
-    <!-- <script src="js/lib/velocity.min.js"></script> -->
-    <script src="js/lib/materialize.min.js"></script>
 </body>
 
 </html>

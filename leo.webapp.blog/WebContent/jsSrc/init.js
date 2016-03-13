@@ -26,6 +26,12 @@ var Init = (function() {
         resize();
     });
 
+    $(document).ready(function() {
+        setTimeout(function() {
+            Materialize.toast('Welcome ~', 3000, 'rounded');
+        }, 1000);
+    });
+
     $("#container").on('click', function(event) {
         event.preventDefault();
         Dom.category.velocity({

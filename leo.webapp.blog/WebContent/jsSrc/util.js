@@ -24,6 +24,14 @@ var Util = (function() {
                             Vm.articleContainer.$data.articles.push(res[i]);
                         }
                         Vm.articleContainer.$data.startIndex++;
+
+                        if ($("#container").is(':hidden')) {
+                            $("#container").show();
+                        }
+                        if ($("#options").is(':hidden')) {
+                            $("#options").show();
+                        }
+                        $("#loader").remove();
                     } else {
                         error();
                     }

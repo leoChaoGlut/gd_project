@@ -5,7 +5,7 @@
 <mapper namespace="leo.mapper.CategoryMapper">
 	<insert id="insertMore" parameterType="Category">
 		INSERT INTO
-		blog_category(id,name,article_count)
+		blog_category(id,name,count)
 		VALUES
 		<foreach collection="categories" item="item" separator=",">
 			(#{item.id},#{item.name},#{item.count})

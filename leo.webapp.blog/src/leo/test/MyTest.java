@@ -2,6 +2,7 @@ package leo.test;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.HashSet;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -133,5 +134,14 @@ public class MyTest {
 			jedis.set(articleId + "", JSONFileReader.getStringContent("C://articles/" + articleId));
 		}
 	}
+	
+	@Test
+	public void test9() {
+		List<Category> categories = JSONFileReader.parseArray(Category.class, "C://categories");
+		CategoryMapper categoryMapper = ctx.getBean(CategoryMapper.class);
+		categoryMapper.insertMore(categories);
+	}
+	
+	
 
 }
