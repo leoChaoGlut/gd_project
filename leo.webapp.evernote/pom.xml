@@ -49,6 +49,16 @@
 			<groupId>${spring.groupid}</groupId>
 			<version>${spring.version}</version>
 		</dependency>
+		<dependency>
+			<artifactId>spring-aop</artifactId>
+			<groupId>${spring.groupid}</groupId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<artifactId>spring-aspects</artifactId>
+			<groupId>${spring.groupid}</groupId>
+			<version>${spring.version}</version>
+		</dependency>
 		<!-- Spring End -->
 
 		<!-- Mybatis Begin -->
