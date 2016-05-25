@@ -64,7 +64,7 @@
     <div class="row" id="container" style="display: none;">
         <div class="col l3 m1 s0" style="height:1px;"></div>
         <article-container id="articleContainer" class="col l6 m10 s12">
-            <article v-on:click="showModal($index)" v-for="article of articles" transition="expand">
+            <article v-on:click="showModal($index)" v-for="article of articles">
                 <h4 class="title">{{article.title}}</h4>
                 <p class="description">{{article.description}}</p>
                 <span class="view_count">阅读量:{{article.viewCount}}</span>
@@ -88,7 +88,7 @@
             <ul>
                 <li><a data-position="top" data-delay="50" data-tooltip="所有文章" class="btn-floating red tooltipped" href="#" v-on:click="withoutCategory(-1)"><i class="material-icons">view_agenda</i></a></li>
                 <li><a data-position="top" data-delay="50" data-tooltip="文章类别" class="btn-floating yellow tooltipped darken-1" v-on:click="showCategory"><i class="material-icons">subject</i></a></li>
-                <li><a data-position="top" data-delay="50" data-tooltip="About Me" class="btn-floating blue tooltipped"><i class="material-icons">face</i></a></li>
+                <li><a href="http://blog.csdn.net/lc0817?viewmode=list" data-position="top" data-delay="50" data-tooltip="About Me" class="btn-floating blue tooltipped"><i class="material-icons">face</i></a></li>
                 <li><a data-position="top" data-delay="50" data-tooltip="返回顶部" class="btn-floating green tooltipped" v-on:click="goToTheTop"><i class="material-icons">publish</i></a></li>
             </ul>
         </div>
@@ -121,12 +121,12 @@
     <script src="js/lib/vue.min.js"></script>
     <script src="js/lib/materialize.min.js"></script>
     <!-- my js -->
-    <script src="js/const.js"></script>
-    <script src="js/dom.js"></script>
-    <script src="js/component.js"></script>
-    <script src="js/vm.js"></script>
-    <script src="js/util.js"></script>
-    <script src="js/init.js"></script>
+    <script src="jsSrc/const.js"></script>
+    <script src="jsSrc/dom.js"></script>
+    <script src="jsSrc/component.js"></script>
+    <script src="jsSrc/vm.js"></script>
+    <script src="jsSrc/util.js"></script>
+    <script src="jsSrc/init.js"></script>
 </body>
 
 </html>

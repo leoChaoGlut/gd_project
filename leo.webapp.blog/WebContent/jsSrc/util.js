@@ -52,6 +52,7 @@ var Util = (function() {
                     var respText = JSON.parse(resp.responseText);
                     if (respText.status == CONST.OK) {
                         var res = respText.result;
+                        Dom.modalContent.empty();
                         Dom.modalContent.append(res);
                     } else {
                         error();
@@ -90,6 +91,7 @@ var Util = (function() {
             url: 'category/' + categoryName + '/articles',
             complete: function(resp) {
                 if (resp.status == CONST.OK) {
+                	Vm.articleContainer.$data.articles=[];
                     var respText = JSON.parse(resp.responseText);
                     if (respText.status == CONST.OK) {
                         var res = respText.result;

@@ -1,7 +1,6 @@
 package leo.controller;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +27,6 @@ public class CategoryController {
 			List<Category> articles = categoryService.getAllCategories();
 			return Response.success(articles);
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 			return Response.error();
 		}
@@ -42,7 +40,6 @@ public class CategoryController {
 			List<Article> articles = categoryService.getArticles(categoryName);
 			return Response.success(articles);
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 			return Response.error();
 		}

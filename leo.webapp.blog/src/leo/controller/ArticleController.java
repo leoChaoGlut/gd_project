@@ -2,7 +2,6 @@ package leo.controller;
 
 import java.lang.ref.SoftReference;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,13 +18,7 @@ import leo.util.Response;
 @RequestMapping("/article")
 public class ArticleController {
 	// TODO 设置js,css文件的过期时间.
-	// TODO 设置js,css文件的过期时间.
-	// TODO 设置js,css文件的过期时间.
-	// TODO 设置js,css文件的过期时间.
-	// TODO 设置js,css文件的过期时间.
-	// TODO 设置js,css文件的过期时间.
-	// TODO 设置js,css文件的过期时间.
-	@Autowired	
+	@Autowired
 	private IArticleService articleService;
 
 	@RequestMapping(value = "/list/{startIndex}/{pageSize}", method = RequestMethod.GET, produces = "application/json")
@@ -35,7 +28,6 @@ public class ArticleController {
 			List<Article> articles = articleService.getArticles(startIndex, pageSize);
 			return Response.success(articles);
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 			return Response.error();
 		}

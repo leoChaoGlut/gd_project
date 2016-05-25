@@ -21,7 +21,7 @@ public class JedisUtil {
 					cfg.setMaxIdle(5);
 					cfg.setMaxTotal(10);
 					cfg.setMaxWaitMillis(150000);
-					jedisPool = new JedisPool(cfg, "127.0.0.1");
+					jedisPool = new JedisPool(cfg, "139.129.9.75", 6379, 5000, "chashaobao@0726");
 				}
 			} finally {
 				lock.unlock();

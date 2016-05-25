@@ -14,7 +14,7 @@ var Vm = (function() {
             showModal: function(index) {
                 Dom.modalContent.children("#article_content").remove();
                 Dom.modalContent.children("iframe").remove();
-                var articleId = articleContainer.$data.articles[index].articleId;
+                var articleId = articleContainer.$data.articles[index].id;
                 this.curArticleId = articleId;
                 Util.getContent(articleId);
                 Dom.myModal.openModal();

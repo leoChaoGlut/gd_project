@@ -8,13 +8,9 @@ package leo.bean;
  */
 public class Article {
 	/**
-	 * 自增id
-	 */
-	private int id;
-	/**
 	 * 文章id
 	 */
-	private int articleId;
+	private int id;
 	/**
 	 * 标题
 	 */
@@ -34,11 +30,10 @@ public class Article {
 	private int viewCount;
 
 	public Article() {
-		// TODO Auto-generated constructor stub
 	}
 
-	public Article(int articleId, String title, String description, String postDate, int viewCount) {
-		this.articleId = articleId;
+	public Article(int id, String title, String description, String postDate, int viewCount) {
+		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.postDate = postDate;
@@ -85,18 +80,10 @@ public class Article {
 		this.viewCount = viewCount;
 	}
 
-	public int getArticleId() {
-		return articleId;
-	}
-
-	public void setArticleId(int articleId) {
-		this.articleId = articleId;
-	}
-
 	@Override
 	public String toString() {
-		return "Article [id=" + id + ", articleId=" + articleId + ", title=" + title + ", description=" + description
-				+ ", postDate=" + postDate + ", viewCount=" + viewCount + "]";
+		return "Article [id=" + id + ", title=" + title + ", description=" + description + ", postDate=" + postDate
+				+ ", viewCount=" + viewCount + "]";
 	}
 
 }

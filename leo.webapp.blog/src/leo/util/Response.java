@@ -7,7 +7,6 @@ public class Response {
 	private Object result;
 
 	public Response() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Response(int status, String msg, Object result) {

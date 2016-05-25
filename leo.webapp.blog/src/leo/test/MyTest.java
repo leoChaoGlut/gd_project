@@ -2,8 +2,8 @@ package leo.test;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.HashSet;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -20,8 +20,7 @@ import leo.mapper.CategoryMapper;
 import leo.service.IArticleService;
 import leo.service.ICategoryService;
 import leo.util.JSONFileReader;
-import leo.util.JedisUtil;
-import redis.clients.jedis.Jedis;
+import leo.util.SpiderUtil;
 
 public class MyTest {
 	ApplicationContext ctx = new ClassPathXmlApplicationContext("leo/config/spring-application-config.xml",
@@ -118,7 +117,7 @@ public class MyTest {
 	public void test7() {
 		List<Article> articles = JSONFileReader.parseArray(Article.class, "C:/1");
 		ArticleMapper articleMapper = ctx.getBean(ArticleMapper.class);
-		articleMapper.insertMore(articles);
+		// articleMapper.insertMore(articles);
 	}
 
 	/**
@@ -126,22 +125,29 @@ public class MyTest {
 	 */
 	@Test
 	public void test8() {
-		Jedis jedis = JedisUtil.getResource();
-		List<Article> articles = JSONFileReader.parseArray(Article.class, "C:/1");
-		for (Article article : articles) {
-			int articleId = article.getArticleId();
-			System.out.println(articleId);
-			jedis.set(articleId + "", JSONFileReader.getStringContent("C://articles/" + articleId));
-		}
+		// Jedis jedis = JedisUtil.getResource();
+		// List<Article> articles = JSONFileReader.parseArray(Article.class,
+		// "C:/1");
+		// for (Article article : articles) {
+		// int articleId = article.getArticleId();
+		// System.out.println(articleId);
+		// jedis.set(articleId + "",
+		// JSONFileReader.getStringContent("C://articles/" + articleId));
+		// }
 	}
-	
+
 	@Test
 	public void test9() {
 		List<Category> categories = JSONFileReader.parseArray(Category.class, "C://categories");
 		CategoryMapper categoryMapper = ctx.getBean(CategoryMapper.class);
 		categoryMapper.insertMore(categories);
 	}
-	
-	
+
+	@Test
+	public void test10() {
+		Properties ppt = SpiderUtil.getProperties("/leo/config/setting.properties");
+		String atc = ppt.getProperty("articleJsonPath");
+		System.out.println(atc);
+	}
 
 }

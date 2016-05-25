@@ -20,7 +20,6 @@ public class ArticleServiceImp implements IArticleService {
 
 	@Override
 	public List<Article> getArticles(int startIndex, int pageSize) {
-		// TODO Auto-generated method stub
 		List<Article> articles = articleMapper.pageQuery(startIndex, pageSize);
 		return articles;
 	}
@@ -30,14 +29,9 @@ public class ArticleServiceImp implements IArticleService {
 		String content = null;
 		Jedis jedis = null;
 		try {
-			// TODO Auto-generated method stub
 			jedis = JedisUtil.getResource();
 			content = jedis.get(articleId);
 			if (content == null) {
-				// TODO 如果redis中没有key对应的value,应该做何处理?
-				// TODO 如果redis中没有key对应的value,应该做何处理?
-				// TODO 如果redis中没有key对应的value,应该做何处理?
-				// TODO 如果redis中没有key对应的value,应该做何处理?
 				// TODO 如果redis中没有key对应的value,应该做何处理?
 			}
 		} finally {

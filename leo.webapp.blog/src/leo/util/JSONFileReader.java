@@ -1,7 +1,6 @@
 package leo.util;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
@@ -10,7 +9,6 @@ import com.alibaba.fastjson.JSON;
 
 public class JSONFileReader {
 
-	@SuppressWarnings("unchecked")
 	public static <T> List<T> parseArray(Class<T> clz, String jsonFilePath) {
 		FileReader fr = null;
 		BufferedReader br = null;
@@ -25,7 +23,6 @@ public class JSONFileReader {
 			}
 			list = JSON.parseArray(sb.toString(), clz);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			closeResource(fr, br);
@@ -46,7 +43,6 @@ public class JSONFileReader {
 			}
 			return sb.toString();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			closeResource(fr, br);
@@ -59,14 +55,12 @@ public class JSONFileReader {
 			try {
 				br.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} finally {
 				if (fr != null) {
 					try {
 						fr.close();
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}

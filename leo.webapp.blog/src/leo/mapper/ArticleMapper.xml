@@ -6,7 +6,7 @@
 
 	<select id="pageQuery" resultType="Article">
 		SELECT
-		article_id AS articleId,
+		id,
 		title,
 		description,
 		post_date AS postDate,
@@ -19,8 +19,7 @@
 
 	<select id="selectMore" resultType="Article">
 		SELECT
-		ba.article_id AS
-		articleId,
+		ba.id,
 		ba.title,
 		ba.description,
 		ba.post_date AS postDate,
@@ -32,17 +31,9 @@
 		mca.category_name = bc.`name`
 		JOIN blog_article ba
 		ON mca.article_id =
-		ba.article_id
+		ba.id
 		WHERE
 		bc.`name` = #{categoryName}
 	</select>
 
-	<insert id="insertMore" parameterType="Article">
-		INSERT INTO
-		blog_article(article_id,title,description,post_date,view_count)
-		VALUES
-		<foreach collection="articles" item="item" separator=",">
-			(#{item.articleId},#{item.title},#{item.description},#{item.postDate},#{item.viewCount})
-		</foreach>
-	</insert>
 </mapper>
